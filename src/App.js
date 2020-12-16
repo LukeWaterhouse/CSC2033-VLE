@@ -5,7 +5,6 @@ class App extends React.Component {
     state = {
         students: null}
 
-
     componentDidMount() {
         console.log("mounted");
         db.collection('schools').get()
