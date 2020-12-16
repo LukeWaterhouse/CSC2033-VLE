@@ -9,8 +9,7 @@ class StudentNavBar extends Component {
 
                 </div>
                 <ul>
-                    <li>
-                    </li>
+                    <li><a href=""></a> </li>
                 </ul>
 
             </nav>
