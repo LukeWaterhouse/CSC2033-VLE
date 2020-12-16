@@ -1,5 +1,6 @@
 import React from 'react'
 import {db,auth} from './firebase'
+import StudentNavBar from "./Student/NavBar/StudentNavBar";
 
 class App extends React.Component {
     state = {
@@ -24,6 +25,7 @@ class App extends React.Component {
     render() {
         return (
             <div className="App">
+                <StudentNavBar/>
                 <h1>Schools</h1>
                 {
                     this.state.schools &&
