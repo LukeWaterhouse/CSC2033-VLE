@@ -2,21 +2,21 @@ const MenuItems = [
     {
         title: 'Home',
         url: '#',
-        cName: 'nav-links'
+        cName: 'StudentHome'
     },
     {
         title: 'Modules',
-        url: '#',
+        url: 'Modules',
         cName: 'nav-links'
     },
     {
         title: 'Deadlines',
-        url: '#',
+        url: 'Deadlines',
         cName: 'nav-links'
     },
     {
         title: 'Results',
-        url: '#',
+        url: 'Results',
         cName: 'nav-links'
     }
 
