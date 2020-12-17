@@ -1,45 +1,26 @@
 import React from 'react'
 import {db,auth} from './firebase'
 import StudentNavBar from "./Student/NavBar/StudentNavBar";
+import {BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import StudentHome from "./Student/pages/StudentHome";
+import StudentModules from "./Student/pages/StudentModules";
+
+
 
 class App extends React.Component {
-    state = {
-        students: null}
-
-    componentDidMount() {
-        console.log("mounted");
-        db.collection('schools').get()
-            .then(snapshot => {
-                const schools = []
-                snapshot.forEach(doc => {
-                    const data = doc.data()
-                    schools.push(data)
-                })
-                this.setState({schools: schools})
-                console.log(snapshot)
-
-            })
-            .catch(error => console.log(error))
-    }
 
     render() {
         return (
+            <Router>
             <div className="App">
                 <StudentNavBar/>
-                <h1>Schools</h1>
-                {
-                    this.state.schools &&
-                    this.state.schools.map( school =>{
-                        return(
-                            <div>
-                                <p>{school.title}</p>
-                                <p>{school.desc}</p>
-                            </div>
-                        )
-                    })
-                }
+                <h1>I think all the components are pretty much meant to be imported into App.js</h1>
+                <Route path="/StudentHome" component={StudentHome}/>
+                <Route path="/StudentModules" component={StudentModules}/>
+                <Route path="/StudentDeadlines" component={StudentHome}/>
 
             </div>
+            </Router>
         );
     }
 }
