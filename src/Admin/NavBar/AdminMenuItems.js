@@ -1,27 +1,22 @@
 const MenuItems = [
     {
         title: 'Home',
-        url: 'StudentHome',
+        url: 'AdminHome',
         cName: 'nav-links'
     },
     {
-        title: 'Modules',
-        url: 'StudentModules',
+        title: 'Analytics',
+        url: 'AdminAnalytics',
         cName: 'nav-links'
     },
     {
-        title: 'Deadlines',
-        url: 'StudentDeadlines',
-        cName: 'nav-links'
-    },
-    {
-        title: 'Results',
-        url: 'StudentResults',
+        title: 'My Classes',
+        url: 'AdminClasses',
         cName: 'nav-links'
     },
     {
         title: 'FAQ',
-        url: '/StudentFAQ',
+        url: 'AdminFAQ',
         cName: 'nav-links'
     },
     {

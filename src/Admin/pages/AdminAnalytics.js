@@ -1,16 +1,16 @@
 import React from 'react'
 import AdminNavBar from "../NavBar/AdminNavBar";
 
-class AdminHome extends React.Component {
+class AdminAnalytics extends React.Component {
     render() {
         return (
             <div>
                 <AdminNavBar/>
-                <h2>Admin Home</h2>
+                <h2>Admin Analytics</h2>
 
             </div>
         )
     }
 }
 
-export default AdminHome
+export default AdminAnalytics

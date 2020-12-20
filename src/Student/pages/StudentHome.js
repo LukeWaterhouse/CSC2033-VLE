@@ -25,7 +25,8 @@ class StudentHome extends React.Component {
     render() {
         return (
 
-            <div className="App">
+            <div>
+                <StudentNavBar/>
                 <h2>StudentHome</h2>
 
                 {
