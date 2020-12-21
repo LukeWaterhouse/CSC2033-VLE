@@ -12,6 +12,8 @@ import AdminHome from "./Admin/pages/AdminHome";
 import AdminAnalytics from "./Admin/pages/AdminAnalytics";
 import AdminClasses from "./Admin/pages/AdminClasses";
 import AdminFAQ from "./Admin/pages/AdminFAQ";
+import Test from "./Student/pages/Test";
+
 
 
 
@@ -34,6 +36,8 @@ class App extends React.Component {
                         <Route component={AdminAnalytics} path="/AdminAnalytics"/>
                         <Route component={AdminClasses} path="/AdminClasses"/>
                         <Route component={AdminFAQ} path="/AdminFAQ"/>
+                        <Route component={Test} path="/Test"/>
+
                     </Switch>
                 </Router>
             </div>
