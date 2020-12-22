@@ -1,6 +1,5 @@
 .NavbarItems {
     background: linear-gradient(90deg, rgb(13,43,34) 0%, rgba(13,96,102,1 )100%);
-
 }
 
 ul{
@@ -14,6 +13,7 @@ li{
     display: block;
     color: ghostwhite;
     text-align: center;
+    text-decoration: none;
 }
 
 li a {
