@@ -2,10 +2,25 @@
     margin: 0 20%;
 }
 
+.post-body {
+    margin: 1em 20%;
+}
+
+.text-center {
+    text-align: center;
+    height: 200px;
+}
+
+
 @media (max-width: 900px) {
 
     .post-editor {
-        margin: 0;
+        margin: 1em;
     }
-    
+
+    .post-body {
+        margin: 1em;
+    }
 }
+
+
