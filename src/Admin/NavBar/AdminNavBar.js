@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import MenuItems from "./AdminMenuItems";
 import './AdminNavBar.css'
+import Logo from "../../Images/WolfPack.png"
 
 
 class AdminNavBar extends Component {
@@ -9,9 +10,8 @@ class AdminNavBar extends Component {
     render() {
         return(
             <nav className="NavbarItems">
-                <h1 className="navbar-logo" >Admin Navigation</h1>
                 <div className="menu-icon">
-
+                    <img src={Logo} />
                 </div>
                 <ul>
                     {MenuItems.map((item, index) => {

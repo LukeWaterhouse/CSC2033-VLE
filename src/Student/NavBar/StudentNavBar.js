@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import './StudentNavBar.css'
 import MenuItems from "./StudentMenuItems";
-
+import Logo from "../../Images/WolfPack.png"
 
 class StudentNavBar extends Component {
     state = {clicked: false}
@@ -9,9 +9,8 @@ class StudentNavBar extends Component {
     render() {
         return(
             <nav className="NavbarItems">
-                <h1 className="navbar-logo" >Student Navigation</h1>
                 <div className="menu-icon">
-
+                    <img src={Logo} />
                 </div>
                 <ul>
                     {MenuItems.map((item, index) => {
