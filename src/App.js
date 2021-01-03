@@ -7,12 +7,16 @@ import StudentModules from "./Student/pages/StudentModules";
 import LoginHome from "./Login-Register/LoginHome";
 import StudentDeadlines from "./Student/pages/StudentDeadlines"
 import StudentResults from "./Student/pages/Student Results"
-import StudentFAQ from "./Student/pages/StudentFAQ";
+import StudentThreads from "./Student/pages/StudentThreads";
+import StudentDiscussionBoard from "./Student/pages/StudentDiscussionBoard";
 import AdminHome from "./Admin/pages/AdminHome";
 import AdminAnalytics from "./Admin/pages/AdminAnalytics";
 import AdminClasses from "./Admin/pages/AdminClasses";
 import AdminFAQ from "./Admin/pages/AdminFAQ";
 import Test from "./Student/pages/Test";
+import {createStore} from 'redux';
+
+
 
 
 
@@ -31,7 +35,8 @@ class App extends React.Component {
                         <Route component={StudentDeadlines} path="/StudentDeadlines"/>
                         <Route component={StudentHome} path="/StudentHome"/>
                         <Route component={StudentResults} path="/StudentResults"/>
-                        <Route component={StudentFAQ} path="/StudentFAQ"/>
+                        <Route component={StudentThreads} path="/StudentThreads"/>
+                        <Route component={StudentDiscussionBoard} path="/StudentDiscussion/:thread"/>
                         <Route component={AdminHome} path="/AdminHome"/>
                         <Route component={AdminAnalytics} path="/AdminAnalytics"/>
                         <Route component={AdminClasses} path="/AdminClasses"/>

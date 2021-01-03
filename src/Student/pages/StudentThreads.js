@@ -4,20 +4,14 @@ import StudentNavBar from "../NavBar/StudentNavBar";
 import Threads from "../components/Threads";
 
 
-function StudentFAQ() {
+function StudentThreads() {
     return(
 
         <div>
-
             <StudentNavBar/>
-
-            <DiscussionBoard/>
-
-
-
-
+            <Threads/>
         </div>
     )
 }
 
-export default StudentFAQ
+export default StudentThreads

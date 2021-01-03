@@ -20,8 +20,8 @@ const MenuItems = [
         cName: 'nav-links'
     },
     {
-        title: 'FAQ',
-        url: '/StudentFAQ',
+        title: 'Forum',
+        url: '/StudentThreads',
         cName: 'nav-links'
     },
     {
