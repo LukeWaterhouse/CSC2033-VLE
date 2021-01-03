@@ -1,34 +1,23 @@
-import React from 'react'
+import React from "react";
+import DiscussionBoard from "../components/DiscussionBoard";
 import StudentNavBar from "../NavBar/StudentNavBar";
-import cssFiles from "../css-files/disccusionBoard.css"
-import 'bootstrap/dist/css/bootstrap.css'
-import 'popper.js'
-global.jQuery = require('jquery');
-require('bootstrap');
+import Threads from "../components/Threads";
+
+
+function StudentFAQ() {
+    return(
+
+        <div>
+
+            <StudentNavBar/>
+
+            <DiscussionBoard/>
 
 
 
 
-
-class StudentFAQ extends React.Component {
-
-
-
-    render() {
-        return (
-            <div>
-                <StudentNavBar/>
-                <h2>FAQ</h2>
-
-                <div className="card card-body post-editor">
-                    <div className="panel-body">
-                        <textarea className="form-control post-editor-input" />
-                        <button className="btn btn-success post-editor-button">Post</button>
-                    </div>
-                </div>
-            </div>
-        );
-    }
+        </div>
+    )
 }
 
 export default StudentFAQ
