@@ -12,7 +12,8 @@ import StudentDiscussionBoard from "./Student/pages/StudentDiscussionBoard";
 import AdminHome from "./Admin/pages/AdminHome";
 import AdminAnalytics from "./Admin/pages/AdminAnalytics";
 import AdminClasses from "./Admin/pages/AdminClasses";
-import AdminFAQ from "./Admin/pages/AdminFAQ";
+import AdminDiscussionBoard from "./Admin/pages/AdminDiscussionBoard";
+import AdminThreads from "./Admin/pages/AdminThreads";
 import Test from "./Student/pages/Test";
 import {createStore} from 'redux';
 
@@ -40,7 +41,8 @@ class App extends React.Component {
                         <Route component={AdminHome} path="/AdminHome"/>
                         <Route component={AdminAnalytics} path="/AdminAnalytics"/>
                         <Route component={AdminClasses} path="/AdminClasses"/>
-                        <Route component={AdminFAQ} path="/AdminFAQ"/>
+                        <Route component={AdminDiscussionBoard} path="/AdminDiscussion/:thread"/>
+                        <Route component={AdminThreads} path="/AdminThreads"/>
                         <Route component={Test} path="/Test"/>
 
                     </Switch>
