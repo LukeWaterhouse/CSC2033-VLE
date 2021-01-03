@@ -13,7 +13,10 @@ require('bootstrap');
 
 
 function ChatRoom(props){
-    const messagesRef = db.collection('messages')
+
+    console.log("This is props: "+props.threadName)
+
+    const messagesRef = db.collection('Threads').doc(props.threadName).collection('messages')
     const query = messagesRef.orderBy('createdAt').limit(25)
 
     const [messages] = useCollectionData(query, {idField: 'id'})
@@ -67,14 +70,15 @@ function ChatMessage({message}){
     return <p className="card card-body post-editor"><p className="text-black-50">{output}</p>{text} </p>
 }
 
-function DiscussionBoard(){
+function DiscussionBoard(props) {
 
-    return(
-        <div>
-            <h1 className="text-center">Discussion Board</h1>
-            <ChatRoom/>
-        </div>
-    )
+        return(
+            <div>
+                <h1 className="text-center">Discussion Board</h1>
+                <ChatRoom threadName={props.input}/>
+            </div>
+        )
 }
 
 export default DiscussionBoard
+
