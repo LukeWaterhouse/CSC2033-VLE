@@ -1,16 +1,16 @@
 import React from "react";
-import StudentNavBar from "../NavBar/StudentNavBar";
+import AdminNavBar from "../NavBar/AdminNavBar";
 import Threads from "../components/Threads";
 
 
-function StudentThreads() {
+function AdminThreads() {
     return(
 
         <div>
-            <StudentNavBar/>
+            <AdminNavBar/>
             <Threads/>
         </div>
     )
 }
 
-export default StudentThreads
+export default AdminThreads

@@ -15,8 +15,8 @@ const MenuItems = [
         cName: 'nav-links'
     },
     {
-        title: 'FAQ',
-        url: 'AdminFAQ',
+        title: 'Forum',
+        url: 'AdminThreads',
         cName: 'nav-links'
     },
     {
