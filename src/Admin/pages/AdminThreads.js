@@ -1,6 +1,7 @@
 import React from "react";
 import AdminNavBar from "../NavBar/AdminNavBar";
 import Threads from "../components/Threads";
+import CreateThread from "../components/createThread";
 
 
 function AdminThreads() {
@@ -8,6 +9,7 @@ function AdminThreads() {
 
         <div>
             <AdminNavBar/>
+            <CreateThread/>
             <Threads/>
         </div>
     )
