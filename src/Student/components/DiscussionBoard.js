@@ -64,10 +64,7 @@ function ChatMessage({message}){
         output = year+"/"+month+"/"+day+" "+time
 
     }
-
-
-
-    return <p className="card card-body post-editor"><p className="text-black-50">{output}</p>{text} </p>
+    return <p className="card card-body post-editor text-dark"><p className="text-black-50">{output}</p>{text} </p>
 }
 
 function DiscussionBoard(props) {
