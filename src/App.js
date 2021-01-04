@@ -1,7 +1,5 @@
 import React from 'react'
-import {db,auth} from './firebase'
-import StudentNavBar from "./Student/NavBar/StudentNavBar";
-import {BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom';
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import StudentHome from "./Student/pages/StudentHome";
 import StudentModules from "./Student/pages/StudentModules";
 import LoginHome from "./Login-Register/LoginHome";
@@ -15,7 +13,6 @@ import AdminClasses from "./Admin/pages/AdminClasses";
 import AdminDiscussionBoard from "./Admin/pages/AdminDiscussionBoard";
 import AdminThreads from "./Admin/pages/AdminThreads";
 import Test from "./Student/pages/Test";
-import {createStore} from 'redux';
 
 
 

@@ -1,8 +1,6 @@
 import React from "react";
 import {db} from "../firebase";
-import {BrowserRouter as Router, Route} from "react-router-dom";
-import StudentHome from "./StudentHome";
-import StudentNavBar from "./NavBar/StudentNavBar";
+
 
 class Modules extends React.Component {
     state = {
