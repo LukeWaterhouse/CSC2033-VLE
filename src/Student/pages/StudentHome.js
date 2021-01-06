@@ -1,7 +1,7 @@
 import React from 'react'
 import {db,auth} from '../../firebase'
 import StudentNavBar from "../../Student/NavBar/StudentNavBar";
-import CSS from "../../Student/css-files/HomePage.css";
+import CSS from "../../Student/css-files/StudentHome.css";
 
 class StudentHome extends React.Component {
 
@@ -12,14 +12,6 @@ class StudentHome extends React.Component {
             <div>
                 <StudentNavBar/>
                 <h2>Student Home</h2>
-                <p>
-                    <ul>
-                        <li> Announcements: </li>
-                        <li> Recent Results: </li>
-                        <li> Deadlines: </li>
-                        <li> FAQ: </li>
-                    </ul>
-                </p>
             </div>
         );
     }
