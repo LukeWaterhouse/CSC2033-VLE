@@ -1,6 +1,6 @@
 import React from 'react'
 import StudentNavBar from "../../Student/NavBar/StudentNavBar";
-import CSS from "../../Student/css-files/HomePage.css";
+import CSS from "../../Student/css-files/StudentHome.css";
 
 class StudentHome extends React.Component {
 
