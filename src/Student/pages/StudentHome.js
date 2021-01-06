@@ -1,7 +1,6 @@
 import React from 'react'
-import {db,auth} from '../../firebase'
 import StudentNavBar from "../../Student/NavBar/StudentNavBar";
-import CSS from "../../Student/css-files/StudentHome.css";
+import CSS from "../../Student/css-files/HomePage.css";
 
 class StudentHome extends React.Component {
 

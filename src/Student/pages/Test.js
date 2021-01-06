@@ -1,5 +1,5 @@
 import React from 'react'
-import {db,auth} from '../../firebase'
+import {db} from '../../firebase'
 
 class StudentHome extends React.Component {
     state = {
