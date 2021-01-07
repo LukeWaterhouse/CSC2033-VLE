@@ -4,17 +4,15 @@ import Threads from "../components/Threads";
 import CreateThread from "../components/createThread";
 import DeleteThread from "../components/deleteThread";
 
-
 function AdminThreads() {
-    return(
-
-        <div>
-            <AdminNavBar/>
-            <CreateThread/>
-            <DeleteThread/>
-            <Threads/>
-        </div>
-    )
+  return (
+    <div>
+      <AdminNavBar />
+      <CreateThread />
+      <DeleteThread />
+      <Threads />
+    </div>
+  );
 }
 
-export default AdminThreads
+export default AdminThreads;
