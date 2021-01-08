@@ -20,6 +20,11 @@ const MenuItems = [
     cName: "nav-links",
   },
   {
+    title: "Feedback",
+    url: "AdminFeedback",
+    cName: "nav-links",
+  },
+  {
     title: "Logout",
     url: "/LoginHome",
     cName: "nav-links",

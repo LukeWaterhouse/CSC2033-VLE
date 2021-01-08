@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import StudentNavBar from "../NavBar/StudentNavBar";
 import { db } from "../../firebase";
-
+import "firebase/firestore";
+import firebase from "firebase";
 
 function GiveFeedback() {
   const [formValue, setFormValue] = useState("");
@@ -33,7 +34,7 @@ function GiveFeedback() {
     if (formValue === "") {
       setErrorMessage("Please input some text before submitting!");
     } else {
-      setErrorMessage("Success!");
+      setErrorMessage("Success! Don't worry, your feedback will be kept anonymous");
       console.log("Send Feedback");
       console.log("Sent to: " + selectedModule);
       setFormValue("");
@@ -43,7 +44,7 @@ function GiveFeedback() {
         .collection("feedback");
       await feedbackRef.add({
         text: formValue,
-        createdAt: "asd",
+        createdAt: firebase.firestore.FieldValue.serverTimestamp(),
       });
     }
   };

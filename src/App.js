@@ -47,7 +47,7 @@ class App extends React.Component {
             <Route component={AdminFeedback} path="/AdminFeedback" />
             <Route
               component={AdminFeedbackPage}
-              path="/AdminFeedbackPage:module"
+              path="/AdminFeedbackPage/:module"
             />
             <Route component={Test} path="/Test" />
           </Switch>

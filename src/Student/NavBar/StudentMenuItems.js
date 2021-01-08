@@ -25,10 +25,16 @@ const MenuItems = [
     cName: "nav-links",
   },
   {
+    title: "Feedback",
+    url: "/StudentFeedback",
+    cName: "nav-links",
+  },
+  {
     title: "Logout",
     url: "/LoginHome",
     cName: "nav-links",
   },
+
 ];
 
 export default MenuItems;

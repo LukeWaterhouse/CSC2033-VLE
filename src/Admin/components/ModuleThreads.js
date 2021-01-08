@@ -9,7 +9,7 @@ export default function ViewModules() {
 
   return (
     <div>
-      <h1>Modules</h1>
+      <h1>View Module Feedback</h1>
       {modules?.map((module) => (
         <Module key={module.id} ModuleTitle={module} />
       ))}
@@ -19,7 +19,7 @@ export default function ViewModules() {
 
 function Module({ ModuleTitle }) {
   const { Title } = ModuleTitle;
-  const pathTitle = "/AdminFeedback/" + Title;
+  const pathTitle = "/AdminFeedbackPage/" + Title;
   return (
     <div className="card-header">
       <h5>
