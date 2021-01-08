@@ -1,6 +1,3 @@
-/*.
-Set the navbar background colour and how it deals with content
- */
 .NavbarItems {
     background: linear-gradient(90deg, rgb(14,50,88) 0%, rgba(13,96,102,1 )100%);
     height: 80px;
@@ -10,40 +7,27 @@ Set the navbar background colour and how it deals with content
     font-size: 1.2rem;
 }
 
-/*.
-Adds defaults for the navbar item list and stops undesirable behaviour when screen size changes
- */
 ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
     overflow: hidden;
 }
-/*.
-Makes the logo fit the navbar size
- */
 .menu-icon img {
     height: 80px;
     width: 80px;
 }
-
 li {
     float: left;
 }
-/*.
-Separates items in navbar and aligns them
- */
+
 li a {
+    color: ghostwhite;
     display: block;
     text-align: center;
     padding: 10px 14px;
-    text-decoration: none;
-    color: ghostwhite;
 }
 
-/*.
-Changes colour for user when they hover over a navbar item
- */
 li a:hover {
     background-color: #2464a8;
     text-decoration: none;

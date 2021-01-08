@@ -10,7 +10,7 @@ class StudentNavBar extends Component {
         return(
             <nav className="NavbarItems">
                 <div className="menu-icon">
-                    <img src={Logo} alt = "WolfPack" />
+                    <img src={Logo} />
                 </div>
                 <ul>
                     {MenuItems.map((item, index) => {

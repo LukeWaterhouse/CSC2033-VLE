@@ -1,10 +1,10 @@
 import React from 'react'
-import {BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom';
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import StudentHome from "./Student/pages/StudentHome";
 import StudentModules from "./Student/pages/StudentModules";
 import LoginHome from "./Login-Register/LoginHome";
 import StudentDeadlines from "./Student/pages/StudentDeadlines"
-import StudentResults from "./Student/pages/StudentResults"
+import StudentResults from "./Student/pages/Student Results"
 import StudentThreads from "./Student/pages/StudentThreads";
 import StudentDiscussionBoard from "./Student/pages/StudentDiscussionBoard";
 import AdminHome from "./Admin/pages/AdminHome";
@@ -13,7 +13,6 @@ import AdminClasses from "./Admin/pages/AdminClasses";
 import AdminDiscussionBoard from "./Admin/pages/AdminDiscussionBoard";
 import AdminThreads from "./Admin/pages/AdminThreads";
 import Test from "./Student/pages/Test";
-
 
 
 
@@ -42,6 +41,7 @@ class App extends React.Component {
                         <Route component={AdminDiscussionBoard} path="/AdminDiscussion/:thread"/>
                         <Route component={AdminThreads} path="/AdminThreads"/>
                         <Route component={Test} path="/Test"/>
+
                     </Switch>
                 </Router>
             </div>
