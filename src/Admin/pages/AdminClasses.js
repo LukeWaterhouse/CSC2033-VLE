@@ -1,5 +1,6 @@
 import React from "react";
 import AdminNavBar from "../NavBar/AdminNavBar";
+import AssForm from "../components/AssForm";
 
 class AdminClasses extends React.Component {
   render() {
