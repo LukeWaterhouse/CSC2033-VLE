@@ -1,7 +1,6 @@
 import React from "react";
 import AdminNavBar from "../NavBar/AdminNavBar";
-import { Link } from "react-router-dom";
-import AssForm from "../components/AssForm";
+import AssignmentForm from "../components/AssignmentForm";
 
 class AdminAssignments extends React.Component {
 
@@ -13,10 +12,8 @@ class AdminAssignments extends React.Component {
                 <h2>Admin Assignments</h2>
 
                 <br/>
+                <AssignmentForm />
 
-                <Link to="/AdminAssignmentCreate">
-                    <button>Create Assignment</button>
-                </Link>
             </div>
 
 

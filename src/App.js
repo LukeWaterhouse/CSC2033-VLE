@@ -17,7 +17,6 @@ import GiveFeedback from "./Student/pages/GiveFeedback";
 import AdminFeedbackPage from "./Admin/pages/AdminFeedbackPage";
 import Test from "./Student/pages/Test";
 import AdminAssignments from "./Admin/pages/AdminAssignments";
-import AdminAssignmentCreate from "./Admin/pages/AdminAssignmentCreate";
 
 class App extends React.Component {
     render() {
@@ -46,7 +45,6 @@ class App extends React.Component {
                             path="/AdminDiscussion/:thread"
                         />
                         <Route component={AdminAssignments} path="/AdminAssignments"/>
-                        <Route component={AdminAssignmentCreate} path="/AdminAssignmentCreate"/>
                         <Route component={AdminThreads} path="/AdminThreads" />
                         <Route component={AdminFeedback} path="/AdminFeedback" />
                         <Route
