@@ -12,7 +12,7 @@ function GiveFeedback() {
 
   useEffect(() => {
     console.log("useEffect Ran");
-    db.collection("modules")
+    db.collection("Courses")
       .get()
       .then((snapshot) => {
         const modules = [];
