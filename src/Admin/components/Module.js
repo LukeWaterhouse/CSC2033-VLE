@@ -2,7 +2,7 @@ import React from "react";
 
 class Module extends React.Component {
     render() {
-        const {id, name, mLeader}= this.props;
+        const {id, name, mLeader, students}= this.props;
         return (
             <div className="module">
                 <div className="moduleId"> {id} </div>
