@@ -4,7 +4,10 @@ import { useCollectionData } from "react-firebase-hooks/firestore";
 import { Link } from "react-router-dom";
 
 function StudentThreadsList() {
-  const ThreadsRef = db.collection("StudentThreadsList");
+  const ThreadsRef = db
+    .collection("Courses")
+    .doc("Computer Science")
+    .collection("Threads");
   const [Threads] = useCollectionData(ThreadsRef, { idField: "id" });
 
   return (

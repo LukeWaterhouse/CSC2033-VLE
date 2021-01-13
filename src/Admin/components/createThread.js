@@ -6,9 +6,11 @@ function CreateThread() {
   const [formValue, setFormValue] = useState("");
   const [visibility, setVisibility] = useState("invisible");
   const [errorMessage, setError] = useState("");
-  const threadRef = db.collection("Threads");
 
-  const ThreadsRef = db.collection("Threads");
+  const ThreadsRef = db
+    .collection("Courses")
+    .doc("Computer Science")
+    .collection("Threads");
   const [Threads] = useCollectionData(ThreadsRef, { idField: "id" });
 
   const createThread = async (e) => {
@@ -31,7 +33,7 @@ function CreateThread() {
     if (isValid) {
       setVisibility("invisible");
       setFormValue("");
-      await threadRef.doc(formValue).set({
+      await ThreadsRef.doc(formValue).set({
         Title: formValue,
       });
     } else {

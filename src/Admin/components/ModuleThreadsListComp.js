@@ -4,7 +4,10 @@ import { useCollectionData } from "react-firebase-hooks/firestore";
 import { Link } from "react-router-dom";
 
 export default function ViewModules() {
-  const ModulesRef = db.collection("Courses").doc("Computer Science").collection("modules");
+  const ModulesRef = db
+    .collection("Courses")
+    .doc("Computer Science")
+    .collection("modules");
   const [modules] = useCollectionData(ModulesRef, { idField: "id" });
 
   return (

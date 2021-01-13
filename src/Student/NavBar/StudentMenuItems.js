@@ -34,7 +34,6 @@ const MenuItems = [
     url: "/LoginHome",
     cName: "nav-links",
   },
-
 ];
 
 export default MenuItems;
