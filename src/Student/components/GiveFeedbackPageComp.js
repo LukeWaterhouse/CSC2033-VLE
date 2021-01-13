@@ -60,7 +60,8 @@ function GiveAssignmentFeedback(props) {
   };
 
   return (
-    <div>
+    <div className="text-dark">
+        Assignment Feedback
       <form>
         <select
           value={selectedModule}
@@ -87,7 +88,7 @@ function GiveAssignmentFeedback(props) {
         </button>
       </form>
 
-      <div>{errorMessage}</div>
+      <div className="text-dark">{errorMessage}</div>
     </div>
   );
 }
