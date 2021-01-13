@@ -1,9 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import FeedbackPage from "../components/FeedbackPage";
+import ViewFeedbackPageComp from "../components/ViewFeedbackPageComp";
 import AdminNavBar from "../NavBar/AdminNavBar";
 
-export default class AdminFeedbackPage extends React.Component {
+export default class ViewFeedbackPage extends React.Component {
   render() {
     console.log(this.props);
     console.log(this.props.match.params);
@@ -11,8 +11,8 @@ export default class AdminFeedbackPage extends React.Component {
     return (
       <div>
         <AdminNavBar />
-        <Link to="/AdminFeedback">Back to Modules</Link>
-        <FeedbackPage input={input} />
+        <Link to="/ViewFeedbackModuleList">Back to Modules</Link>
+        <ViewFeedbackPageComp input={input} />
       </div>
     );
   }

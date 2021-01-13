@@ -1,0 +1,17 @@
+Index: src/App.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import React from 'react'\r\nimport {db,auth} from './firebase'\r\nimport StudentNavBar from \"./Student/NavBar/StudentNavBar\";\r\nimport {BrowserRouter as Router, Switch, Route} from 'react-router-dom';\r\nimport StudentHome from \"./Student/StudentHome\";\r\nimport Modules from \"./Student/Modules\";\r\n\r\nclass App extends React.Component {\r\n\r\n\r\n    render() {\r\n        return (\r\n            <Router>\r\n\r\n            <div className=\"App\">\r\n                <StudentNavBar/>\r\n                <Route path=\"/StudentHome\" component={StudentHome}/>\r\n                <Route path={\"/Modules\"} component={Modules}/>\r\n\r\n            </div>\r\n            </Router>\r\n        );\r\n    }\r\n}\r\n\r\nexport default App\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/App.js	(revision 7fb3e2cd3edc5eb13bfaa03b39e689ee3680716d)
++++ src/App.js	(date 1608308177276)
+@@ -7,7 +7,6 @@
+ 
+ class App extends React.Component {
+ 
+-
+     render() {
+         return (
+             <Router>

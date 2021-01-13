@@ -11,6 +11,8 @@ require("bootstrap");
 
 function ChatRoom(props) {
   const messagesRef = db
+    .collection("Courses")
+    .doc("Computer Science")
     .collection("Threads")
     .doc(props.threadName)
     .collection("messages");
