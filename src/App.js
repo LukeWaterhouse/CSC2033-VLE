@@ -44,7 +44,9 @@ class App extends React.Component {
                             component={AdminDiscussionBoard}
                             path="/AdminDiscussion/:thread"
                         />
-                        <Route component={AdminAssignments} path="/AdminAssignments"/>
+                        <Route component={AdminAssignments}
+                               path="/AdminAssignments"
+                        />
                         <Route component={AdminThreads} path="/AdminThreads" />
                         <Route component={AdminFeedback} path="/AdminFeedback" />
                         <Route

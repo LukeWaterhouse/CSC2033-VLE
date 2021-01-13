@@ -1,32 +1,58 @@
 import Dialog from '@material-ui/core/Dialog';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import {DialogActions, DialogContent, DialogTitle} from "@material-ui/core";
+import {DialogActions, DialogContent, DialogTitle, FormControl, makeStyles} from "@material-ui/core";
 import React, { useState, useEffect } from "react";
 import { db } from "../../firebase";
 
 function AssignmentForm() {
 
+    const useStyles = makeStyles((theme) => ({
+        formControl: {
+            margin: theme.spacing(1),
+            minWidth: 120,
+        },
+        selectEmpty: {
+            marginTop: theme.spacing(2),
+        },
+    }));
+
+    const classes = useStyles();
+
     const [Title, setTitle] = useState("");
     const [Instructions, setInst] = useState("");
     const [Marks, setMarks] = useState("");
-    const [Course, setCourse] = useState([]);
-    const [Module, setModule] = useState([]);
-    const [Due_Date, setDate] = useState("");
-    const [Due_Time, setTime] = useState("");
+    const [Module, setModule] = useState("");
+    const [Deadline, setDate] = useState("");
+    const [AssignmentList, setAssignmentList] = useState([]);
+
+
+    useEffect(() => {
+        console.log("useEffect Ran");
+        db.collection("Courses").doc("Computer Science").collection("modules") //This will need to change for user specific course
+            .get()
+            .then((snapshot) => {
+                const Assignments = [];
+                snapshot.forEach((doc) => {
+                    const data = doc.data();
+                    Assignments.push(data);
+                });
+                setAssignmentList(Assignments);
+                setModule(Assignments[0].Title.toString());
+                console.log(Assignments)
+            })
+            .catch((error) => console.log(error));
+    }, []);
 
     const handleComplete = (e) => {
         e.preventDefault();
 
-        db.collection("Assignments")
+        db.collection("Courses").doc("Computer Science").collection("modules").doc(Module.toString()).collection("Assignments")
             .add({
                 Title : Title,
                 Instructions : Instructions,
                 Marks : Marks,
-                Course : Course,
-                Module : Module,
-                Due_Date : Due_Date,
-                Due_Time : Due_Time,
+                Due_Date : Deadline,
             })
             .then(() => {
                 alert("Successfully created assignment!");
@@ -38,10 +64,7 @@ function AssignmentForm() {
         setTitle("")
         setInst("")
         setMarks("")
-        setCourse("")
-        setModule("")
         setDate("")
-        setTime("")
     };
 
     const [open, setOpen] = React.useState(false);
@@ -77,6 +100,7 @@ function AssignmentForm() {
                             onChange={(e) => setInst(e.target.value)}
                             margin="normal"
                             multiline
+                            fullWidth
                             rows={50}
                             variant="outlined"
                         />
@@ -89,37 +113,33 @@ function AssignmentForm() {
                             value={Marks}
                             onChange={(e) => setMarks(e.target.value)}
                         />
-                        <br />
-                        <select>
-
-                        </select>
-
-                        <TextField
-                            placeholder="Module Name"
-                            label="Module"
-                            margin="normal"
-                            variant="outlined"
-                        />
-                        <br />
                         <div>
-                            <TextField
-                                placeholder="dd/mm/yy"
-                                label="Due Date"
-                                margin="normal"
-                                variant="outlined"
-                                value={Due_Date}
-                                onChange={(e) => setDate(e.target.value)}
+                            <FormControl variant="filled" className={classes.formControl}>
+                            <select
+                                value={Module}
+                                onChange={(e) => setModule(e.currentTarget.value)}
+                            >
 
-                            />
+                                {AssignmentList &&
+                                AssignmentList.map((module) => (
+                                    <option key={module.Title} value={module.Title}>
+                                        {module.Title}
+                                    </option>
+                                ))}
+                            </select>
+                            </FormControl>
+                        </div>
                             <TextField
-                                placeholder="hh:mm"
-                                label="Time Due"
+                                label="Deadline"
+                                type="datetime-local"
                                 margin="normal"
                                 variant="outlined"
-                                value={Due_Time}
-                                onChange={(e) => setTime(e.target.value)}
+                                InputLabelProps={{
+                                    shrink: true,
+                                }}
+                                value={Deadline}
+                                onChange={(e) => setDate(e.target.value)}
                             />
-                        </div>
                         </form>
                  </DialogContent>
                     <DialogActions>
