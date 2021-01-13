@@ -5,7 +5,7 @@ import { useCollectionData } from "react-firebase-hooks/firestore";
 
 function GetFeedback(props) {
   const feedbackRef = db
-    .collection("modules")
+    .collection("Courses").doc("Computer Science").collection("modules")
     .doc(props.moduleName)
     .collection("feedback");
   const query = feedbackRef.orderBy("createdAt").limit(25);
@@ -42,7 +42,7 @@ function FeedbackMessage({message}){
 
 }
 
-function FeedbackPage(props) {
+function ViewFeedbackPageComp(props) {
   return (
     <div>
         <h1 className="text-md-center">{props.input} Feedback</h1>
@@ -51,4 +51,4 @@ function FeedbackPage(props) {
   );
 }
 
-export default FeedbackPage;
+export default ViewFeedbackPageComp;

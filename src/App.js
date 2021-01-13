@@ -11,10 +11,11 @@ import AdminHome from "./Admin/pages/AdminHome";
 import AdminAnalytics from "./Admin/pages/AdminAnalytics";
 import AdminClasses from "./Admin/pages/AdminClasses";
 import AdminDiscussionBoard from "./Admin/pages/AdminDiscussionBoard";
-import AdminFeedback from "./Admin/pages/AdminFeedback";
+import ViewFeedbackModuleList from "./Admin/pages/ViewFeedbackModuleList";
 import AdminThreads from "./Admin/pages/AdminThreads";
-import GiveFeedback from "./Student/pages/GiveFeedback";
-import AdminFeedbackPage from "./Admin/pages/AdminFeedbackPage";
+import GiveFeedbackModuleList from "./Student/pages/GiveFeedbackModuleList";
+import ViewFeedbackPage from "./Admin/pages/ViewFeedbackPage";
+import GiveFeedbackPage from "./Student/pages/GiveFeedbackPage"
 import Test from "./Student/pages/Test";
 
 class App extends React.Component {
@@ -30,11 +31,18 @@ class App extends React.Component {
                         <Route component={StudentHome} path="/StudentHome" />
                         <Route component={StudentResults} path="/StudentResults" />
                         <Route component={StudentThreads} path="/StudentThreads" />
-                        <Route component={GiveFeedback} path="/StudentFeedback" />
+                        <Route component={GiveFeedbackModuleList} path="/StudentFeedback" />
+                        <Route
+                            component={GiveFeedbackPage}
+                            path="/GiveFeedbackPage/:module"
+                        />
+
                         <Route
                             component={StudentDiscussionBoard}
                             path="/StudentDiscussion/:thread"
                         />
+
+
 
                         <Route component={AdminHome} path="/AdminHome" />
                         <Route component={AdminAnalytics} path="/AdminAnalytics" />
@@ -44,10 +52,10 @@ class App extends React.Component {
                             path="/AdminDiscussion/:thread"
                         />
                         <Route component={AdminThreads} path="/AdminThreads" />
-                        <Route component={AdminFeedback} path="/AdminFeedback" />
+                        <Route component={ViewFeedbackModuleList} path="/ViewFeedbackModuleList" />
                         <Route
-                            component={AdminFeedbackPage}
-                            path="/AdminFeedbackPage/:module"
+                            component={ViewFeedbackPage}
+                            path="/ViewFeedbackPage/:module"
                         />
                         <Route component={Test} path="/Test" />
                     </Switch>
