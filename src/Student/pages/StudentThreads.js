@@ -1,12 +1,12 @@
 import React from "react";
 import StudentNavBar from "../NavBar/StudentNavBar";
-import Threads from "../components/Threads";
+import StudentThreadsList from "../components/StudentThreadsList";
 
 function StudentThreads() {
   return (
     <div>
       <StudentNavBar />
-      <Threads />
+      <StudentThreadsList />
     </div>
   );
 }

@@ -1,3 +1,1 @@
-const options = {
-
-}
+const options = {};
