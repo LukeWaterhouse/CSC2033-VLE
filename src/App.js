@@ -5,6 +5,7 @@ import {BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom';
 import StudentHome from "./Student/pages/StudentHome";
 import StudentModules from "./Student/pages/StudentModules";
 import LoginHome from "./Login-Register/LoginHome";
+import SignupPage from "./Login-Register/Signup";
 import StudentDeadlines from "./Student/pages/StudentDeadlines"
 import StudentResults from "./Student/pages/Student Results"
 import StudentFAQ from "./Student/pages/StudentFAQ";
@@ -27,6 +28,7 @@ class App extends React.Component {
                     <Switch>
                         <Route component={LoginHome} exact path="/"/>
                         <Route component={LoginHome} path="/LoginHome"/>
+                        <Route component={SignupPage} path="/SignupPage"/>
                         <Route component={StudentModules} path="/StudentModules"/>
                         <Route component={StudentDeadlines} path="/StudentDeadlines"/>
                         <Route component={StudentHome} path="/StudentHome"/>

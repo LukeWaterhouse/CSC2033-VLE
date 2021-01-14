@@ -16,6 +16,9 @@ class LoginHome extends React.Component {
                     <Link to="/StudentHome">Student Login</Link>
                     <br/>
                     <Link to="/AdminHome">Admin Login</Link>
+                    <br/>
+                    <Link to="/SignupPage">Don't have an account? Signup</Link>
+
 
 
             </div>
