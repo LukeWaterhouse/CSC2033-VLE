@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import ViewFeedbackPageComp from "../components/ViewFeedbackPageComp";
 import AdminNavBar from "../NavBar/AdminNavBar";
+import AssignmentList from "../components/AssignmentList";
 
 export default class ViewFeedbackPage extends React.Component {
   render() {
@@ -13,6 +14,9 @@ export default class ViewFeedbackPage extends React.Component {
         <AdminNavBar />
         <Link to="/ViewFeedbackModuleList">Back to Modules</Link>
         <ViewFeedbackPageComp input={input} />
+        <AssignmentList input={input}/>
+
+
       </div>
     );
   }
