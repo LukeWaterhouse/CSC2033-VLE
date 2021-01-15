@@ -1,13 +1,12 @@
 import React, { useRef, useState, useEffect } from 'react'
-import{ Form, Button, Card, Container } from 'react-bootstrap'
-import firebase from 'firebase'
+import LoginComponent from './LoginComponent'
+import firebase from '../firebase'
 
 export default function Signup() {
 
     const [user, setUser] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const [confirmer] = useState('')
     const [emailError, setEmailError] = useState('')
     const [passError, setPassError] = useState('')
     const [hasAccount, setHasAccount] = useState(false)
@@ -62,13 +61,14 @@ export default function Signup() {
         firebase.auth.signOut();
     }
     const authListener = () => {
-        firebase.auth.onAuthStateChanged(user)
-        if(user){
-            clearInputs()
-            setUser(user);
-        } else {
-            setUser('');
-        }
+        firebase.auth.onAuthStateChanged(user => {
+            if (user) {
+                clearInputs()
+                setUser(user);
+            } else {
+                setUser('');
+            }
+        })
     }
 
     useEffect(() => {
@@ -81,30 +81,17 @@ export default function Signup() {
     }
 
     return(
-            <Container className="d-flex align-items-center justify-content-center" style={{ minHeight: "100vh", minWidth: "200vh" }}>
-                <Card>
-                    <Card.Body>
-                        <div className="w-100" style={{ maxWidth: "500px" }}></div>
-                        <h2 className="text-center mb-4">Sign Up</h2>
-                        <Form>
-                            <Form.Group id="email">
-                                <Form.Label>Email</Form.Label>
-                                <Form.Control type="email" ref={emailRef}required></Form.Control>
-                            </Form.Group>
-
-                            <Form.Group id="password">
-                                <Form.Label>Password</Form.Label>
-                                <Form.Control type="password" ref={passwordRef}required></Form.Control>
-                            </Form.Group>
-
-                            <Form.Group id="password-confirm">
-                                <Form.Label>Password Confirm</Form.Label>
-                                <Form.Control type="password" ref={passwordConfirmRef}required></Form.Control>
-                            </Form.Group>
-                            <Button type="submit" className="w-100">Submit</Button>
-                        </Form>
-                    </Card.Body>
-                </Card>
-            </Container>
+        <LoginComponent
+            email={email}
+            setEmail={setEmail}
+            password={password}
+            setPassword={setPassword}
+            handleLogin={handleLogin}
+            handleSignup={handleSignup}
+            hasAccount={hasAccount}
+            setHasAccount={setHasAccount}
+            emailError={emailError}
+            passError={passError}
+        />
         )
 }
