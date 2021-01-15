@@ -36,10 +36,10 @@ function FeedbackMessage({ message }) {
     output = year + "/" + month + "/" + day + " " + time;
   }
   return (
-    <p className="card card-body post-editor text-dark">
+    <div className="card card-body post-editor text-dark">
       <p className="text-black-50">{output}</p>
       {text}{" "}
-    </p>
+    </div>
   );
 }
 
