@@ -3,8 +3,11 @@ import { db } from "../../firebase";
 import { useCollectionData } from "react-firebase-hooks/firestore";
 import { Link } from "react-router-dom";
 
-function Threads() {
-  const ThreadsRef = db.collection("Threads");
+function StudentThreadsList() {
+  const ThreadsRef = db
+    .collection("Courses")
+    .doc("Computer Science")
+    .collection("Threads");
   const [Threads] = useCollectionData(ThreadsRef, { idField: "id" });
 
   return (
@@ -29,4 +32,4 @@ function Thread({ ThreadTitle }) {
   );
 }
 
-export default Threads;
+export default StudentThreadsList;

@@ -3,7 +3,10 @@ import { db } from "../../firebase";
 
 function DeleteThread() {
   const [formValue, setFormValue] = useState("");
-  const ThreadsRef = db.collection("Threads");
+  const ThreadsRef = db
+    .collection("Courses")
+    .doc("Computer Science")
+    .collection("Threads");
 
   async function deleteThread() {
     await ThreadsRef.doc(formValue).delete();

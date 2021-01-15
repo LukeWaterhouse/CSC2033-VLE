@@ -26,7 +26,7 @@ const MenuItems = [
   },
   {
     title: "Feedback",
-    url: "AdminFeedback",
+    url: "ViewFeedbackModuleList",
     cName: "nav-links",
   },
   {

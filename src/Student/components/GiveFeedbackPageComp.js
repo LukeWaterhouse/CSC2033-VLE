@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import StudentNavBar from "../NavBar/StudentNavBar";
 import { db } from "../../firebase";
 import "firebase/firestore";
 import firebase from "firebase";
 
-function GiveFeedback() {
+function GiveAssignmentFeedback(props) {
+  console.log(props.input);
   const [formValue, setFormValue] = useState("");
   const [moduleList, setModuleList] = useState([]);
   const [selectedModule, setSelectedModule] = useState("");
@@ -12,7 +12,11 @@ function GiveFeedback() {
 
   useEffect(() => {
     console.log("useEffect Ran");
-    db.collection("modules")
+    db.collection("Courses")
+      .doc("Computer Science")
+      .collection("modules")
+      .doc(props.input)
+      .collection("Assignments") //This will need to change for user specific course
       .get()
       .then((snapshot) => {
         const modules = [];
@@ -34,12 +38,18 @@ function GiveFeedback() {
     if (formValue === "") {
       setErrorMessage("Please input some text before submitting!");
     } else {
-      setErrorMessage("Success! Don't worry, your feedback will be kept anonymous");
+      setErrorMessage(
+        "Success! Don't worry, your feedback will be kept anonymous"
+      );
       console.log("Send Feedback");
       console.log("Sent to: " + selectedModule);
       setFormValue("");
       const feedbackRef = db
+        .collection("Courses")
+        .doc("Computer Science")
         .collection("modules")
+        .doc(props.input)
+        .collection("Assignments")
         .doc(selectedModule)
         .collection("feedback");
       await feedbackRef.add({
@@ -50,10 +60,8 @@ function GiveFeedback() {
   };
 
   return (
-    <div>
-      <StudentNavBar />
-      <h1>Give Feedback</h1>
-
+    <div className="text-dark">
+        Assignment Feedback
       <form>
         <select
           value={selectedModule}
@@ -80,9 +88,9 @@ function GiveFeedback() {
         </button>
       </form>
 
-      <div>{errorMessage}</div>
+      <div className="text-dark">{errorMessage}</div>
     </div>
   );
 }
 
-export default GiveFeedback;
+export default GiveAssignmentFeedback;

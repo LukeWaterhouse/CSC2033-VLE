@@ -1,35 +1,39 @@
 .NavbarItems {
-    background: linear-gradient(90deg, rgb(14,50,88) 0%, rgba(13,96,102,1 )100%);
-    height: 80px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 1.2rem;
+  background: linear-gradient(
+    90deg,
+    rgb(14, 50, 88) 0%,
+    rgba(13, 96, 102, 1) 100%
+  );
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
 }
 
 ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
 }
 .menu-icon img {
-    height: 80px;
-    width: 80px;
+  height: 80px;
+  width: 80px;
 }
 li {
-    float: left;
+  float: left;
 }
 
 li a {
-    color: ghostwhite;
-    display: block;
-    text-align: center;
-    padding: 10px 14px;
+  color: ghostwhite;
+  display: block;
+  text-align: center;
+  padding: 10px 14px;
 }
 
 li a:hover {
-    background-color: #2464a8;
-    text-decoration: none;
-    color: ghostwhite;
+  background-color: #2464a8;
+  text-decoration: none;
+  color: ghostwhite;
 }
