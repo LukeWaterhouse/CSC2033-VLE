@@ -17,53 +17,55 @@ import GiveFeedbackModuleList from "./Student/pages/GiveFeedbackModuleList";
 import ViewFeedbackPage from "./Admin/pages/ViewFeedbackPage";
 import GiveFeedbackPage from "./Student/pages/GiveFeedbackPage";
 import Test from "./Student/pages/Test";
+import AdminAssignments from "./Admin/pages/AdminAssignments";
 
 class App extends React.Component {
-  render() {
-    return (
-      <div>
-        <Router>
-          <Switch>
-            <Route component={LoginHome} exact path="/" />
-            <Route component={LoginHome} path="/LoginHome" />
-            <Route component={StudentModules} path="/StudentModules" />
-            <Route component={StudentDeadlines} path="/StudentDeadlines" />
-            <Route component={StudentHome} path="/StudentHome" />
-            <Route component={StudentResults} path="/StudentResults" />
-            <Route component={StudentThreads} path="/StudentThreads" />
-            <Route component={GiveFeedbackModuleList} path="/StudentFeedback" />
-            <Route
-              component={GiveFeedbackPage}
-              path="/GiveFeedbackPage/:module"
-            />
+    render() {
+        return (
+            <div>
+                <Router>
+                    <Switch>
+                        <Route component={LoginHome} exact path="/" />
+                        <Route component={LoginHome} path="/LoginHome" />
+                        <Route component={StudentModules} path="/StudentModules" />
+                        <Route component={StudentDeadlines} path="/StudentDeadlines" />
+                        <Route component={StudentHome} path="/StudentHome" />
+                        <Route component={StudentResults} path="/StudentResults" />
+                        <Route component={StudentThreads} path="/StudentThreads" />
+                        <Route component={GiveFeedbackModuleList} path="/StudentFeedback" />
+                        <Route
+                            component={GiveFeedbackPage}
+                            path="/GiveFeedbackPage/:module"
+                        />
 
-            <Route
-              component={StudentDiscussionBoard}
-              path="/StudentDiscussion/:thread"
-            />
+                        <Route
+                            component={StudentDiscussionBoard}
+                            path="/StudentDiscussion/:thread"
+                        />
 
-            <Route component={AdminHome} path="/AdminHome" />
-            <Route component={AdminAnalytics} path="/AdminAnalytics" />
-            <Route component={AdminClasses} path="/AdminClasses" />
-            <Route
-              component={AdminDiscussionBoard}
-              path="/AdminDiscussion/:thread"
-            />
-            <Route component={AdminThreads} path="/AdminThreads" />
-            <Route
-              component={ViewFeedbackModuleList}
-              path="/ViewFeedbackModuleList"
-            />
-            <Route
-              component={ViewFeedbackPage}
-              path="/ViewFeedbackPage/:module"
-            />
-            <Route component={Test} path="/Test" />
-          </Switch>
-        </Router>
-      </div>
-    );
-  }
+                        <Route component={AdminHome} path="/AdminHome" />
+                        <Route component={AdminAnalytics} path="/AdminAnalytics" />
+                        <Route component={AdminClasses} path="/AdminClasses" />
+                        <Route
+                            component={AdminDiscussionBoard}
+                            path="/AdminDiscussion/:thread"
+                        />
+                        <Route component={AdminAssignments} path="/AdminAssignments" />
+                        <Route component={AdminThreads} path="/AdminThreads" />
+                        <Route
+                            component={ViewFeedbackModuleList}
+                            path="/ViewFeedbackModuleList"
+                        />
+                        <Route
+                            component={ViewFeedbackPage}
+                            path="/ViewFeedbackPage/:module"
+                        />
+                        <Route component={Test} path="/Test" />
+                    </Switch>
+                </Router>
+            </div>
+        );
+    }
 }
 
 export default App;
