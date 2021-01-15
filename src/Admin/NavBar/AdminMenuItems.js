@@ -15,6 +15,11 @@ const MenuItems = [
     cName: "nav-links",
   },
   {
+    title: "My Assignments",
+    url: "AdminAssignments",
+    cName: "nav-links",
+  },
+  {
     title: "Forum",
     url: "AdminThreads",
     cName: "nav-links",
