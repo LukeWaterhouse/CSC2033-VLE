@@ -1,8 +1,10 @@
 import React, { useRef, useState, useEffect } from 'react'
 import LoginComponent from './LoginComponent'
 import firebase from '../firebase'
+import fire from '../firebase'
 
 export default function Signup() {
+
 
     const [user, setUser] = useState('')
     const [email, setEmail] = useState('')
@@ -22,7 +24,7 @@ export default function Signup() {
     }
     const handleLogin = () => {
         clearErrors();
-        firebase
+        fire
             .auth()
             .signInWithEmailAndPassword(email, password)
             .catch(err => {
@@ -41,7 +43,7 @@ export default function Signup() {
 
     const handleSignup = () => {
         clearErrors()
-        firebase
+        fire
             .auth()
             .createUserWithEmailAndPassword(email, password)
             .catch(err => {
@@ -58,22 +60,25 @@ export default function Signup() {
     }
 
     const handleLogout = () => {
-        firebase.auth.signOut();
-    }
-    const authListener = () => {
-        firebase.auth.onAuthStateChanged(user => {
-            if (user) {
-                clearInputs()
-                setUser(user);
-            } else {
-                setUser('');
-            }
-        })
+        fire.auth().signOut().then(r => console.log("uh oh"));
+
     }
 
     useEffect(() => {
+        console.log("Auth listener")
+        function authListener(){
+            fire.auth().onAuthStateChanged((user) => {
+                if (user) {
+                    clearInputs();
+                    setUser(user);
+                } else {
+                    setUser("");
+                }
+            });
+        }
         authListener();
-    }, [])
+    }, []);
+
 
     function handleSubmit(e) {
         e.preventDefault()
