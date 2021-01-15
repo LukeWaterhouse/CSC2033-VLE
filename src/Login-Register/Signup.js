@@ -1,5 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react'
 import LoginComponent from './LoginComponent'
+import StudentHome from '../Student/pages/StudentHome'
 import fire from '../firebase'
 
 export default function Signup() {
@@ -78,13 +79,11 @@ export default function Signup() {
         authListener();
     }, []);
 
-
-    function handleSubmit(e) {
-        e.preventDefault()
-
-    }
-
     return(
+        <div className="AppLogin">
+            {user ? (
+                <StudentHome/>
+            ) : (
         <LoginComponent
             email={email}
             setEmail={setEmail}
@@ -97,5 +96,7 @@ export default function Signup() {
             emailError={emailError}
             passError={passError}
         />
+        )}
+        </div>
     )
 }
