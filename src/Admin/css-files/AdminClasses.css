@@ -1,0 +1,87 @@
+
+
+.moduleTabC, .moduleTab{
+    padding: 5px 5px 10px 5px;
+    font-size: 20px;
+    background: rgba(0,0,0,0);
+    border-width: 2px;
+    border-color: #ffffff;
+    box-shadow: none;
+    outline: 0 !important;
+    border-radius: 10px 10px 0px 0px;
+    color: #ffffff;
+}
+
+.moduleTabC{
+    border-bottom: 0;
+}
+
+.module{
+    box-shadow:0 -7px 0px -5px white inset;
+    height: min-content;
+    width: 100%;
+}
+
+.moduleContent{
+    display: grid;
+    grid-template-columns: min-content auto;
+}
+
+.moduleContentWrapperT, .moduleContentWrapperS{
+    border-style: solid;
+    border-width: 2px;
+    border-color: #ffffff;
+    border-radius: 10px 10px 10px 10px;
+    margin: 1px 0px 1px 0px;
+}
+.moduleContentWrapperT{
+    grid-row: 1;
+    grid-column: 1;
+}
+
+.moduleContentWrapperS{
+    grid-row: 2;
+    grid-column: 1;
+    width: fit-content;
+}
+
+.moduleContent_assignments{
+    grid-row: 1/ span 2;
+    grid-column: 2;
+}
+
+.moduleContent_studentLabel{
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.moduleContent_students{
+    justify-self: center;
+    align-self: center;
+    display: grid;
+    grid-template-columns: 1;
+    row-gap: 3px;
+}
+.moduleContent_student{
+    padding: 2px 10px 4px 10px;
+    background: black;
+    border-radius: 6px 6px 6px 6px;
+    width:min-content;
+    align-self: center;
+    justify-self: center;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    color: white;
+}
+.moduleContent_leader{
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    margin: 0px 5px 1px 5px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+
