@@ -29,7 +29,7 @@ function AssignmentForm() {
 
     useEffect(() => {
         console.log("useEffect Ran");
-        db.collection("Courses").doc("Computer Science").collection("modules") //This will need to change for user specific course
+        db.collection("Courses").doc("Computer Science").collection("modules")
             .get()
             .then((snapshot) => {
                 const Assignments = [];
