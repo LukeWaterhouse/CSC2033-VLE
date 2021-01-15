@@ -52,7 +52,8 @@ function AssignmentForm() {
                 Title : Title,
                 Instructions : Instructions,
                 Marks : Marks,
-                Due_Date : Deadline,
+                Module : Module,
+                Deadline : Deadline,
             })
             .then(() => {
                 alert("Successfully created assignment!");
