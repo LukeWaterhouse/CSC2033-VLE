@@ -12,7 +12,9 @@ const login = (props) => {
         hasAccount,
         setHasAccount,
         emailError,
-        setEmailError
+        setEmailError,
+        passError,
+        setPassError
     } = props;
 
     return(

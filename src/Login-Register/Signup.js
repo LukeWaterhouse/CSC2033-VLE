@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react'
-import LoginComponent from './LoginComponent'
+import SignupComponent from './SignupComponent'
 import StudentHome from '../Student/pages/StudentHome'
 import fire from '../firebase'
 
@@ -59,11 +59,6 @@ export default function Signup() {
             });
     }
 
-    const handleLogout = () => {
-        fire.auth().signOut().then(r => console.log("uh oh"));
-
-    }
-
     useEffect(() => {
         console.log("Auth listener")
         function authListener(){
@@ -84,7 +79,7 @@ export default function Signup() {
             {user ? (
                 <StudentHome/>
             ) : (
-        <LoginComponent
+        <SignupComponent
             email={email}
             setEmail={setEmail}
             password={password}
@@ -94,7 +89,9 @@ export default function Signup() {
             hasAccount={hasAccount}
             setHasAccount={setHasAccount}
             emailError={emailError}
+            setEmailError={setEmailError}
             passError={passError}
+            setPassError={setPassError}
         />
         )}
         </div>
