@@ -46,7 +46,7 @@ function FeedbackMessage({ message }) {
 function ViewFeedbackPageComp(props) {
   return (
     <div>
-      <h1 className="text-md-center">{props.input} Feedback</h1>
+      <h1 className="text-md-center">{props.input} General Feedback</h1>
       <GetFeedback moduleName={props.input} />
     </div>
   );

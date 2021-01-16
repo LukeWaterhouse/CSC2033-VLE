@@ -6,11 +6,8 @@ export default function AssignmentList(props) {
   const [AssignmentList, setAssignmentList] = useState([]);
   const [selectedAssignment, setSelectedAssignment] = useState("placeholder");
   const [AssignmentFeedbackList, setAssignmentFeedbackList] = useState([]);
-  console.log("Main Component Inpu:" +props.input)
 
   useEffect(() => {
-      console.log("WTFF")
-
       const setAssignmentInfo =  () => {
           console.log("gosh: "+props.input)
           db.collection("Courses")
@@ -64,16 +61,31 @@ export default function AssignmentList(props) {
 
       setAssignmentFeedbackListInfo()
       console.log("Help:"+AssignmentFeedbackList)
-
       console.log("looping?")
-
-
-
-
   }
+
+    function FeedbackMessage({ message }) {
+        const { text, createdAt } = message;
+        const date = createdAt && createdAt.toDate(); // checks if createdAt exists and if so turns it into JS date format
+        let output = "DataBase Error!";
+        if (date != null) {
+            const month = date.getUTCMonth() + 1;
+            const day = date.getUTCDate();
+            const year = date.getUTCFullYear();
+            const time = date.getUTCHours() + ":" + date.getUTCMinutes();
+            output = year + "/" + month + "/" + day + " " + time;
+        }
+        return (
+            <div className="card card-body post-editor text-dark">
+                <p className="text-black-50">{output}</p>
+                {text}{" "}
+            </div>
+        );
+    }
 
   return (
     <div>
+        <h3>Assignment Specific Feedback</h3>
       <form>
         <select
           value={selectedAssignment}
@@ -89,7 +101,12 @@ export default function AssignmentList(props) {
           <input type="submit" value="Submit" />
         </select>
       </form>
-        <button onClick={getAssignmentFeedbackList}>Press me</button>
+        <button onClick={getAssignmentFeedbackList}>View</button>
+        <div>
+            {AssignmentFeedbackList?.map((message) => (
+                <FeedbackMessage key={message.id} message={message} />
+            ))}
+        </div>
 
 
     </div>
