@@ -1,6 +1,6 @@
 import React from 'react';
 
-const login = (props) => {
+const SignupComponent = (props) => {
 
     const {
         email,
@@ -46,4 +46,4 @@ const login = (props) => {
 
 }
 
-export default login;
+export default SignupComponent;
