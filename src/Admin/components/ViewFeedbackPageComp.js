@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState } from "react";
 import AdminNavBar from "../NavBar/AdminNavBar";
 import { db } from "../../firebase";
 import { useCollectionData } from "react-firebase-hooks/firestore";
@@ -12,17 +12,22 @@ function GetFeedback(props) {
     .collection("feedback");
   const query = feedbackRef.orderBy("createdAt").limit(25);
   const [feedback] = useCollectionData(query, { idField: "id" });
-  console.log(feedback);
+  const error = ""
+  console.log(feedback)
   return (
     <div>
       <div>
         {feedback?.map((message) => (
           <FeedbackMessage key={message.id} message={message} />
         ))}
+
+        {feedback?.length?error:"this is the error"}
       </div>
     </div>
   );
 }
+
+
 
 function FeedbackMessage({ message }) {
   const { text, createdAt } = message;

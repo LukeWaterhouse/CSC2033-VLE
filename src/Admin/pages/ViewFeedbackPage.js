@@ -14,9 +14,7 @@ export default class ViewFeedbackPage extends React.Component {
         <AdminNavBar />
         <Link to="/ViewFeedbackModuleList">Back to Modules</Link>
         <ViewFeedbackPageComp input={input} />
-        <AssignmentList input={input}/>
-
-
+        <AssignmentList input={input} />
       </div>
     );
   }
