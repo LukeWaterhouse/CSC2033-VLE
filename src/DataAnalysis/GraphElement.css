@@ -38,5 +38,22 @@
 }
 
 .InfoSet h3 {
+    margin-top: 5px;
     margin-bottom: 0;
+}
+
+.Tooltip {
+    background-color: #121212;
+}
+
+.GraphEditor li {
+    display: inline-block;
+    margin-left: 10px;
+    padding-bottom: 10px;
+}
+.GraphEditor li button {
+    background-color: #121212;
+    border-radius: 16px;
+    text-align: center;
+    color: ghostwhite;
 }
