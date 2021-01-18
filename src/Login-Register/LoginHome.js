@@ -7,9 +7,8 @@ class LoginHome extends React.Component {
       <div>
         <h1>LOGIN SCREEN</h1>
 
-        <Link to="/StudentHome">Student Login</Link>
+        <Link to="/Signup">Student Login</Link>
         <br />
-        <Link to="/AdminHome">Admin Login</Link>
       </div>
     );
   }

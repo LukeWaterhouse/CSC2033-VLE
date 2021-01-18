@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import StudentHome from "./Student/pages/StudentHome";
 import StudentModules from "./Student/pages/StudentModules";
-import LoginHome from "./Login-Register/LoginHome";
+import Signup from "./Login-Register/Signup";
 import StudentDeadlines from "./Student/pages/StudentDeadlines";
 import StudentResults from "./Student/pages/StudentResults";
 import StudentThreads from "./Student/pages/StudentThreads";
@@ -25,8 +25,8 @@ class App extends React.Component {
             <div>
                 <Router>
                     <Switch>
-                        <Route component={LoginHome} exact path="/" />
-                        <Route component={LoginHome} path="/LoginHome" />
+                        <Route component={Signup} exact path="/" />
+                        <Route component={Signup} exact path="/Signup" />
                         <Route component={StudentModules} path="/StudentModules" />
                         <Route component={StudentDeadlines} path="/StudentDeadlines" />
                         <Route component={StudentHome} path="/StudentHome" />

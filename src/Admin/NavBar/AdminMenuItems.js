@@ -31,7 +31,7 @@ const MenuItems = [
   },
   {
     title: "Logout",
-    url: "/LoginHome",
+    url: "/Signup",
     cName: "nav-links",
   },
 ];
