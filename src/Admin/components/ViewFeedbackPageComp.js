@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState } from "react";
 import AdminNavBar from "../NavBar/AdminNavBar";
 import { db } from "../../firebase";
 import { useCollectionData } from "react-firebase-hooks/firestore";
@@ -12,17 +12,22 @@ function GetFeedback(props) {
     .collection("feedback");
   const query = feedbackRef.orderBy("createdAt").limit(25);
   const [feedback] = useCollectionData(query, { idField: "id" });
-  console.log(feedback);
+  const error = ""
+  console.log(feedback)
   return (
     <div>
       <div>
         {feedback?.map((message) => (
           <FeedbackMessage key={message.id} message={message} />
         ))}
+
+        {feedback?.length?error:"this is the error"}
       </div>
     </div>
   );
 }
+
+
 
 function FeedbackMessage({ message }) {
   const { text, createdAt } = message;
@@ -36,17 +41,17 @@ function FeedbackMessage({ message }) {
     output = year + "/" + month + "/" + day + " " + time;
   }
   return (
-    <p className="card card-body post-editor text-dark">
+    <div className="card card-body post-editor text-dark">
       <p className="text-black-50">{output}</p>
       {text}{" "}
-    </p>
+    </div>
   );
 }
 
 function ViewFeedbackPageComp(props) {
   return (
     <div>
-      <h1 className="text-md-center">{props.input} Feedback</h1>
+      <h1 className="text-md-center">{props.input} General Feedback</h1>
       <GetFeedback moduleName={props.input} />
     </div>
   );
