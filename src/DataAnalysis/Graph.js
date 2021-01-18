@@ -1,7 +1,16 @@
-import React, {Component} from 'react';
-import CSS from './GraphElement.css'
-import data from './Data';
-import BarChart from './BarChart';
+import React, { Component } from "react";
+import {
+    LineChart,
+    Line,
+    CartesianGrid,
+    XAxis,
+    YAxis,
+    Tooltip,
+    Label,
+    ResponsiveContainer,
+} from "recharts";
+import data from "./Data";
+import CSS from "./GraphElement.css";
 
 class Graph extends Component{
     render(){

@@ -61,7 +61,7 @@ function GiveAssignmentFeedback(props) {
 
   return (
     <div className="text-dark">
-        Assignment Feedback
+      Assignment Feedback
       <form>
         <select
           value={selectedModule}
@@ -77,7 +77,6 @@ function GiveAssignmentFeedback(props) {
           <input type="submit" value="Submit" />
         </select>
       </form>
-
       <form onSubmit={sendFeedback}>
         <textarea
           value={formValue}
@@ -87,7 +86,6 @@ function GiveAssignmentFeedback(props) {
           Send
         </button>
       </form>
-
       <div className="text-dark">{errorMessage}</div>
     </div>
   );

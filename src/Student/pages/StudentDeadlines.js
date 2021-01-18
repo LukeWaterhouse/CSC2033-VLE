@@ -8,16 +8,16 @@ class StudentDeadlines extends React.Component {
       <div>
         <StudentNavBar />
         <h2>Student Deadlines</h2>
-          <ul className="AssignmentList">
-              {data.map((item, index) => {
-                  return(
-                      <li key={index} className="Assignment">
-                          <h5> {item.Title} </h5>
-                          Deadline date goes here
-                      </li>
-                  )
-              })}
-          </ul>
+        <ul className="AssignmentList">
+          {data.map((item, index) => {
+            return (
+              <li key={index} className="Assignment">
+                <h5> {item.Title} </h5>
+                Deadline date goes here
+              </li>
+            );
+          })}
+        </ul>
       </div>
     );
   }

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import StudentNavBar from "../NavBar/StudentNavBar";
 import GiveFeedbackPageComp from "../components/GiveFeedbackPageComp";
-import GiveGeneralFeedback from "../components/GiveGeneralFeedback"
+import GiveGeneralFeedback from "../components/GiveGeneralFeedback";
 
 export default class ViewFeedbackPage extends React.Component {
   render() {
@@ -26,12 +26,12 @@ function FeedbackButtons(props) {
 
   function handleAssignmentClick() {
     setAssignmentButtonView(true);
-    setGeneralButtonView(false)
+    setGeneralButtonView(false);
   }
 
-  function handleGeneralClick(){
-      setGeneralButtonView(true)
-      setAssignmentButtonView(false)
+  function handleGeneralClick() {
+    setGeneralButtonView(true);
+    setAssignmentButtonView(false);
   }
 
   function handleClose() {
@@ -44,13 +44,12 @@ function FeedbackButtons(props) {
       <button onClick={handleAssignmentClick}>Assignment Feedback</button>
       <button onClick={handleGeneralClick}>General Feedback</button>
 
-        <dialog open={GeneralButtonView}>
-            <GiveGeneralFeedback input={props.input}/>
-            <button onClick={handleClose} color="primary">
-                Cancel
-            </button>
-
-        </dialog>
+      <dialog open={GeneralButtonView}>
+        <GiveGeneralFeedback input={props.input} />
+        <button onClick={handleClose} color="primary">
+          Cancel
+        </button>
+      </dialog>
 
       <dialog open={AssignmentButtonView}>
         <GiveFeedbackPageComp input={props.input} />
@@ -58,8 +57,6 @@ function FeedbackButtons(props) {
           Cancel
         </button>
       </dialog>
-
-
     </div>
   );
 }
