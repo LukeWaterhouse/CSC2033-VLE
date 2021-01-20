@@ -6,22 +6,22 @@ const MenuItems = [
   },
   {
     title: "Analytics",
-    url: "AdminAnalytics",
+    url: "/AdminAnalytics",
     cName: "nav-links",
   },
   {
     title: "My Classes",
-    url: "AdminClasses",
+    url: "/AdminClasses",
     cName: "nav-links",
   },
   {
     title: "My Assignments",
-    url: "AdminAssignments",
+    url: "/AdminAssignments",
     cName: "nav-links",
   },
   {
     title: "Forum",
-    url: "AdminThreads",
+    url: "/AdminThreads",
     cName: "nav-links",
   },
   {

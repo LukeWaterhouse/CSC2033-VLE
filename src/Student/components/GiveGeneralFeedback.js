@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { db } from "../../firebase";
 import firebase from "firebase";
+import {Button} from 'bootstrap'
 
 export default function GiveGeneralFeedback(props) {
   const [formValue, setFormValue] = useState("");
@@ -34,17 +35,21 @@ export default function GiveGeneralFeedback(props) {
 
   return (
     <div className="text-dark">
-      This is the General feedback
+      <h5 className="text-md-center">      This is the General feedback
+      </h5>
+
       <form onSubmit={sendFeedback}>
-        <textarea
+        <textarea style={{width:"660px"}}
           value={formValue}
           onChange={(e) => setFormValue(e.target.value)}
-        />
+        /><br/>
+        {errorMessage}
+        <br/>
+
         <button type="submit" className="btn-success">
           Send
         </button>
       </form>
-      {errorMessage}
     </div>
   );
 }

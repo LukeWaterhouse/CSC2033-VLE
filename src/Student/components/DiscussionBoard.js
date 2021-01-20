@@ -37,10 +37,11 @@ function ChatRoom(props) {
           <ChatMessage key={message.id} message={message} />
         ))}
       </div>
-      <div className="card card-body post-editor">
-        <div className="panel-body">
+      <div className="card card-body post-editor"  style={{backgroundColor:"#616161"}}>
+        <div className="panel-body" style={{backgroundColor:"#616161"}}>
           <form onSubmit={sendMessage}>
             <textarea
+                style={{backgroundColor:"#616161",color:"white"}}
               className="form-control post-editor-input"
               value={formValue}
               onChange={(e) => setFormValue(e.target.value)}
@@ -70,17 +71,19 @@ function ChatMessage({ message }) {
     output = year + "/" + month + "/" + day + " " + time;
   }
   return (
-    <p className="card card-body post-editor text-dark">
-      <p className="text-black-50">{output}</p>
+
+
+    <div  className="card card-body post-editor" style={{backgroundColor:"#424242",color:"#E0E0E0"}}>
+      <p style={{color:"#9E9E9E"}}>{output}</p>
       {text}{" "}
-    </p>
+    </div>
   );
 }
 
 function DiscussionBoard(props) {
   return (
     <div>
-      <h1 className="text-center">Discussion Board</h1>
+      <h1 className="text-center"><u>Discussion Board</u></h1>
       <ChatRoom threadName={props.input} />
     </div>
   );
