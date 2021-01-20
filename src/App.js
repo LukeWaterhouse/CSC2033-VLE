@@ -18,6 +18,8 @@ import ViewFeedbackPage from "./Admin/pages/ViewFeedbackPage";
 import GiveFeedbackPage from "./Student/pages/GiveFeedbackPage";
 import Test from "./Student/pages/Test";
 import AdminAssignments from "./Admin/pages/AdminAssignments";
+import ViewAssignments from "./Admin/pages/ViewAssignments";
+import AssignmentDetails from "./Admin/pages/AssignmentDetails";
 
 class App extends React.Component {
     render() {
@@ -51,6 +53,14 @@ class App extends React.Component {
                             path="/AdminDiscussion/:thread"
                         />
                         <Route component={AdminAssignments} path="/AdminAssignments" />
+                        <Route
+                            component={ViewAssignments}
+                            path="/ViewAssignments/:module"
+                        />
+                        <Route
+                            component={AssignmentDetails}
+                            path="/AssignmentDetails/:details"
+                        />
                         <Route component={AdminThreads} path="/AdminThreads" />
                         <Route
                             component={ViewFeedbackModuleList}

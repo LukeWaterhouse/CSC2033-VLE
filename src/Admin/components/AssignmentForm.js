@@ -7,18 +7,6 @@ import { db } from "../../firebase";
 
 function AssignmentForm() {
 
-    const useStyles = makeStyles((theme) => ({
-        formControl: {
-            margin: theme.spacing(1),
-            minWidth: 120,
-        },
-        selectEmpty: {
-            marginTop: theme.spacing(2),
-        },
-    }));
-
-    const classes = useStyles();
-
     const [Title, setTitle] = useState("");
     const [Instructions, setInst] = useState("");
     const [Marks, setMarks] = useState("");
@@ -54,6 +42,7 @@ function AssignmentForm() {
                 Marks : Marks,
                 Module : Module,
                 Deadline : Deadline,
+                createdAt : new Date(),
             })
             .then(() => {
                 alert("Successfully created assignment!");
@@ -66,6 +55,8 @@ function AssignmentForm() {
         setInst("")
         setMarks("")
         setDate("")
+
+        setOpen(false);
     };
 
     const [open, setOpen] = React.useState(false);
@@ -81,7 +72,7 @@ function AssignmentForm() {
             <Button variant="contained" color="primary" onClick={handleClickOpen}>
                 Create Assignment</Button>
             <Dialog open={open} onClose={handleClose}
-                aria-labelledby="Create Assignment">
+                aria-labelledby="Create Assignment" fullWidth>
                 <DialogTitle id="Create Assignment"><span style={{color: 'mediumpurple'}}>Create Assignment</span></DialogTitle>
                     <DialogContent>
                         <form>
@@ -115,7 +106,7 @@ function AssignmentForm() {
                             onChange={(e) => setMarks(e.target.value)}
                         />
                         <div>
-                            <FormControl variant="filled" className={classes.formControl}>
+                            <FormControl variant="filled">
                             <select
                                 value={Module}
                                 onChange={(e) => setModule(e.currentTarget.value)}
