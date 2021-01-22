@@ -3,7 +3,9 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import {DialogActions, DialogContent, DialogTitle, FormControl, makeStyles} from "@material-ui/core";
 import React, { useState, useEffect } from "react";
+import moment from "moment";
 import { db } from "../../firebase";
+import * as firebase from 'firebase/app'
 
 function AssignmentForm() {
 
@@ -11,13 +13,14 @@ function AssignmentForm() {
     const [Instructions, setInst] = useState("");
     const [Marks, setMarks] = useState("");
     const [Module, setModule] = useState("");
-    const [Deadline, setDate] = useState("");
+    const [Deadline, setDate] = useState(new Date());
     const [AssignmentList, setAssignmentList] = useState([]);
-
 
     useEffect(() => {
         console.log("useEffect Ran");
-        db.collection("Courses").doc("Computer Science").collection("modules")
+        db.collection("Courses")
+            .doc("Computer Science")
+            .collection("modules")
             .get()
             .then((snapshot) => {
                 const Assignments = [];
@@ -35,13 +38,17 @@ function AssignmentForm() {
     const handleComplete = (e) => {
         e.preventDefault();
 
-        db.collection("Courses").doc("Computer Science").collection("modules").doc(Module.toString()).collection("Assignments")
+        db.collection("Courses")
+            .doc("Computer Science")
+            .collection("modules")
+            .doc(Module.toString())
+            .collection("Assignments")
             .add({
                 Title : Title,
                 Instructions : Instructions,
                 Marks : Marks,
                 Module : Module,
-                Deadline : Deadline,
+                Deadline :  new Date(Deadline),
                 createdAt : new Date(),
             })
             .then(() => {
@@ -54,7 +61,7 @@ function AssignmentForm() {
         setTitle("")
         setInst("")
         setMarks("")
-        setDate("")
+        setDate(new Date())
 
         setOpen(false);
     };
@@ -124,6 +131,7 @@ function AssignmentForm() {
                             <TextField
                                 label="Deadline"
                                 type="datetime-local"
+                                returnFormat="moment"
                                 margin="normal"
                                 variant="outlined"
                                 InputLabelProps={{
