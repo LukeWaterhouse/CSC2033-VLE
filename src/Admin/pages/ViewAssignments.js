@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import AdminAssignments from "./AdminAssignments";
 import AdminNavBar from "../NavBar/AdminNavBar";
-import AssignmentList from "../components/AssignmentList";
+import AssignmentsListed from "../components/AssignmentsListed";
 
 export default class ViewAssignments extends React.Component {
     render() {
@@ -15,7 +15,7 @@ export default class ViewAssignments extends React.Component {
                 <Link to="/AdminAssignments">Back to Assignment page</Link>
 
                 <div className="col s12 m6 l6">
-                    <AssignmentList input={input}/>
+                    <AssignmentsListed input={input}/>
                 </div>
             </div>
         );

@@ -17,7 +17,7 @@ const AssignmentSummary = ({assignment}) =>{
     )
 }
 
-function AssignmentList(props){
+function AssignmentsListed(props){
     const AssRef = db
         .collection("Courses")
         .doc("Computer Science")
@@ -41,4 +41,4 @@ function AssignmentList(props){
     )
 }
 
-export default AssignmentList;
+export default AssignmentsListed;
