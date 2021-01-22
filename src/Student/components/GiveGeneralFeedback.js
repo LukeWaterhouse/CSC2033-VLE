@@ -1,55 +1,55 @@
-import React, {useState} from "react";
-import {db} from "../../firebase";
+import React, { useState } from "react";
+import { db } from "../../firebase";
 import firebase from "firebase";
+import {Button} from 'bootstrap'
 
+export default function GiveGeneralFeedback(props) {
+  const [formValue, setFormValue] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
-export default function GiveGeneralFeedback(props){
+  const sendFeedback = async (e) => {
+    e.preventDefault();
 
-    const [formValue, setFormValue] = useState("")
-    const [errorMessage, setErrorMessage] = useState("");
+    console.log(formValue);
+    if (formValue === "") {
+      setErrorMessage("Please input some text before submitting!");
+    } else {
+      setErrorMessage(
+        "Success! Don't worry, your feedback will be kept anonymous"
+      );
+      console.log("Send Feedback");
+      console.log(props.input);
+      setFormValue("");
+      const feedbackRef = db
+        .collection("Courses")
+        .doc("Computer Science")
+        .collection("modules")
+        .doc(props.input)
+        .collection("feedback");
+      await feedbackRef.add({
+        text: formValue,
+        createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+      });
+    }
+  };
 
-    const sendFeedback = async (e) => {
-        e.preventDefault();
+  return (
+    <div className="text-dark">
+      <h5 className="text-md-center">      This is the General feedback
+      </h5>
 
-        console.log(formValue);
-        if (formValue === "") {
-            setErrorMessage("Please input some text before submitting!");
-        } else {
-            setErrorMessage(
-                "Success! Don't worry, your feedback will be kept anonymous"
-            );
-            console.log("Send Feedback");
-            console.log(props.input)
-            setFormValue("");
-            const feedbackRef = db
-                .collection("Courses")
-                .doc("Computer Science")
-                .collection("modules")
-                .doc(props.input)
-                .collection("feedback")
-            await feedbackRef.add({
-                text: formValue,
-                createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-            });
-        }
-    };
+      <form onSubmit={sendFeedback}>
+        <textarea style={{width:"660px"}}
+          value={formValue}
+          onChange={(e) => setFormValue(e.target.value)}
+        /><br/>
+        {errorMessage}
+        <br/>
 
-    return(
-        <div className="text-dark">
-            This is the General feedback
-
-            <form onSubmit={sendFeedback}>
-        <textarea
-            value={formValue}
-            onChange={(e) => setFormValue(e
-                .target.value)}
-        />
-                <button type="submit" className="btn-success">
-                    Send
-                </button>
-            </form>
-            {errorMessage}
-        </div>
-    )
+        <button type="submit" className="btn-success">
+          Send
+        </button>
+      </form>
+    </div>
+  );
 }
-

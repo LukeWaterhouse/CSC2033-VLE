@@ -6,32 +6,32 @@ const MenuItems = [
   },
   {
     title: "Analytics",
-    url: "AdminAnalytics",
+    url: "/AdminAnalytics",
     cName: "nav-links",
   },
   {
     title: "My Classes",
-    url: "AdminClasses",
+    url: "/AdminClasses",
     cName: "nav-links",
   },
   {
     title: "My Assignments",
-    url: "AdminAssignments",
+    url: "/AdminAssignments",
     cName: "nav-links",
   },
   {
     title: "Forum",
-    url: "AdminThreads",
+    url: "/AdminThreads",
     cName: "nav-links",
   },
   {
     title: "Feedback",
-    url: "ViewFeedbackModuleList",
+    url: "/ViewFeedbackModuleList",
     cName: "nav-links",
   },
   {
     title: "Logout",
-    url: "/LoginHome",
+    url: "/Signup",
     cName: "nav-links",
   },
 ];

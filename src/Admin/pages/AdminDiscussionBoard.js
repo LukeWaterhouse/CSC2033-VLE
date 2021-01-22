@@ -2,6 +2,7 @@ import React from "react";
 import AdminNavBar from "../NavBar/AdminNavBar";
 import DiscussionBoard from "../../Student/components/DiscussionBoard";
 import { Link } from "react-router-dom";
+import Button from "react-bootstrap/Button";
 
 export default class StudentDiscussionBoard extends React.Component {
   render() {
@@ -11,7 +12,20 @@ export default class StudentDiscussionBoard extends React.Component {
     return (
       <div>
         <AdminNavBar />
-        <Link to="/AdminThreads">Back to Threads</Link>
+
+        <div style={{paddingLeft:"20px",paddingTop:"30px"}}>
+
+            <Link to="/AdminThreads">
+                <Button variant="secondary" style={{backgroundColor:"#1A1A1B"}}>
+                    Back to Threads
+                </Button>
+
+            </Link>
+
+        </div>
+
+
+
         <DiscussionBoard input={input} />
       </div>
     );

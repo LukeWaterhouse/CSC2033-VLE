@@ -16,7 +16,7 @@ class StudentNavBar extends Component {
           {MenuItems.map((item, index) => {
             return (
               <li key={index}>
-                <a className={item.cName} href={item.url}>
+                <a className={item.cName} href={item.url} onClick={item.logout}>
                   {item.title}
                 </a>
               </li>
