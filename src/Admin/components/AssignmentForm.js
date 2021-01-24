@@ -3,7 +3,6 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import {DialogActions, DialogContent, DialogTitle, FormControl, makeStyles} from "@material-ui/core";
 import React, { useState, useEffect } from "react";
-import moment from "moment";
 import { db } from "../../firebase";
 import * as firebase from 'firebase/app'
 
