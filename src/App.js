@@ -20,6 +20,7 @@ import Test from "./Student/pages/Test";
 import AdminAssignments from "./Admin/pages/AdminAssignments";
 import ViewAssignments from "./Admin/pages/ViewAssignments";
 import AssignmentDetails from "./Admin/pages/AssignmentDetails";
+import StudentAssignment from "./Student/pages/StudentAssignment";
 
 class App extends React.Component {
     render() {
@@ -32,6 +33,7 @@ class App extends React.Component {
                         <Route component={StudentModules} path="/StudentModules" />
                         <Route component={StudentDeadlines} path="/StudentDeadlines" />
                         <Route component={StudentHome} path="/StudentHome" />
+                        <Route component={StudentAssignment} path="/StudentAssignment"/>
                         <Route component={StudentResults} path="/StudentResults" />
                         <Route component={StudentThreads} path="/StudentThreads" />
                         <Route component={GiveFeedbackModuleList} path="/StudentFeedback" />

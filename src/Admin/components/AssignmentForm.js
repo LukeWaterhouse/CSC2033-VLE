@@ -51,6 +51,8 @@ function AssignmentForm() {
                 Deadline :  new Date(Deadline),
                 createdAt : new Date(),
                 Graded : false,
+                MedianLQ : 0,
+                MedianUQ : 0,
             })
             .then(() => {
                 alert("Successfully created assignment!");

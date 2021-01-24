@@ -23,7 +23,7 @@ export default class AssignmentDetails extends React.Component {
                 <h1>Assignment Details</h1>
                 <AssignmentDetailsPage input={input} module={module}/>
                 <br/>
-                <h1>Get Submissions</h1>
+                <h1>Submissions</h1>
             </div>
         );
     }

@@ -20,6 +20,12 @@ const MenuItems = [
     logout: ""
   },
   {
+    title: "Assignments",
+    url: "/StudentAssignment",
+    cName: "nav-links",
+    logout:"",
+  },
+  {
     title: "Results",
     url: "StudentResults",
     cName: "nav-links",
