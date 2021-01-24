@@ -3,19 +3,8 @@ import { Link } from 'react-router-dom'
 import {db} from "../../firebase";
 import moment from "moment";
 import {useCollectionData} from "react-firebase-hooks/firestore";
-
-
-const AssignmentSummary = ({assignment}) =>{
-    return (
-        <div className="card z-depth-0">
-            <div className="card-content text-black-50 text-darken-3">
-                <span className="card-title ">{assignment.Title}</span>
-                <p>Posted by Someone</p>
-                <p className="text-black-50">{moment(assignment.createdAt.toDate()).calendar()}</p>
-            </div>
-        </div>
-    )
-}
+import Card from 'react-bootstrap/Card'
+import {CardColumns} from "react-bootstrap";
 
 function AssignmentsListed(props){
     const AssRef = db
@@ -31,10 +20,31 @@ function AssignmentsListed(props){
     return (
         <div className="Assignments">
             { assignment && assignment.map(assignment => {
+
                 return (
-                    <Link to={'/AssignmentDetails/' + assignment.id} key={assignment.id}>
-                        <AssignmentSummary assignment={assignment} />
-                    </Link>
+                    <div>
+                        <CardColumns>
+                            <Link to={'/AssignmentDetails/'+ props.input + '/' + assignment.id} key={assignment.id}>
+                                <Card
+                                    bg={'Secondary'.toLowerCase()}
+                                    text={'Secondary'.toLowerCase() === 'light' ? 'dark' : 'white'}
+                                    style={{ width: '18rem' }}
+                                    className="card-header border-white border-top"
+                                >
+                                    <Card.Header>Assignment</Card.Header>
+                                    <Card.Body>
+                                        <Card.Title>{assignment.Title}</Card.Title>
+                                        <Card.Text>
+                                            <p>Posted by Someone</p>
+                                        </Card.Text>
+                                        <Card.Text>
+                                            <small className="text-muted text-black-50">Created {moment(assignment.createdAt.toDate()).calendar()}</small>
+                                        </Card.Text>
+                                    </Card.Body>
+                                </Card>
+                            </Link>
+                        </CardColumns>
+                    </div>
                 )
             })}
         </div>

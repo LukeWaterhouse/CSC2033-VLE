@@ -11,6 +11,7 @@ function AdminAssignments(){
                 <h2>Admin Assignments</h2>
                 <br/>
                 <AssignmentForm />
+                <br/>
                 <Assignments />
             </div>
         );

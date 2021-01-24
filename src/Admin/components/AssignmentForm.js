@@ -1,11 +1,11 @@
 import Dialog from '@material-ui/core/Dialog';
 import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
 import {DialogActions, DialogContent, DialogTitle, FormControl, makeStyles} from "@material-ui/core";
 import React, { useState, useEffect } from "react";
 import moment from "moment";
 import { db } from "../../firebase";
-import * as firebase from 'firebase/app'
+import Button from 'react-bootstrap/Button';
+import {Form} from "react-bootstrap";
 
 function AssignmentForm() {
 
@@ -50,6 +50,7 @@ function AssignmentForm() {
                 Module : Module,
                 Deadline :  new Date(Deadline),
                 createdAt : new Date(),
+                Graded : false,
             })
             .then(() => {
                 alert("Successfully created assignment!");
@@ -76,13 +77,16 @@ function AssignmentForm() {
 
     return (
         <div>
-            <Button variant="contained" color="primary" onClick={handleClickOpen}>
-                Create Assignment</Button>
+            <div className="mb-2">
+                <Button variant="info" size="lg" onClick={handleClickOpen}>
+                    Create Assignment
+                </Button>
+            </div>
             <Dialog open={open} onClose={handleClose}
                 aria-labelledby="Create Assignment" fullWidth>
-                <DialogTitle id="Create Assignment"><span style={{color: 'mediumpurple'}}>Create Assignment</span></DialogTitle>
+                <DialogTitle id="Create Assignment"><span style={{color: 'lightBlue'}}>Create Assignment</span></DialogTitle>
                     <DialogContent>
-                        <form>
+                        <Form>
                         <TextField
                             placeholder="Title"
                             label="Title"
@@ -113,11 +117,11 @@ function AssignmentForm() {
                             onChange={(e) => setMarks(e.target.value)}
                         />
                         <div>
-                            <FormControl variant="filled">
-                            <select
-                                value={Module}
-                                onChange={(e) => setModule(e.currentTarget.value)}
-                            >
+                            <Form.Control   as="select"
+                                            className="my-1 mr-sm-2"
+                                            custom
+                                            value={Module}
+                                            onChange={(e) => setModule(e.currentTarget.value)}>
 
                                 {AssignmentList &&
                                 AssignmentList.map((module) => (
@@ -125,8 +129,7 @@ function AssignmentForm() {
                                         {module.Title}
                                     </option>
                                 ))}
-                            </select>
-                            </FormControl>
+                            </Form.Control>
                         </div>
                             <TextField
                                 label="Deadline"
@@ -140,13 +143,13 @@ function AssignmentForm() {
                                 value={Deadline}
                                 onChange={(e) => setDate(e.target.value)}
                             />
-                        </form>
+                        </Form>
                  </DialogContent>
                     <DialogActions>
-                            <Button onClick={handleClose} color="primary">
+                            <Button onClick={handleClose} variant="info">
                                 Cancel
                             </Button>
-                            <Button onClick={handleComplete} color="primary">
+                            <Button onClick={handleComplete} variant="info">
                                 Complete
                             </Button>
                         </DialogActions>

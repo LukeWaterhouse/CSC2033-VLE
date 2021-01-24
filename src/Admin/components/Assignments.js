@@ -2,6 +2,7 @@ import React from "react";
 import { db } from "../../firebase";
 import { useCollectionData } from "react-firebase-hooks/firestore";
 import { Link } from "react-router-dom";
+import {Button} from "react-bootstrap";
 
 function Assignments() {
     const  ModuleRef = db.collection("Courses")
@@ -24,11 +25,11 @@ function Modules({ ModuleTitle }) {
     const { Title } = ModuleTitle;
     const pathTitle = "/ViewAssignments/" + Title;
     return (
-        <div className="card-header border-white">
+        <div className="card-header border-white border-top text-md-center" style={{borderBlockColor:"#424242"}}>
             <a className="text-warning">
-                <h5>
-                    <Link to={pathTitle}>{Title}</Link>
-                </h5>
+                <Button variant="secondary" style={{background:"#424242"}}>
+                    <Link style={{color:"white"}} to={pathTitle}>{Title}</Link>
+                </Button>
             </a>
         </div>
     );

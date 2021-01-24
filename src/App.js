@@ -59,7 +59,7 @@ class App extends React.Component {
                         />
                         <Route
                             component={AssignmentDetails}
-                            path="/AssignmentDetails/:details"
+                            path="/AssignmentDetails/:module/:details"
                         />
                         <Route component={AdminThreads} path="/AdminThreads" />
                         <Route
