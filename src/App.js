@@ -21,6 +21,8 @@ import AdminAssignments from "./Admin/pages/AdminAssignments";
 import ViewAssignments from "./Admin/pages/ViewAssignments";
 import AssignmentDetails from "./Admin/pages/AssignmentDetails";
 import StudentAssignment from "./Student/pages/StudentAssignment";
+import StudentAssignmentView from "./Student/pages/StudentAssignmentView";
+import StudentAssignmentDetails from "./Student/pages/StudentAssignmentDetails";
 
 class App extends React.Component {
     render() {
@@ -33,7 +35,18 @@ class App extends React.Component {
                         <Route component={StudentModules} path="/StudentModules" />
                         <Route component={StudentDeadlines} path="/StudentDeadlines" />
                         <Route component={StudentHome} path="/StudentHome" />
-                        <Route component={StudentAssignment} path="/StudentAssignment"/>
+                        <Route
+                            component={StudentAssignment}
+                            path="/StudentAssignment"
+                        />
+                        <Route
+                            component={StudentAssignmentView}
+                            path="/StudentAssignmentView/:module"
+                        />
+                        <Route
+                            component={StudentAssignmentDetails}
+                            path="/StudentAssignmentDetails/:module/:details"
+                        />
                         <Route component={StudentResults} path="/StudentResults" />
                         <Route component={StudentThreads} path="/StudentThreads" />
                         <Route component={GiveFeedbackModuleList} path="/StudentFeedback" />
