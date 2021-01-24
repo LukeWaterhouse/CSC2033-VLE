@@ -1,6 +1,7 @@
-import React from 'react';
+import React, {useEffect, useLayoutEffect, useState} from 'react';
+import firebase from "../firebase";
 
-const SignupComponent = (props) => {
+function SignupComponent(props) {
 
     const {
         email,
@@ -14,19 +15,44 @@ const SignupComponent = (props) => {
         emailError,
         setEmailError,
         passError,
-        setPassError
+        setPassError,
+        accountDetails,
+        adminPass,
+        setAdminPass,
+        course,
+        setCourse
     } = props;
+
+    let [courseList, setCourseList] = useState([])
+
+    useLayoutEffect(() => {
+        const subjects = [];
+        firebase.firestore().collection("Courses").get()
+            .then(snapshot => {
+                snapshot.forEach(doc => {
+                    subjects.push(doc.data().Title)
+                    console.log("subjects in for loop")
+                    console.log(subjects)
+                })
+                console.log("subjects out of for loop")
+                console.log(subjects)
+                courseList = subjects
+                console.log("course list after setting it to subjects")
+                console.log(courseList)
+            })
+    }, []);
 
     return(
         <section className="login">
             <div className="loginContainer">
-                <label>Username</label>
+                <label>Email</label>
                 <input type="text" autoFocus required value={email} onChange={e => setEmail(e.target.value)}/>
                 <p className="errorMsg">{emailError}</p>
             </div>
             <label>Password</label>
             <input type="password" required value={password} onChange={e => setPassword(e.target.value)}/>
             <p className="errorMsg">{passError}</p>
+
             <div className="btnContainer">
                 {hasAccount ? (
                     <>
@@ -35,6 +61,14 @@ const SignupComponent = (props) => {
                     </>
                 ) : (
                     <>
+                        <label>Admin</label>
+                        <input type="text" onChange={e => setAdminPass(e.target.value)}/>
+                        <p className="admin">If you require an admin account, enter the extra password given to you by the school. Else ignore this input.</p>
+
+                        <label>Select your course:</label>
+                        <input type="text" value="Computer Science" onChange={e => setCourse(e.target.value)}/>
+                        <p/>
+
                         <button onClick={handleSignup}>Sign Up</button>
                         <p>Already have an account? <span onClick={() => setHasAccount(!hasAccount)}>Sign in</span></p>
                     </>

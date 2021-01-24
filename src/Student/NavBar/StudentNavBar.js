@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./StudentNavBar.css";
 import MenuItems from "./StudentMenuItems";
 import Logo from "../../Images/WolfPack.png";
+import Logout from "../../Login-Register/Logout"
 
 class StudentNavBar extends Component {
   state = { clicked: false };
@@ -16,13 +17,14 @@ class StudentNavBar extends Component {
           {MenuItems.map((item, index) => {
             return (
               <li key={index}>
-                <a className={item.cName} href={item.url} onClick={item.logout}>
+                <a className={item.cName} href={item.url}>
                   {item.title}
                 </a>
               </li>
             );
           })}
         </ul>
+          <button onClick={Logout}>Sign Out</button>
       </nav>
     );
   }
