@@ -7,6 +7,7 @@ import {
     HashRouter
 } from "react-router-dom";
 import ModulePage from "./ModulePage"
+import CreateModule from "./createModule"
 
 function ModuleGroup(){
     const ModuleRef = db.collection("Courses")
@@ -22,6 +23,7 @@ function ModuleGroup(){
                 {Modules?.map(module => (
                     <li><NavLink to={"/" + module.id}> {module.id}</NavLink></li>
                 ))}
+                <li><NavLink to="/add_module">+</NavLink></li>
                 </ul>
                 <div className="content">
                     {Modules?.map(module => (
@@ -29,6 +31,9 @@ function ModuleGroup(){
                             <ModulePage moduleName={module.id} />
                         </Route>
                     ))}
+                    <Route path="/add_module">
+                        <CreateModule/>
+                    </Route>
                 </div>
             </div>
         </HashRouter>
