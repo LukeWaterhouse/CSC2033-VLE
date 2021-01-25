@@ -80,10 +80,10 @@ export default function DisplayDeadlines() {
 
       console.log(props.Title)
     return (
-      <Card style={{ width: "18rem", marginLeft: "10px", marginTop: "10px",}}>
+      <Card style={{ width: "30rem", marginLeft: "20px", marginTop: "20px",}}>
         <Card.Body style={{backgroundColor:"#424242"}}>
           <Card.Title>
-            <h5 style={{ color: "white" }}><u>{props.Title}</u></h5>
+            <h5 style={{ color: "white",marginBottom:"30px" }}><u>{props.Title}</u></h5>
           </Card.Title>
 
           <div style={{ color: "#f9f9f9" }}>

@@ -8,7 +8,7 @@ class StudentHome extends React.Component {
     return (
       <div>
         <StudentNavBar />
-          <h1 className="text-md-center" style={{marginTop:"40px",marginBottom:"40px"}}><u>Student Home</u></h1>
+          <h1 className="text-md-center" style={{marginTop:"40px",marginBottom:"40px"}}><u>Home</u></h1>
 
           <CardDeck
               style={{

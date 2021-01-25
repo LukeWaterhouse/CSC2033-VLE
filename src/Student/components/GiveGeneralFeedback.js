@@ -35,7 +35,7 @@ export default function GiveGeneralFeedback(props) {
 
   return (
     <div className="text-dark">
-      <h5 className="text-md-center">      This is the General feedback
+      <h5 className="text-md-center">      General Feedback
       </h5>
 
       <form onSubmit={sendFeedback}>

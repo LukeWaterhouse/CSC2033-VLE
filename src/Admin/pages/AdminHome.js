@@ -10,7 +10,7 @@ class AdminHome extends React.Component {
         <AdminNavBar />
 
         <h1 className="text-md-center" style={{ marginBottom: "40px",marginTop:"40px" }}>
-          <u>Admin Home</u>
+          <u>Home</u>
         </h1>
 
         <CardDeck

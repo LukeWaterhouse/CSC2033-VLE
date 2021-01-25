@@ -8,8 +8,14 @@ class StudentDeadlines extends React.Component {
     return (
       <div>
         <StudentNavBar />
-        <h2>Student Deadlines</h2>
-          <DeadlineFetch/>
+          <h1 className="text-md-center" style={{marginTop:"40px",marginBottom:"40px"}}><u>My Deadlines</u></h1>
+
+          <div style={{display: 'flex', justifyContent: 'center'}}>
+
+              <DeadlineFetch/>
+
+          </div>
+
       </div>
     );
   }
