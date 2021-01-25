@@ -3,8 +3,7 @@ import { Link } from "react-router-dom";
 import StudentNavBar from "../NavBar/StudentNavBar";
 import GiveFeedbackPageComp from "../components/GiveFeedbackPageComp";
 import GiveGeneralFeedback from "../components/GiveGeneralFeedback";
-import {ButtonGroup, ButtonToolbar, Button} from "react-bootstrap";
-
+import { ButtonGroup, ButtonToolbar, Button } from "react-bootstrap";
 
 export default class ViewFeedbackPage extends React.Component {
   render() {
@@ -15,12 +14,13 @@ export default class ViewFeedbackPage extends React.Component {
       <div>
         <StudentNavBar />
 
-        <div style={{paddingLeft:"20px",paddingTop:"30px"}}>
-            <Button variant="secondary" style={{backgroundColor:"#1A1A1B"}}>
-                <Link style={{color:"white"}} to="/StudentFeedback">Back to Modules</Link>
-            </Button>
+        <div style={{ paddingLeft: "20px", paddingTop: "30px" }}>
+          <Button variant="secondary" style={{ backgroundColor: "#1A1A1B" }}>
+            <Link style={{ color: "white" }} to="/StudentFeedback">
+              Back to Modules
+            </Link>
+          </Button>
         </div>
-
 
         <FeedbackButtons input={input} />
       </div>
@@ -49,26 +49,46 @@ function FeedbackButtons(props) {
 
   return (
     <div>
+      <div style={{ marginLeft: "40%", marginTop: "70px" }}>
+        <ButtonGroup aria-label="Basic example">
+          <Button size="lg" variant="secondary" onClick={handleAssignmentClick}>
+            Assignment Feedback
+          </Button>
+          <Button
+            size="lg"
+            style={{ marginLeft: "30px" }}
+            variant="secondary"
+            onClick={handleGeneralClick}
+          >
+            General Feedback
+          </Button>
+        </ButtonGroup>
+      </div>
 
-        <div style={{marginLeft:"40%",marginTop:"70px"}}>
-            <ButtonGroup aria-label="Basic example">
-                <Button  size="lg" variant="secondary" onClick={handleAssignmentClick}>Assignment Feedback</Button>
-                <Button size="lg" style={{marginLeft:"30px"}} variant="secondary" onClick={handleGeneralClick}>General Feedback</Button>
-            </ButtonGroup>
-        </div>
-
-
-
-      <dialog style={{width:"700px", marginTop:"50px",marginLeft:"33%"}} open={GeneralButtonView}>
+      <dialog
+        style={{ width: "700px", marginTop: "50px", marginLeft: "33%" }}
+        open={GeneralButtonView}
+      >
         <GiveGeneralFeedback input={props.input} />
-        <button style={{marginTop:"20px"}} onClick={handleClose} color="primary">
+        <button
+          style={{ marginTop: "20px" }}
+          onClick={handleClose}
+          color="primary"
+        >
           Cancel
         </button>
       </dialog>
 
-      <dialog style={{width:"700px", marginTop:"50px",marginLeft:"33%"}} open={AssignmentButtonView}>
+      <dialog
+        style={{ width: "700px", marginTop: "50px", marginLeft: "33%" }}
+        open={AssignmentButtonView}
+      >
         <GiveFeedbackPageComp input={props.input} />
-        <button style={{marginTop:"20px"}} onClick={handleClose} color="primary">
+        <button
+          style={{ marginTop: "20px" }}
+          onClick={handleClose}
+          color="primary"
+        >
           Cancel
         </button>
       </dialog>

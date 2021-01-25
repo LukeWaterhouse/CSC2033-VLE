@@ -1,100 +1,98 @@
-import React, { useRef, useState, useEffect } from 'react'
-import SignupComponent from './SignupComponent'
-import StudentHome from '../Student/pages/StudentHome'
-import fire from '../firebase'
+import React, { useRef, useState, useEffect } from "react";
+import SignupComponent from "./SignupComponent";
+import StudentHome from "../Student/pages/StudentHome";
+import fire from "../firebase";
 
 export default function Signup() {
+  const [user, setUser] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [admin, setAdmin] = useState(false);
+  const [emailError, setEmailError] = useState("");
+  const [passError, setPassError] = useState("");
+  const [hasAccount, setHasAccount] = useState(false);
 
+  const clearInputs = () => {
+    setEmail("");
+    setPassword("");
+  };
 
-    const [user, setUser] = useState('')
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
-    const [admin, setAdmin] = useState(false)
-    const [emailError, setEmailError] = useState('')
-    const [passError, setPassError] = useState('')
-    const [hasAccount, setHasAccount] = useState(false)
-
-    const clearInputs = () => {
-        setEmail('');
-        setPassword('');
-    }
-
-    const clearErrors = () => {
-        setEmailError('');
-        setPassError('');
-    }
-    const handleLogin = () => {
-        clearErrors();
-        fire
-            .auth()
-            .signInWithEmailAndPassword(email, password)
-            .catch(err => {
-                switch(err.code){
-                    case "auth/invalid-email":
-                    case "auth/user-disabled":
-                    case "auth/user-not-found":
-                        setEmailError(err.message);
-                        break;
-                    case "auth/wrong-password":
-                        setPassError(err.message);
-                        break;
-                }
-            });
-    };
-
-    const handleSignup = () => {
-        clearErrors()
-        fire
-            .auth()
-            .createUserWithEmailAndPassword(email, password)
-            .catch(err => {
-                switch(err.code){
-                    case "auth/email-already-in-use":
-                    case "auth/invalid-email":
-                        setEmailError(err.message);
-                        break;
-                    case "auth/weak-password":
-                        setPassError(err.message);
-                        break;
-                }
-            });
-    }
-
-    useEffect(() => {
-        console.log("Auth listener")
-        function authListener(){
-            fire.auth().onAuthStateChanged((user) => {
-                if (user) {
-                    clearInputs();
-                    setUser(user);
-                } else {
-                    setUser("");
-                }
-            });
+  const clearErrors = () => {
+    setEmailError("");
+    setPassError("");
+  };
+  const handleLogin = () => {
+    clearErrors();
+    fire
+      .auth()
+      .signInWithEmailAndPassword(email, password)
+      .catch((err) => {
+        switch (err.code) {
+          case "auth/invalid-email":
+          case "auth/user-disabled":
+          case "auth/user-not-found":
+            setEmailError(err.message);
+            break;
+          case "auth/wrong-password":
+            setPassError(err.message);
+            break;
         }
-        authListener();
-    }, []);
+      });
+  };
 
-    return(
-        <div className="AppLogin">
-            {user ? (
-                <StudentHome/>
-            ) : (
+  const handleSignup = () => {
+    clearErrors();
+    fire
+      .auth()
+      .createUserWithEmailAndPassword(email, password)
+      .catch((err) => {
+        switch (err.code) {
+          case "auth/email-already-in-use":
+          case "auth/invalid-email":
+            setEmailError(err.message);
+            break;
+          case "auth/weak-password":
+            setPassError(err.message);
+            break;
+        }
+      });
+  };
+
+  useEffect(() => {
+    console.log("Auth listener");
+    function authListener() {
+      fire.auth().onAuthStateChanged((user) => {
+        if (user) {
+          clearInputs();
+          setUser(user);
+        } else {
+          setUser("");
+        }
+      });
+    }
+    authListener();
+  }, []);
+
+  return (
+    <div className="AppLogin">
+      {user ? (
+        <StudentHome />
+      ) : (
         <SignupComponent
-            email={email}
-            setEmail={setEmail}
-            password={password}
-            setPassword={setPassword}
-            handleLogin={handleLogin}
-            handleSignup={handleSignup}
-            hasAccount={hasAccount}
-            setHasAccount={setHasAccount}
-            emailError={emailError}
-            setEmailError={setEmailError}
-            passError={passError}
-            setPassError={setPassError}
+          email={email}
+          setEmail={setEmail}
+          password={password}
+          setPassword={setPassword}
+          handleLogin={handleLogin}
+          handleSignup={handleSignup}
+          hasAccount={hasAccount}
+          setHasAccount={setHasAccount}
+          emailError={emailError}
+          setEmailError={setEmailError}
+          passError={passError}
+          setPassError={setPassError}
         />
-        )}
-        </div>
-    )
+      )}
+    </div>
+  );
 }

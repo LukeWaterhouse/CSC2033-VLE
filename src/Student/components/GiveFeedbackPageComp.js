@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { db } from "../../firebase";
 import "firebase/firestore";
 import firebase from "firebase";
-import {Alert} from "react-bootstrap";
+import { Alert } from "react-bootstrap";
 
 function GiveAssignmentFeedback(props) {
   console.log(props.input);
@@ -62,10 +62,10 @@ function GiveAssignmentFeedback(props) {
 
   return (
     <div className="text-dark">
-        <h5 className="text-md-center">Assignment Feedback</h5>
+      <h5 className="text-md-center">Assignment Feedback</h5>
       <form>
         <select
-            style={{marginBottom:"10px"}}
+          style={{ marginBottom: "10px" }}
           value={selectedModule}
           onChange={(e) => setSelectedModule(e.currentTarget.value)}
         >
@@ -80,25 +80,19 @@ function GiveAssignmentFeedback(props) {
         </select>
       </form>
 
-
       <form onSubmit={sendFeedback}>
         <textarea
-            style={{width:"660px"}}
+          style={{ width: "660px" }}
           value={formValue}
           onChange={(e) => setFormValue(e.target.value)}
         />
-          <div className="text-dark">{errorMessage}</div>
+        <div className="text-dark">{errorMessage}</div>
 
-
-          <button type="submit" className="btn-success">
+        <button type="submit" className="btn-success">
           Send
         </button>
-
       </form>
-
     </div>
-
-
   );
 }
 

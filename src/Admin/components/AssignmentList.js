@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { db } from "../../firebase";
 import { useCollectionData } from "react-firebase-hooks/firestore";
 import Button from "react-bootstrap/Button";
-import {ButtonGroup, ButtonToolbar} from "react-bootstrap";
+import { ButtonGroup, ButtonToolbar } from "react-bootstrap";
 
 export default function AssignmentList(props) {
   const [AssignmentList, setAssignmentList] = useState([]);
@@ -87,54 +87,61 @@ export default function AssignmentList(props) {
       output = year + "/" + month + "/" + day + " " + time;
     }
     return (
-      <div  className="card card-body post-editor text-light" style={{backgroundColor:"#424242"}}>
-        <p style={{color:""}}>{output}</p>
+      <div
+        className="card card-body post-editor text-light"
+        style={{ backgroundColor: "#424242" }}
+      >
+        <p style={{ color: "" }}>{output}</p>
         {text}{" "}
       </div>
     );
   }
 
   return (
-    <div className=" align-content-center" style={{paddingLeft: "20px"}}>
-        <h2 style={{paddingTop:"60px", paddingBottom:"20px"}} className="text-md-center text"><u>Assignment Feedback</u></h2>
+    <div className=" align-content-center" style={{ paddingLeft: "20px" }}>
+      <h2
+        style={{ paddingTop: "60px", paddingBottom: "20px" }}
+        className="text-md-center text"
+      >
+        <u>Assignment Feedback</u>
+      </h2>
 
+      <form>
+        <select
+          style={{
+            backgroundColor: "#1A1A1B",
+            color: "white",
+            borderRadius: "4px",
+          }}
+          className="custom-select-sm"
+          value={selectedAssignment}
+          onChange={(e) => setSelectedAssignment(e.currentTarget.value)}
+        >
+          {AssignmentList &&
+            AssignmentList.map((module) => (
+              <option key={module.Title} value={module.Title}>
+                {module.Title}
+              </option>
+            ))}
+        </select>
+      </form>
 
+      <div style={{ paddingTop: "10px" }}>
+        <Button
+          onClick={getAssignmentFeedbackList}
+          variant="success"
+          style={{ backgroundColor: "#1A1A1B" }}
+        >
+          View
+        </Button>
+      </div>
 
-            <form>
-                <select
-                    style={{backgroundColor:"#1A1A1B",color:"white",borderRadius:"4px"}}
-                    className="custom-select-sm"
-
-                    value={selectedAssignment}
-                    onChange={(e) => setSelectedAssignment(e.currentTarget.value)}
-                >
-                    {AssignmentList &&
-                    AssignmentList.map((module) => (
-                        <option key={module.Title} value={module.Title}>
-                            {module.Title}
-                        </option>
-                    ))}
-
-                </select>
-            </form>
-
-        <div style={{paddingTop:"10px"}}>
-            <Button onClick={getAssignmentFeedbackList} variant="success" style={{backgroundColor:"#1A1A1B"}}>View</Button>
-
-
-        </div>
-
-
-
-
-
-        <div className="text-md-center border-danger">
-            <h5 className={noFeedbackVisible} >
-                There doesn't seem to be any feedback for this assignment yet, perhaps
-                ask your students to submit some{" "}
-            </h5>
-        </div>
-
+      <div className="text-md-center border-danger">
+        <h5 className={noFeedbackVisible}>
+          There doesn't seem to be any feedback for this assignment yet, perhaps
+          ask your students to submit some{" "}
+        </h5>
+      </div>
 
       <div>
         {AssignmentFeedbackList?.map((message) => (

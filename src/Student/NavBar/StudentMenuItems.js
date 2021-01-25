@@ -1,11 +1,11 @@
-import Logout from "../../Login-Register/Logout"
+import Logout from "../../Login-Register/Logout";
 
 const MenuItems = [
   {
     title: "Home",
     url: "/StudentHome",
     cName: "nav-links",
-    logout:"",
+    logout: "",
   },
   {
     title: "Modules",
@@ -17,13 +17,13 @@ const MenuItems = [
     title: "Deadlines",
     url: "StudentDeadlines",
     cName: "nav-links",
-    logout: ""
+    logout: "",
   },
   {
     title: "Assignments",
     url: "/StudentAssignment",
     cName: "nav-links",
-    logout:"",
+    logout: "",
   },
   {
     title: "Results",
@@ -47,7 +47,7 @@ const MenuItems = [
     title: "Logout",
     url: "/Signup",
     cName: "nav-links",
-    logout:{Logout}
+    logout: { Logout },
   },
 ];
 
