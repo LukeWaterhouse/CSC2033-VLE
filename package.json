@@ -11,9 +11,11 @@
     "firebase-admin": "^9.4.2",
     "firebase-auth": "^0.1.2",
     "jquery": "^3.5.1",
+    "moment": "^2.29.1",
     "popper.js": "^1.16.1",
     "prettier": "^2.2.1",
     "react": "^17.0.1",
+    "react-bootstrap": "^1.4.3",
     "react-datetime": "^3.0.4",
     "react-dom": "^17.0.1",
     "react-redux": "^7.2.2",
@@ -48,6 +50,7 @@
     ]
   },
   "devDependencies": {
+    "@material-ui/core": "^4.11.3",
     "react-firebase-hooks": "^2.2.0"
   }
 }

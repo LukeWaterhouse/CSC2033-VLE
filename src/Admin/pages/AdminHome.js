@@ -1,6 +1,6 @@
 import React from "react";
 import AdminNavBar from "../NavBar/AdminNavBar";
-import CSS from "../../Admin/css-files/AdminHome.css";
+import "../css-files/AdminHome.css"
 import Card from "react-bootstrap/Card";
 import { CardDeck, CardGroup } from "react-bootstrap";
 class AdminHome extends React.Component {
