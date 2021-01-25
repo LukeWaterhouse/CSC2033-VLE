@@ -13,7 +13,7 @@ function AssignmentShow({assignmentGet}){
     //const [Assignments] = useCollectionData(AssignmentRef, { idField: "Title"});
     AssignmentRef.get().then((querySnapshot) => {
             querySnapshot.forEach((doc) => {
-                tempDoc.push(doc.data().Instructions)
+                tempDoc.push(doc.data())
             })
         })
 
@@ -21,7 +21,7 @@ function AssignmentShow({assignmentGet}){
         <div>
             {console.log(tempDoc)}
             <ul>
-                {tempDoc.map((assignment) => (
+                {tempDoc?.forEach((assignment) => (
                     <li>{assignment}</li>
                 ))}
             </ul>

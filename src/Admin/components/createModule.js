@@ -47,7 +47,7 @@ function CreateModule(){
                     value={formValue}
                     onChange={(e) => setFormValue(e.target.value)}
                 />
-                <button className="btn-success" type="submit">
+                <button type="submit">
                     Create
                 </button>
                 <div className={visibility}>{errorMessage}</div>
