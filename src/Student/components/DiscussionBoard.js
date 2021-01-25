@@ -9,6 +9,8 @@ import { db } from "../../firebase";
 global.jQuery = require("jquery");
 require("bootstrap");
 
+
+
 function ChatRoom(props) {
   const messagesRef = db
     .collection("Courses")
