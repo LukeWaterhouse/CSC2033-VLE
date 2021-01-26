@@ -43,7 +43,7 @@ function CreateThread() {
   };
 
   return (
-    <div>
+    <div style={{ marginLeft: "20px", marginTop: "20px" }}>
       Create Thread
       <form onSubmit={createThread}>
         <input

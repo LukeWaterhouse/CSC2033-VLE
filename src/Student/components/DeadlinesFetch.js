@@ -39,20 +39,29 @@ export default function DisplayDeadlines() {
           .get()
           .then((snapshot) => {
             snapshot.forEach((doc) => {
-              const data = doc.data();
-              console.log("current Assignment", data.Title);
-              const toDate = data.Deadline.toDate();
-              const month = toDate.getUTCMonth() + 1;
-              const day = toDate.getUTCDate();
-              const year = toDate.getUTCFullYear();
-              const time = toDate.getUTCHours() + ":" + toDate.getUTCMinutes();
-              const output = year + "/" + month + "/" + day + " " + time;
-              AssignmentsToSet.push({
-                Title: data.Title,
-                Marks: data.Marks,
-                Module: data.Module,
-                DueDate: output,
-              });
+              let output = "error";
+              if (snapshot.size > 0) {
+                const data = doc.data();
+
+                if (data.Deadline) {
+                  const toDate = data.Deadline && data.Deadline.toDate();
+                  const month = toDate.getUTCMonth() + 1;
+                  const day = toDate.getUTCDate();
+                  const year = toDate.getUTCFullYear();
+                  const time =
+                    toDate.getUTCHours() + ":" + toDate.getUTCMinutes();
+                  output = year + "/" + month + "/" + day + " " + time;
+                }
+
+                AssignmentsToSet.push({
+                  Title: data.Title,
+                  Marks: data.Marks,
+                  Module: data.Module,
+                  DueDate: output,
+                });
+                console.log(AssignmentsToSet);
+              } else {
+              }
             });
 
             if (i === things.length - 1) {

@@ -14,7 +14,7 @@ function DeleteThread() {
   }
 
   return (
-    <div>
+    <div style={{ marginLeft: "20px" }}>
       Delete Thread
       <form onSubmit={deleteThread}>
         <input
@@ -24,7 +24,6 @@ function DeleteThread() {
         <button className="btn-danger" type="submit">
           Delete
         </button>
-        <div></div>
       </form>
     </div>
   );
