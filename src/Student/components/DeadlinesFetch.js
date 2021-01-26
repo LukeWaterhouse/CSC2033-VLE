@@ -1,13 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { db } from "../../firebase";
 import Card from "react-bootstrap/Card";
-import { useCollectionData } from "react-firebase-hooks/firestore";
+
+
+
+/**
+ * General component description in JSDoc format. Markdown is *supported*.
+ */
 
 export default function DisplayDeadlines() {
   const [Assignments, setAssignments] = useState([]);
   const [Modules, SetModules] = useState([]);
 
-  const things = [];
+  const modules = [];
   const AssignmentsToSet = [];
 
   useEffect(() => {
@@ -19,10 +24,10 @@ export default function DisplayDeadlines() {
         .then((snapshot) => {
           snapshot.forEach((doc) => {
             const data = doc.data();
-            things.push(data.Title);
+            modules.push(data.Title);
           });
-          console.log("things:", things);
-          SetModules(things);
+          console.log("things:", modules);
+          SetModules(modules);
           console.log(Modules, "Modules");
           getAssignments();
         })
@@ -30,11 +35,11 @@ export default function DisplayDeadlines() {
     }
 
     function getAssignments() {
-      for (let i = 0; i < things.length; i++) {
+      for (let i = 0; i < modules.length; i++) {
         db.collection("Courses")
           .doc("Computer Science")
           .collection("modules")
-          .doc(things[i])
+          .doc(modules[i])
           .collection("Assignments")
           .get()
           .then((snapshot) => {
@@ -64,7 +69,7 @@ export default function DisplayDeadlines() {
               }
             });
 
-            if (i === things.length - 1) {
+            if (i === modules.length - 1) {
               setAssignments(AssignmentsToSet);
             }
           });
@@ -97,11 +102,11 @@ export default function DisplayDeadlines() {
 
   return (
     <div>
-      {Assignments.map((thing) => (
+      {Assignments.map((assignmentRef) => (
         <DeadlinePost
-          Title={thing.Title}
-          Module={thing.Module}
-          Date={thing.DueDate.toString()}
+          Title={assignmentRef.Title}
+          Module={assignmentRef.Module}
+          Date={assignmentRef.DueDate.toString()}
         />
       ))}
     </div>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {useEffect, useState} from "react";
 import "bootstrap/dist/css/bootstrap.css";
 import "popper.js";
 import "../css-files/disccusionBoard.css";
@@ -6,10 +6,39 @@ import { useCollectionData } from "react-firebase-hooks/firestore";
 import "firebase/firestore";
 import firebase from "firebase";
 import { db } from "../../firebase";
+import {whenInput} from "web-vitals/dist/lib/whenInput";
 global.jQuery = require("jquery");
 require("bootstrap");
 
+
+
+
+let userName = "placeholder"
+let isAdmin = false
+
+
+
+
 function ChatRoom(props) {
+
+  useEffect( () => {
+
+    console.log("Here: ",firebase.auth().currentUser.uid)
+
+    db.collection("UserDetails").doc(firebase.auth().currentUser.uid).get().then(doc => {
+
+      console.log("UERNAME:",doc.data().username)
+      console.log("isAdmin:",doc.data().isAdmin)
+
+      userName = doc.data().username
+      isAdmin = doc.data().isAdmin
+
+    })
+
+  })
+
+
+
   const messagesRef = db
     .collection("Courses")
     .doc("Computer Science")
@@ -19,22 +48,34 @@ function ChatRoom(props) {
   const query = messagesRef.orderBy("createdAt").limit(25);
   const [messages] = useCollectionData(query, { idField: "id" });
   console.log(messages);
+  console.log("userID: ",firebase.auth().currentUser.uid)
+
   const [formValue, setFormValue] = useState("");
 
   const sendMessage = async (e) => {
     e.preventDefault();
+
+
     await messagesRef.add({
       text: formValue,
       createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+      userName: userName,
+      AdminMessage: isAdmin
     });
     setFormValue("");
+
+
+
+
   };
 
   return (
     <>
       <div>
         {messages?.map((message) => (
+            <div style={{marginBottom:"10px"}}>
           <ChatMessage key={message.id} message={message} />
+            </div>
         ))}
       </div>
       <div
@@ -63,7 +104,7 @@ function ChatRoom(props) {
 }
 
 function ChatMessage({ message }) {
-  const { text, createdAt } = message;
+  const { text, createdAt,userName,AdminMessage } = message;
   const date = createdAt && createdAt.toDate(); // checks if createdAt exists and if so turns it into JS date format
   let output = "DataBase Error!";
   if (date != null) {
@@ -78,7 +119,9 @@ function ChatMessage({ message }) {
       className="card card-body post-editor"
       style={{ backgroundColor: "#424242", color: "#E0E0E0" }}
     >
+
       <p style={{ color: "#9E9E9E" }}>{output}</p>
+      <h7 style={AdminMessage?{color:"green",marginBottom:"5px",fontWeight:"bold"}:{color: "white",marginBottom: "5px"}}><u>{AdminMessage ? <p>{userName} (Admin)</p> : <p>{userName}</p>}</u></h7>
       {text}{" "}
     </div>
   );
