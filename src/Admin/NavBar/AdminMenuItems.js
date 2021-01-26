@@ -29,11 +29,6 @@ const MenuItems = [
     url: "/ViewFeedbackModuleList",
     cName: "nav-links",
   },
-  {
-    title: "Logout",
-    url: "/Signup",
-    cName: "nav-links",
-  },
 ];
 
 export default MenuItems;
