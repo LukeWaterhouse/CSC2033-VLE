@@ -70,13 +70,13 @@ function FeedbackButtons(props) {
         open={GeneralButtonView}
       >
         <GiveGeneralFeedback input={props.input} />
-        <button
-          style={{ marginTop: "20px" }}
+        <Button variant="danger"
+          style={{ marginTop: "20px", marginBottom:"10px",marginLeft:"10px"}}
           onClick={handleClose}
           color="primary"
         >
           Cancel
-        </button>
+        </Button>
       </dialog>
 
       <dialog
@@ -84,13 +84,13 @@ function FeedbackButtons(props) {
         open={AssignmentButtonView}
       >
         <GiveFeedbackPageComp input={props.input} />
-        <button
-          style={{ marginTop: "20px" }}
+        <Button variant="danger"
+                style={{ marginTop: "20px", marginBottom:"10px",marginLeft:"10px"}}
           onClick={handleClose}
           color="primary"
         >
           Cancel
-        </button>
+        </Button>
       </dialog>
     </div>
   );
