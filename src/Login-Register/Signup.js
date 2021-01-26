@@ -1,155 +1,175 @@
-import React, {useEffect, useState} from 'react'
-import SignupComponent from './SignupComponent'
-import StudentHome from '../Student/pages/StudentHome'
-import firebase, {db} from '../firebase'
+import React, { useEffect, useState } from "react";
+import SignupComponent from "./SignupComponent";
+import StudentHome from "../Student/pages/StudentHome";
+import firebase, { db } from "../firebase";
 import AdminHome from "../Admin/pages/AdminHome";
 
 export default function Signup() {
+  const [user, setUser] = useState();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [username, setUsername] = useState("");
+  const [emailError, setEmailError] = useState("");
+  const [passError, setPassError] = useState("");
+  const [hasAccount, setHasAccount] = useState(false);
+  const [adminPass, setAdminPass] = useState("");
+  const [adminCheck, setAdminCheck] = useState(false)
 
 
-    const [user, setUser] = useState()
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
-    const [username, setUsername] = useState('')
-    const [course, setCourse] = useState('')
-    const [courseList, setCourseList] = useState([])
-    const [emailError, setEmailError] = useState('')
-    const [passError, setPassError] = useState('')
-    const [hasAccount, setHasAccount] = useState(false)
-    const [adminPass, setAdminPass] = useState('')
-    const [isAdmin, setIsAdmin] = useState(false)
+  const clearInputs = () => {
+    setEmail("");
+    setPassword("");
+    setUsername("");
+    setAdminPass("");
+  };
 
-    const clearInputs = () => {
-        setEmail('');
-        setPassword('');
-        setUsername('')
-        setAdminPass('')
-    }
+  const clearErrors = () => {
+    setEmailError("");
+    setPassError("");
+  };
 
-    const clearErrors = () => {
-        setEmailError('');
-        setPassError('');
-    }
-
-    const handleLogin = () => {
-        console.log("handle login start")
-        clearErrors();
-        firebase
-            .auth()
-            .signInWithEmailAndPassword(email, password)
-            .catch(err => {
-                switch(err.code){
-                    case "auth/invalid-email":
-                    case "auth/user-disabled":
-                    case "auth/user-not-found":
-                        setEmailError(err.message);
-                        break;
-                    case "auth/wrong-password":
-                        setPassError(err.message);
-                        break;
-                }
-            });
-        console.log("login end")
-    };
-
-    const handleSignup = () => {
-        console.log("handle signup start")
-        clearErrors()
-        verifyAdmin()
-        firebase
-            .auth()
-            .createUserWithEmailAndPassword(email, password)
-            .catch(err => {
-                switch(err.code){
-                    case "auth/email-already-in-use":
-                    case "auth/invalid-email":
-                        setEmailError(err.message);
-                        break;
-                    case "auth/weak-password":
-                        setPassError(err.message);
-                        break;
-                }
-            })
-
-        console.log(firebase.auth().currentUser)
-        console.log("signup ended")
-    }
-
-    const verifyAdmin = () => {
-        let adminKey = "";
-        db.collection("Admin").doc("AdminKey").get()
-            .then(doc => {
-                adminKey = doc.data().currentKey.toString()
-            })
-        console.log(adminPass)
-        console.log(adminKey)
-        console.log(adminPass === adminKey)
-        console.log("this passes true for.... some reason")
-
-        if (adminPass === adminKey){
-            setIsAdmin(true)
+  const handleLogin = () => {
+    console.log("handle login start");
+    clearErrors();
+    firebase
+      .auth()
+      .signInWithEmailAndPassword(email, password).then(pull => {
+      const usersId = firebase.auth().currentUser.uid;
+      db.collection("UserDetails").doc(usersId).get().then(doc => {
+        const adminCheck = doc.data().isAdmin
+        console.log("admin check please: ",adminCheck)
+        setAdminCheck(adminCheck)
+      })
+      console.log("can we get this: ",user.uid)
+    })
+      .catch((err) => {
+        switch (err.code) {
+          case "auth/invalid-email":
+          case "auth/user-disabled":
+          case "auth/user-not-found":
+            setEmailError(err.message);
+            break;
+          case "auth/wrong-password":
+            setPassError(err.message);
+            break;
         }
-    }
+      });
+    console.log("login end");
+  };
 
-    const addUserDetails = (user) => {
-        db.collection("UserDetails").doc(user.uid).set({
-            course:course,
-            username:username,
-            email:email,
-            isAdmin:isAdmin,
-        }).then(function() {
-            console.log("user info added to database.");
-        }).catch(function(error) {
-            console.log(error)
-        })
-    }
+  const handleSignup = () => {
 
-    useEffect(() => {
-        console.log("use effect start")
-        authListener()
-    }, []);
 
-    const authListener = () => {
-        firebase.auth().onAuthStateChanged(user  => {
-            console.log(user);
-            if (user) {
-                setUser(user)
-                addUserDetails(user)
-                console.log(user)
-                console.log("setting user")
-                clearInputs();
-            } else {
-                console.log("user not set")
+    const emailInput = email;
+    const usernameInput = username;
+    console.log("handle signup start");
+    clearErrors();
+
+    let isAdminTrue = false;
+
+    let adminKey = "";
+    db.collection("Admin")
+      .doc("AdminKey")
+      .get()
+      .then((doc) => {
+        adminKey = doc.data().currentKey.toString();
+        console.log("this is admin key: " + adminKey);
+        console.log("this is the admin Pass: " + adminPass);
+        console.log("compare adminpass and adminkey", adminPass === adminKey);
+
+        if (adminPass === adminKey) {
+          isAdminTrue = true;
+          setAdminCheck(true)
+        }
+
+        console.log("isAdmin in signup: ", isAdminTrue);
+        firebase
+          .auth()
+          .createUserWithEmailAndPassword(email, password)
+          .then((pull) => {
+            const usersId = firebase.auth().currentUser.uid;
+
+            console.log("this:::", usersId);
+            console.log(email);
+            console.log(username);
+
+            db.collection("UserDetails")
+              .doc(usersId)
+              .set({
+                username: usernameInput,
+                email: emailInput,
+                isAdmin: isAdminTrue,
+              })
+              .then(function () {
+                console.log("user info added to database.");
+              })
+              .catch(function (error) {
+                console.log(error);
+              });
+          })
+          .catch((err) => {
+            switch (err.code) {
+              case "auth/email-already-in-use":
+              case "auth/invalid-email":
+                setEmailError(err.message);
+                break;
+              case "auth/weak-password":
+                setPassError(err.message);
+                break;
             }
-        });
-    }
+          });
 
+        console.log(firebase.auth().currentUser);
+        console.log("signup ended");
+      });
+  };
 
-    return(
-        <div className="AppLogin">
-            {user && isAdmin===false ? (<StudentHome/>) : (user && isAdmin===true ? (<AdminHome/>) : (
-                <SignupComponent
-                    email={email}
-                    setEmail={setEmail}
-                    password={password}
-                    setPassword={setPassword}
-                    handleLogin={handleLogin}
-                    handleSignup={handleSignup}
-                    hasAccount={hasAccount}
-                    setHasAccount={setHasAccount}
-                    emailError={emailError}
-                    setEmailError={setEmailError}
-                    passError={passError}
-                    setPassError={setPassError}
-                    adminPass={adminPass}
-                    setAdminPass={setAdminPass}
-                    course={course}
-                    setCourse={setCourse}
-                    username={username}
-                    setUsername={setUsername}
-                    courseList={courseList}
-                    setCourseList={setCourseList}
-                />))}
-        </div>
-    )
+  useEffect(() => {
+    console.log("use effect start");
+    authListener();
+  }, []);
+
+  const authListener = () => {
+    console.log("auth listener");
+    firebase.auth().onAuthStateChanged((user) => {
+      console.log("user: ", user);
+      if (user) {
+        setUser(user);
+        console.log("this things: ", user.uid);
+        console.log("setting user");
+        clearInputs()
+      } else {
+        console.log("user not set");
+      }
+    });
+  };
+
+  return (
+    <div className="AppLogin">
+      {user && adminCheck === false ? (
+        <StudentHome />
+      ) : user && adminCheck === true ? (
+        <AdminHome />
+      ) : (
+        <SignupComponent
+          email={email}
+          setEmail={setEmail}
+          password={password}
+          setPassword={setPassword}
+          handleLogin={handleLogin}
+          handleSignup={handleSignup}
+          hasAccount={hasAccount}
+          setHasAccount={setHasAccount}
+          emailError={emailError}
+          setEmailError={setEmailError}
+          passError={passError}
+          setPassError={setPassError}
+          adminPass={adminPass}
+          setAdminPass={setAdminPass}
+          username={username}
+          setUsername={setUsername}
+        />
+      )}
+    </div>
+  );
 }

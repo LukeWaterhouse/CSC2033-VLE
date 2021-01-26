@@ -24,7 +24,9 @@ class AdminNavBar extends Component {
             );
           })}
         </ul>
-          <a onClick={Logout} href="/Signup">Logout</a>
+        <a onClick={Logout} href="/Signup">
+          Logout
+        </a>
       </nav>
     );
   }

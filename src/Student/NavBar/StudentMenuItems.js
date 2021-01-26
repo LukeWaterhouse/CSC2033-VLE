@@ -1,4 +1,4 @@
-import Logout from "../../Login-Register/Logout"
+import Logout from "../../Login-Register/Logout";
 
 const MenuItems = [
   {
