@@ -34,6 +34,14 @@ function CreateModule(){
             await ModuleRef.doc(formValue).set({
                 Title: formValue,
             });
+            await ModuleRef.doc(formValue)
+                .collection("Assignments")
+                .add({
+                    Title : "Default",
+                })
+            await ModuleRef.doc(formValue).collection("feedback").add({
+                Title: "Default",
+            })
         } else {
             console.log("Error!");
             setVisibility("visible");
