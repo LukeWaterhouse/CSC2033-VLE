@@ -7,7 +7,7 @@ export default function Logout() {
       .auth()
       .signOut()
       .then(() => {
-        console.log("signed out");
+        console.log("Signed Out");
       })
       .catch((error) => {
         console.error("error occurred");

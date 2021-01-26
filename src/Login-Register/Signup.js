@@ -11,10 +11,9 @@ export default function Signup() {
   const [username, setUsername] = useState("");
   const [emailError, setEmailError] = useState("");
   const [passError, setPassError] = useState("");
-  const [hasAccount, setHasAccount] = useState(false);
+  const [hasAccount, setHasAccount] = useState(true);
   const [adminPass, setAdminPass] = useState("");
-  const [adminCheck, setAdminCheck] = useState(false)
-
+  const [adminCheck, setAdminCheck] = useState(false);
 
   const clearInputs = () => {
     setEmail("");
@@ -29,19 +28,22 @@ export default function Signup() {
   };
 
   const handleLogin = () => {
-    console.log("handle login start");
     clearErrors();
     firebase
       .auth()
-      .signInWithEmailAndPassword(email, password).then(pull => {
-      const usersId = firebase.auth().currentUser.uid;
-      db.collection("UserDetails").doc(usersId).get().then(doc => {
-        const adminCheck = doc.data().isAdmin
-        console.log("admin check please: ",adminCheck)
-        setAdminCheck(adminCheck)
+      .signInWithEmailAndPassword(email, password)
+      .then((pull) => {
+        const usersId = firebase.auth().currentUser.uid;
+        db.collection("UserDetails")
+          .doc(usersId)
+          .get()
+          .then((doc) => {
+            const adminCheck = doc.data().isAdmin;
+            console.log("IsAdmin Check: ", adminCheck);
+            console.log("UsersID: ", usersId);
+            setAdminCheck(adminCheck);
+          });
       })
-      console.log("can we get this: ",user.uid)
-    })
       .catch((err) => {
         switch (err.code) {
           case "auth/invalid-email":
@@ -54,15 +56,11 @@ export default function Signup() {
             break;
         }
       });
-    console.log("login end");
   };
 
   const handleSignup = () => {
-
-
     const emailInput = email;
     const usernameInput = username;
-    console.log("handle signup start");
     clearErrors();
 
     let isAdminTrue = false;
@@ -73,25 +71,22 @@ export default function Signup() {
       .get()
       .then((doc) => {
         adminKey = doc.data().currentKey.toString();
-        console.log("this is admin key: " + adminKey);
-        console.log("this is the admin Pass: " + adminPass);
-        console.log("compare adminpass and adminkey", adminPass === adminKey);
 
         if (adminPass === adminKey) {
           isAdminTrue = true;
-          setAdminCheck(true)
+          setAdminCheck(true);
         }
 
-        console.log("isAdmin in signup: ", isAdminTrue);
+        console.log("Is Admin Check: ", isAdminTrue);
         firebase
           .auth()
           .createUserWithEmailAndPassword(email, password)
           .then((pull) => {
             const usersId = firebase.auth().currentUser.uid;
 
-            console.log("this:::", usersId);
-            console.log(email);
-            console.log(username);
+            console.log("Users ID", usersId);
+            console.log("users Email", email);
+            console.log("Username: ", username);
 
             db.collection("UserDetails")
               .doc(usersId)
@@ -100,9 +95,7 @@ export default function Signup() {
                 email: emailInput,
                 isAdmin: isAdminTrue,
               })
-              .then(function () {
-                console.log("user info added to database.");
-              })
+              .then(function () {})
               .catch(function (error) {
                 console.log(error);
               });
@@ -118,9 +111,6 @@ export default function Signup() {
                 break;
             }
           });
-
-        console.log(firebase.auth().currentUser);
-        console.log("signup ended");
       });
   };
 
@@ -132,14 +122,11 @@ export default function Signup() {
   const authListener = () => {
     console.log("auth listener");
     firebase.auth().onAuthStateChanged((user) => {
-      console.log("user: ", user);
       if (user) {
         setUser(user);
-        console.log("this things: ", user.uid);
-        console.log("setting user");
-        clearInputs()
+
+        clearInputs();
       } else {
-        console.log("user not set");
       }
     });
   };
