@@ -87,10 +87,10 @@ function CustomTooltip ({payload, label, active}) {
     return null;
 }
 
-function Percentage (achieved, max){
-    var percentage = achieved / max * 100;
-    percentage = +percentage.toFixed(2);
-    return percentage
+function Percentage(achieved, max) {
+  var percentage = (achieved / max) * 100;
+  percentage = +percentage.toFixed(2);
+  return percentage;
 }
 
-export default CumulativeFrequency
+export default CumulativeFrequency;

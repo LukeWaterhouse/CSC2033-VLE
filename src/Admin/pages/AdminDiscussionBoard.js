@@ -13,18 +13,13 @@ export default class StudentDiscussionBoard extends React.Component {
       <div>
         <AdminNavBar />
 
-        <div style={{paddingLeft:"20px",paddingTop:"30px"}}>
-
-            <Link to="/AdminThreads">
-                <Button variant="secondary" style={{backgroundColor:"#1A1A1B"}}>
-                    Back to Threads
-                </Button>
-
-            </Link>
-
+        <div style={{ paddingLeft: "20px", paddingTop: "30px" }}>
+          <Link to="/AdminThreads">
+            <Button variant="secondary" style={{ backgroundColor: "#1A1A1B" }}>
+              Back to Threads
+            </Button>
+          </Link>
         </div>
-
-
 
         <DiscussionBoard input={input} />
       </div>

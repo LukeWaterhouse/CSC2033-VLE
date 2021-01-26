@@ -4,7 +4,6 @@ import { useCollectionData } from "react-firebase-hooks/firestore";
 import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 
-
 export default function ViewModules() {
   const ModulesRef = db
     .collection("Courses")
@@ -14,7 +13,12 @@ export default function ViewModules() {
 
   return (
     <div>
-        <h1 style={{marginTop:"30px",marginBottom:"30px"}} className="text-md-center"><u>Give Module Feedback</u></h1>
+      <h1
+        style={{ marginTop: "30px", marginBottom: "30px" }}
+        className="text-md-center"
+      >
+        <u>Give Module Feedback</u>
+      </h1>
       {modules?.map((module) => (
         <Module key={module.id} ModuleTitle={module} />
       ))}
@@ -28,9 +32,11 @@ function Module({ ModuleTitle }) {
   return (
     <div className="card-header border-white border-top text-md-center">
       <h5>
-          <Button variant="secondary" style={{background:"#424242"}}>
-              <Link style={{color:"white"}} to={pathTitle}>{Title}</Link>
-          </Button>
+        <Button variant="secondary" style={{ background: "#424242" }}>
+          <Link style={{ color: "white" }} to={pathTitle}>
+            {Title}
+          </Link>
+        </Button>
       </h5>
     </div>
   );

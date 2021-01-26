@@ -36,4 +36,4 @@ class Graph extends Component{
 //                     })}
 //                 </ul>
 
-export default Graph
+export default Graph;

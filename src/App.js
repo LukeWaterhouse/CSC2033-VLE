@@ -20,62 +20,74 @@ import Test from "./Student/pages/Test";
 import AdminAssignments from "./Admin/pages/AdminAssignments";
 import ViewAssignments from "./Admin/pages/ViewAssignments";
 import AssignmentDetails from "./Admin/pages/AssignmentDetails";
+import StudentAssignment from "./Student/pages/StudentAssignment";
+import StudentAssignmentView from "./Student/pages/StudentAssignmentView";
+import StudentAssignmentDetails from "./Student/pages/StudentAssignmentDetails";
 
 class App extends React.Component {
-    render() {
-        return (
-            <div>
-                <Router>
-                    <Switch>
-                        <Route component={Signup} exact path="/" />
-                        <Route component={Signup} exact path="/Signup" />
-                        <Route component={StudentModules} path="/StudentModules" />
-                        <Route component={StudentDeadlines} path="/StudentDeadlines" />
-                        <Route component={StudentHome} path="/StudentHome" />
-                        <Route component={StudentResults} path="/StudentResults" />
-                        <Route component={StudentThreads} path="/StudentThreads" />
-                        <Route component={GiveFeedbackModuleList} path="/StudentFeedback" />
-                        <Route
-                            component={GiveFeedbackPage}
-                            path="/GiveFeedbackPage/:module"
-                        />
+  render() {
+    return (
+      <div>
+        <Router>
+          <Switch>
+            <Route component={Signup} exact path="/" />
+            <Route component={Signup} exact path="/Signup" />
+            <Route component={StudentModules} path="/StudentModules" />
+            <Route component={StudentDeadlines} path="/StudentDeadlines" />
+            <Route component={StudentHome} path="/StudentHome" />
+            <Route component={StudentAssignment} path="/StudentAssignment" />
+            <Route
+              component={StudentAssignmentView}
+              path="/StudentAssignmentView/:module"
+            />
+            <Route
+              component={StudentAssignmentDetails}
+              path="/StudentAssignmentDetails/:module/:details"
+            />
+            <Route component={StudentResults} path="/StudentResults" />
+            <Route component={StudentThreads} path="/StudentThreads" />
+            <Route component={GiveFeedbackModuleList} path="/StudentFeedback" />
+            <Route
+              component={GiveFeedbackPage}
+              path="/GiveFeedbackPage/:module"
+            />
 
-                        <Route
-                            component={StudentDiscussionBoard}
-                            path="/StudentDiscussion/:thread"
-                        />
+            <Route
+              component={StudentDiscussionBoard}
+              path="/StudentDiscussion/:thread"
+            />
 
-                        <Route component={AdminHome} path="/AdminHome" />
-                        <Route component={AdminAnalytics} path="/AdminAnalytics" />
-                        <Route component={AdminClasses} path="/AdminClasses" />
-                        <Route
-                            component={AdminDiscussionBoard}
-                            path="/AdminDiscussion/:thread"
-                        />
-                        <Route component={AdminAssignments} path="/AdminAssignments" />
-                        <Route
-                            component={ViewAssignments}
-                            path="/ViewAssignments/:module"
-                        />
-                        <Route
-                            component={AssignmentDetails}
-                            path="/AssignmentDetails/:details"
-                        />
-                        <Route component={AdminThreads} path="/AdminThreads" />
-                        <Route
-                            component={ViewFeedbackModuleList}
-                            path="/ViewFeedbackModuleList"
-                        />
-                        <Route
-                            component={ViewFeedbackPage}
-                            path="/ViewFeedbackPage/:module"
-                        />
-                        <Route component={Test} path="/Test" />
-                    </Switch>
-                </Router>
-            </div>
-        );
-    }
+            <Route component={AdminHome} path="/AdminHome" />
+            <Route component={AdminAnalytics} path="/AdminAnalytics" />
+            <Route component={AdminClasses} path="/AdminClasses" />
+            <Route
+              component={AdminDiscussionBoard}
+              path="/AdminDiscussion/:thread"
+            />
+            <Route component={AdminAssignments} path="/AdminAssignments" />
+            <Route
+              component={ViewAssignments}
+              path="/ViewAssignments/:module"
+            />
+            <Route
+              component={AssignmentDetails}
+              path="/AssignmentDetails/:module/:details"
+            />
+            <Route component={AdminThreads} path="/AdminThreads" />
+            <Route
+              component={ViewFeedbackModuleList}
+              path="/ViewFeedbackModuleList"
+            />
+            <Route
+              component={ViewFeedbackPage}
+              path="/ViewFeedbackPage/:module"
+            />
+            <Route component={Test} path="/Test" />
+          </Switch>
+        </Router>
+      </div>
+    );
+  }
 }
 
 export default App;

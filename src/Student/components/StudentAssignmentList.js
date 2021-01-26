@@ -11,7 +11,7 @@ function AssignmentsListed(props) {
     .collection("Courses")
     .doc("Computer Science")
     .collection("modules")
-    .doc(props.input)
+    .doc(props.module)
     .collection("Assignments");
   const query = AssRef.orderBy("createdAt");
   const [assignment] = useCollectionData(query, { idField: "id" });
@@ -25,7 +25,12 @@ function AssignmentsListed(props) {
             <div>
               <CardColumns>
                 <Link
-                  to={"/AssignmentDetails/" + props.input + "/" + assignment.id}
+                  to={
+                    "/StudentAssignmentDetails/" +
+                    props.module +
+                    "/" +
+                    assignment.id
+                  }
                   key={assignment.id}
                 >
                   <Card
@@ -36,7 +41,7 @@ function AssignmentsListed(props) {
                     style={{ width: "18rem" }}
                     className="card-header border-white border-top"
                   >
-                    <Card.Header>Assignment</Card.Header>
+                    <Card.Header>{assignment.Module}</Card.Header>
                     <Card.Body>
                       <Card.Title>{assignment.Title}</Card.Title>
                       <Card.Text>

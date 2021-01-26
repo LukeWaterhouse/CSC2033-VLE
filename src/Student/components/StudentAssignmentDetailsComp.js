@@ -7,7 +7,7 @@ import { db } from "../../firebase";
 import { useDocumentData } from "react-firebase-hooks/firestore";
 import Card from "react-bootstrap/Card";
 
-const AssignmentDetailsPage = (props) => {
+const StudentAssignmentDetailsComp = (props) => {
   console.log(props);
   const AssignRef = db
     .collection("Courses")
@@ -56,4 +56,4 @@ const AssignmentDetailsPage = (props) => {
   }
 };
 
-export default AssignmentDetailsPage;
+export default StudentAssignmentDetailsComp;

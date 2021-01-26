@@ -1,18 +1,17 @@
-
 .backing {
-    border: 1px;
-    background-color: #121212;
-    margin-left: 5%;
-    margin-bottom: 1%;
-    margin-top: 10px;
-    width: 42.5%;
-    display: inline-flex;
-    text-align: center;
-    border-radius: 16px;
-    list-style-type: none;
-    justify-content: center;
+  border: 1px;
+  background-color: #121212;
+  margin-left: 5%;
+  margin-bottom: 1%;
+  margin-top: 10px;
+  width: 42.5%;
+  display: inline-flex;
+  text-align: center;
+  border-radius: 16px;
+  list-style-type: none;
+  justify-content: center;
 }
 .Panel {
-    background-color: black;
-    padding-top: 10px;
+  background-color: black;
+  padding-top: 10px;
 }

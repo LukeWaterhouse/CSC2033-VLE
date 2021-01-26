@@ -17,7 +17,7 @@ function Format(data){
             if (x == marks.length){
                 cumulativeData.push({ Mark: i, StudentsAchieved: (totalStudents-x),
                     Median: (median[1]+1), LQ: (quartiles[0][1]+1), UQ: (quartiles[1][1]+1)});
-                i++; 
+                i++;
                 var z;
                 for (z = i+1; z <= maxMarks; z++){
                     cumulativeData.push({ Mark: z, StudentsAchieved: (totalStudents-x),
@@ -34,8 +34,8 @@ function Format(data){
     return [cumulativeData, totalStudents, maxMarks]
 }
 
-function compareFunction(a, b){
-    return (a-b);
+function compareFunction(a, b) {
+    return a - b;
 }
 
 export default Format

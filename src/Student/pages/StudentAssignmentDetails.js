@@ -1,10 +1,10 @@
 import React from "react";
+import AdminNavBar from "../../Admin/NavBar/AdminNavBar";
 import { Link } from "react-router-dom";
-import AdminNavBar from "../NavBar/AdminNavBar";
-import AssignmentDetailsPage from "../components/AssignmentDetailsPage";
 import Button from "react-bootstrap/Button";
+import StudentAssignmentDetailsComp from "../components/StudentAssignmentDetailsComp";
 
-export default class AssignmentDetails extends React.Component {
+export default class StudentAssignmentDetails extends React.Component {
   render() {
     console.log(this.props);
     console.log(this.props.match.params);
@@ -14,16 +14,16 @@ export default class AssignmentDetails extends React.Component {
       <div>
         <AdminNavBar />
         <div style={{ paddingLeft: "20px", paddingTop: "30px" }}>
-          <Link to="/AdminAssignments">
+          <Link to="/StudentAssignment">
             <Button variant="secondary" style={{ backgroundColor: "#1A1A1B" }}>
-              Back to Assignment page
+              Back to Assignments
             </Button>
           </Link>
         </div>
         <h1>Assignment Details</h1>
-        <AssignmentDetailsPage input={input} module={module} />
+        <StudentAssignmentDetailsComp input={input} module={module} />
         <br />
-        <h1>Submissions</h1>
+        <h1>Submit</h1>
       </div>
     );
   }

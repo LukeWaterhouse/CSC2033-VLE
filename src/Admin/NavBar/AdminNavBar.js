@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import MenuItems from "./AdminMenuItems";
 import "./AdminNavBar.css";
 import Logo from "../../Images/WolfPack.png";
+import Logout from "../../Login-Register/Logout";
+import Button from "react-bootstrap/Button";
 
 class AdminNavBar extends Component {
   state = { clicked: false };
@@ -23,6 +25,9 @@ class AdminNavBar extends Component {
             );
           })}
         </ul>
+        <a onClick={Logout} href="/" style={{ marginBottom: "12px" }}>
+          <Button>Logout</Button>
+        </a>
       </nav>
     );
   }

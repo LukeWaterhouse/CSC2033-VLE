@@ -4,7 +4,7 @@ import { useCollectionData } from "react-firebase-hooks/firestore";
 import { Link } from "react-router-dom";
 import { Button } from "react-bootstrap";
 
-function Assignments() {
+function StudentAssignmentModuleList() {
   const ModuleRef = db
     .collection("Courses")
     .doc("Computer Science")
@@ -14,7 +14,7 @@ function Assignments() {
 
   return (
     <div>
-      <h1>View Assignments</h1>
+      <h1>View Your Assignments</h1>
       {Module?.map((module) => (
         <Modules key={module.Title} ModuleTitle={module} />
       ))}
@@ -24,7 +24,7 @@ function Assignments() {
 
 function Modules({ ModuleTitle }) {
   const { Title } = ModuleTitle;
-  const pathTitle = "/ViewAssignments/" + Title;
+  const pathTitle = "/StudentAssignmentView/" + Title;
   return (
     <div
       className="card-header border-white border-top text-md-center"
@@ -41,4 +41,4 @@ function Modules({ ModuleTitle }) {
   );
 }
 
-export default Assignments;
+export default StudentAssignmentModuleList;
