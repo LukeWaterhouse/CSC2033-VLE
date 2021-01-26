@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import data from './Data';
 import {Legend, ComposedChart, Bar, Line, CartesianGrid, XAxis, YAxis, Tooltip, Label, ResponsiveContainer } from 'recharts';
 import CSS from './GraphElement.css';
+import data from './CurrentData';
 
 class BarChart extends Component {
     constructor(props) {

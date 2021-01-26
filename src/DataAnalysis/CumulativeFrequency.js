@@ -1,12 +1,11 @@
 import React, {Component} from 'react';
 import { ComposedChart, Area, CartesianGrid, XAxis, YAxis, Tooltip, Label, ResponsiveContainer, Line, Legend } from 'recharts';
 import CSS from './GraphElement.css';
-import Format from './CumulativeDataFormatting';
-import cumulativeData from './TemporaryData'
+import cumulativeData from './CurrentData';
 
-var data = Format(cumulativeData)
-var totalStudents = cumulativeData.AllMarks.length;
-var totalMarks = cumulativeData.AvailableMarks;
+var data = cumulativeData.getData()[0]
+var totalStudents = cumulativeData.getData()[1]
+var totalMarks = cumulativeData.getData()[2]
 
 class CumulativeFrequency extends Component{
     constructor(props) {
@@ -40,7 +39,7 @@ class CumulativeFrequency extends Component{
     render(){
         return(
             <ResponsiveContainer className="MarkGraph" width ="90%" height={600}>
-                <ComposedChart data={data} margin={{ top: 10, bottom: 30}}>
+                <ComposedChart data={cumulativeData.getData()[0]} margin={{ top: 10, bottom: 30}}>
                     <CartesianGrid stroke="#121212"/>
                     <XAxis dataKey="Mark" axisLine={{ stroke: "#121212"}} tick={{dy: 7}} stroke="#F8F8FF"
                            domain={['auto', 'auto']} type="number">
@@ -70,7 +69,6 @@ class CumulativeFrequency extends Component{
 }
 
 function CustomTooltip ({payload, label, active}) {
-    console.log(payload)
     if (active) {
         return(
             <div className="CustomTooltip">

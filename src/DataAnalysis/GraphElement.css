@@ -8,7 +8,7 @@
 
 .InfoSet {
     border: 1px;
-    background-color: #121212;
+    background-color: #616161;
     margin-left: 5%;
     margin-bottom: 1%;
     margin-top: 10px;
@@ -26,7 +26,7 @@
     margin-bottom: 1%;
     padding-left: 2%;
     padding-top: 15px;
-    background-color: #121212;
+    background-color: #616161;
     border-radius: 16px;
     list-style-type: none;
 }
@@ -40,20 +40,4 @@
 .InfoSet h3 {
     margin-top: 5px;
     margin-bottom: 0;
-}
-
-.Tooltip {
-    background-color: #121212;
-}
-
-.GraphEditor li {
-    display: inline-block;
-    margin-left: 10px;
-    padding-bottom: 10px;
-}
-.GraphEditor li button {
-    background-color: #121212;
-    border-radius: 16px;
-    text-align: center;
-    color: ghostwhite;
 }
