@@ -49,9 +49,8 @@ function AssignmentForm() {
                 Module : Module,
                 Deadline :  new Date(Deadline),
                 createdAt : new Date(),
-                Graded : false,
-                MedianLQ : 0,
-                MedianUQ : 0,
+                Marked : false,
+                MarkList : [],
             })
             .then(() => {
                 alert("Successfully created assignment!");

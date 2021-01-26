@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import AdminNavBar from "../NavBar/AdminNavBar";
 import AssignmentDetailsPage from "../components/AssignmentDetailsPage";
 import Button from "react-bootstrap/Button";
+import AdminGetSubmissions from "../components/AdminGetSubmissions";
 
 export default class AssignmentDetails extends React.Component {
     render() {
@@ -24,6 +25,7 @@ export default class AssignmentDetails extends React.Component {
                 <AssignmentDetailsPage input={input} module={module}/>
                 <br/>
                 <h1>Submissions</h1>
+                <AdminGetSubmissions input={input} module={module}/>
             </div>
         );
     }

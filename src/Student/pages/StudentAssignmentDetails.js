@@ -3,6 +3,7 @@ import AdminNavBar from "../../Admin/NavBar/AdminNavBar";
 import {Link} from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import StudentAssignmentDetailsComp from "../components/StudentAssignmentDetailsComp";
+import AssignmentSubmit from "../components/AssignmentSubmit";
 
 export default class StudentAssignmentDetails extends React.Component {
     render() {
@@ -24,6 +25,7 @@ export default class StudentAssignmentDetails extends React.Component {
                 <StudentAssignmentDetailsComp input={input} module={module}/>
                 <br/>
                 <h1>Submit</h1>
+                <AssignmentSubmit input={input} module={module}/>
 
             </div>
         );
