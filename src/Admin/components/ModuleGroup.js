@@ -9,6 +9,8 @@ import {
 import ModulePage from "./ModulePage"
 import CreateModule from "./createModule"
 
+
+
 function ModuleGroup(){
     const ModuleRef = db.collection("Courses")
         .doc("Computer Science")
@@ -18,14 +20,14 @@ function ModuleGroup(){
 
     return(
         <HashRouter>
-            <div className="moduleList">
-                <ul>
+            <div className="moduleGroup">
+                <ul className="moduleGroup_links">
                 {Modules?.map(module => (
-                    <li><NavLink to={"/" + module.id}> {module.id}</NavLink></li>
+                    <li className="moduleGroup_link"><NavLink className="moduleGroup_linkNav" activeClassName="moduleGroup_activeRoute" to={"/" + module.id}> {module.id}</NavLink></li>
                 ))}
-                <li><NavLink to="/add_module">+</NavLink></li>
+                <li className="moduleGroup_add"><NavLink className="moduleGroup_addNav" activeClassName="moduleGroup_activeRoute" to="/add_module">+</NavLink></li>
                 </ul>
-                <div className="content">
+                <div className="moduleGroup_content">
                     {Modules?.map(module => (
                         <Route path={"/"+module.id} >
                             <ModulePage moduleName={module.id} />

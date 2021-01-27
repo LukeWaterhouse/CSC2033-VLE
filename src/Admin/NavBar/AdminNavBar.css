@@ -17,18 +17,18 @@ ul {
   height: 80px;
   width: 80px;
 }
-li {
+.navBarList {
   float: left;
 }
 
-li a {
+.navBarList a {
   color: ghostwhite;
   display: block;
   text-align: center;
   padding: 10px 14px;
 }
 
-li a:hover {
+.navBarList a:hover {
   background-color: #2464a8;
   text-decoration: none;
   color: ghostwhite;

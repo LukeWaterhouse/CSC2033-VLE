@@ -1,42 +1,64 @@
-import React, { Component } from "react";
+import React, {Component, useState} from "react";
 import {db} from "../../firebase";
 import DeleteModule from "./deleteModule";
-import {useCollectionData} from "react-firebase-hooks/firestore";
+import ReactMarkdown from "react-markdown";
 
-
-function AssignmentShow({assignmentGet}){
-    const tempDoc = []
-    const AssignmentRef = db.collection("Courses")
+function DescriptionShow({moduleName}){
+    const ModuleRef = db.collection("Courses")
         .doc("Computer Science")
-        .collection("modules").doc(assignmentGet).collection("Assignments");
+        .collection("modules").doc(moduleName);
 
-    //const [Assignments] = useCollectionData(AssignmentRef, { idField: "Title"});
-    AssignmentRef.get().then((querySnapshot) => {
-            querySnapshot.forEach((doc) => {
-                tempDoc.push(doc.data())
-            })
+
+    const [description, setDescription] = useState("")
+    const [initDes, setInitDes] = useState("")
+    ModuleRef.get()
+        .then(snapshot => {
+            setInitDes(snapshot.data().description)
         })
+        .catch(err => {
+            console.log('Error getting documents', err);
+        });
+
+
+    const textCreate = async (e) => {
+        e.preventDefault();
+
+        await ModuleRef.update({
+            description: description,
+        });
+    }
+
+    console.log(description)
 
     return (
-        <div>
-            {console.log(tempDoc)}
-            <ul>
-                {tempDoc?.forEach((assignment) => (
-                    <li>{assignment}</li>
-                ))}
-            </ul>
+        <div className="descriptionShow">
+            <div className="descriptionShow_preview">
+                <div className="descriptionShow_previewTitle">Preview</div>
+                <ReactMarkdown className="markdownField" source={description}/>
+            </div>
+            <form className="descriptionShow_form" onSubmit={textCreate}>
+                <button className="descriptionShow_formButton" type="submit">
+                    Done
+                </button>
+                <textarea
+                    className="descriptionShow_formText"
+                    defaultValue={initDes}
+                    onChange={(e) => setDescription(e.target.value)}
+                />
+            </form>
         </div>
     );
 }
 
 
+
 class ModulePage extends Component {
     render() {
         return (
-            <div>
+            <div className="modulePage">
                 <h2>{this.props.moduleName}</h2>
-                <AssignmentShow assignmentGet={this.props.moduleName}/>
-                <DeleteModule thisId={this.props.moduleName}/>
+                <DeleteModule  thisId={this.props.moduleName}/>
+                <DescriptionShow moduleName={this.props.moduleName}/>
             </div>
         );
     }

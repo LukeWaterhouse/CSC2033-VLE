@@ -16,7 +16,7 @@ class AdminNavBar extends Component {
         <ul>
           {MenuItems.map((item, index) => {
             return (
-              <li key={index}>
+              <li className="navBarList" key={index}>
                 <a className={item.cName} href={item.url}>
                   {item.title}
                 </a>

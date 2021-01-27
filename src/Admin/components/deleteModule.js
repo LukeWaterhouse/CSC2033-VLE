@@ -11,8 +11,8 @@ function DeleteModule({thisId}){
     }
 
     return (
-        <div>
-            <button  onClick={(e) => { if (window.confirm("Are you sure you wish to delete module "+ thisId +"?")) deleteModule(thisId) } }>
+        <div className="deleteModule">
+            <button className="deleteModule_button"  onClick={(e) => { if (window.confirm("Are you sure you wish to delete module "+ thisId +"?")) deleteModule(thisId) } }>
                 Delete
             </button>
         </div>
