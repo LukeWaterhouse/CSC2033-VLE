@@ -26,7 +26,7 @@ function DescriptionShow({moduleName}){
 
 
 
-class ModulePage extends Component {
+class StudentModulePage extends Component {
     render() {
         return (
             <div className="modulePageS">
@@ -37,4 +37,4 @@ class ModulePage extends Component {
     }
 }
 
-export default  ModulePage;
+export default  StudentModulePage;

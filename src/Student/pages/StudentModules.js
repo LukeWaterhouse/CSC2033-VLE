@@ -1,7 +1,7 @@
 import React from "react";
 import StudentNavBar from "../NavBar/StudentNavBar";
-import ModuleGroup from "../components/ModuleGroup"
-import "../css-files/Modules.css"
+import StudentModuleGroup from "../components/StudentModuleGroup"
+import "../css-files/StudentModules.css"
 
 class StudentModules extends React.Component {
   render() {
@@ -9,7 +9,7 @@ class StudentModules extends React.Component {
       <div>
         <StudentNavBar />
         <h2>StudentModules</h2>
-        <ModuleGroup/>
+        <StudentModuleGroup/>
       </div>
     );
   }

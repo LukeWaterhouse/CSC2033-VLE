@@ -6,10 +6,10 @@ import {
     NavLink,
     HashRouter
 } from "react-router-dom";
-import ModulePage from "./ModulePage"
+import StudentModulePage from "./StudentModulePage"
 
 
-function ModuleGroup(){
+function StudentModuleGroup(){
     const ModuleRef = db.collection("Courses")
         .doc("Computer Science")
         .collection("modules");
@@ -27,7 +27,7 @@ function ModuleGroup(){
                 <div className="moduleGroup_content">
                     {Modules?.map(module => (
                         <Route path={"/"+module.id} >
-                            <ModulePage moduleName={module.id} />
+                            <StudentModulePage moduleName={module.id} />
                         </Route>
                     ))}
                 </div>
@@ -35,4 +35,4 @@ function ModuleGroup(){
         </HashRouter>
     )
 }
-export default ModuleGroup;
+export default StudentModuleGroup;
