@@ -5,13 +5,13 @@ import Card from "react-bootstrap/Card";
 
 
 /**
- * General component description in JSDoc format. Markdown is *supported*.
+ * Created by: Luke Waterhouse
+ * This file contains a component which fetches the different assignments from all the modules using a for loop. These are
+ * then displayed as cards showing the Title, due date and the module they belong to.
  */
 
 export default function DisplayDeadlines() {
   const [Assignments, setAssignments] = useState([]);
-  const [Modules, SetModules] = useState([]);
-
   const modules = [];
   const AssignmentsToSet = [];
 
@@ -26,9 +26,6 @@ export default function DisplayDeadlines() {
             const data = doc.data();
             modules.push(data.Title);
           });
-          console.log("things:", modules);
-          SetModules(modules);    ``
-          console.log(Modules, "Modules");
           getAssignments();
         })
         .catch((error) => console.log(error));

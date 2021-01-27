@@ -3,6 +3,13 @@ import StudentNavBar from "../NavBar/StudentNavBar";
 import data from "../../DataAnalysis/Data";
 import DeadlineFetch from "../components/DeadlinesFetch";
 
+
+/**
+ * Created by: Luke Waterhouse
+ * This page shows the deadlines of the students different modules.
+ */
+
+
 class StudentDeadlines extends React.Component {
   render() {
     return (

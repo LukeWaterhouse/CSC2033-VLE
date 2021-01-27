@@ -24,6 +24,14 @@ import StudentAssignment from "./Student/pages/StudentAssignment";
 import StudentAssignmentView from "./Student/pages/StudentAssignmentView";
 import StudentAssignmentDetails from "./Student/pages/StudentAssignmentDetails";
 
+
+/**
+ * Created by: Luke Waterhouse
+ * This file contains the root of our project as well as imports and handles all the urls for the different routes
+ * and which components they are specific to. All team members have added routes and urls to their pages as the project
+ * has developed
+ */
+
 class App extends React.Component {
   render() {
     return (

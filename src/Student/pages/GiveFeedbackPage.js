@@ -5,6 +5,14 @@ import GiveFeedbackPageComp from "../components/GiveFeedbackPageComp";
 import GiveGeneralFeedback from "../components/GiveGeneralFeedback";
 import { ButtonGroup, ButtonToolbar, Button } from "react-bootstrap";
 
+
+
+/**
+ * Created by: Luke Waterhouse
+ * This shows options to give feedback for either general module or specific assignment feedback
+ */
+
+
 export default class ViewFeedbackPage extends React.Component {
   render() {
     console.log(this.props);

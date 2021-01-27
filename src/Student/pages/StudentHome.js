@@ -3,6 +3,15 @@ import StudentNavBar from "../../Student/NavBar/StudentNavBar";
 import CSS from "../../Student/css-files/HomePage.css";
 import { CardDeck } from "react-bootstrap";
 import Card from "react-bootstrap/Card";
+
+
+/**
+ * Created by: Luke Waterhouse
+ * This page makes use of React Bootstrap to show a deck of cards each with an image and a description of the feature they
+ * represent.
+ */
+
+
 class StudentHome extends React.Component {
   render() {
     return (

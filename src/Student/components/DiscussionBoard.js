@@ -6,11 +6,16 @@ import { useCollectionData } from "react-firebase-hooks/firestore";
 import "firebase/firestore";
 import firebase from "firebase";
 import { db } from "../../firebase";
-import {whenInput} from "web-vitals/dist/lib/whenInput";
 global.jQuery = require("jquery");
 require("bootstrap");
 
 
+/**
+ * Created by: Luke Waterhouse
+ * This file contains components which display all of the messages from a particular thread as well as a function to send messages
+ * to the thread in the database
+ *
+ */
 
 
 let userName = "placeholder"
@@ -18,17 +23,11 @@ let isAdmin = false
 
 
 
-
 function ChatRoom(props) {
 
   useEffect( () => {
 
-    console.log("Here: ",firebase.auth().currentUser.uid)
-
     db.collection("UserDetails").doc(firebase.auth().currentUser.uid).get().then(doc => {
-
-      console.log("UERNAME:",doc.data().username)
-      console.log("isAdmin:",doc.data().isAdmin)
 
       userName = doc.data().username
       isAdmin = doc.data().isAdmin

@@ -53,7 +53,7 @@ function GiveAssignmentFeedback(props) {
         .collection("Assignments")
         .doc(selectedModule)
         .collection("feedback");
-      await con.add({
+      await feedbackRef.add({
         text: formValue,
         createdAt: firebase.firestore.FieldValue.serverTimestamp(),
       });

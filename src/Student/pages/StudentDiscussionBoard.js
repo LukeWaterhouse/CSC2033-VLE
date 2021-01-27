@@ -4,6 +4,12 @@ import DiscussionBoard from "../components/DiscussionBoard";
 import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 
+
+/**
+ * Created by: Luke Waterhouse
+ * This page shows the student discussion board with all of the messages from the thread input from the router variable
+ */
+
 export default class StudentDiscussionBoard extends React.Component {
   render() {
     console.log(this.props);
