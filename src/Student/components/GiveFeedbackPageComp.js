@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { db } from "../../firebase";
 import "firebase/firestore";
 import firebase from "firebase";
+import Button from "react-bootstrap/Button";
 
 
 /**
@@ -71,10 +72,10 @@ function GiveAssignmentFeedback(props) {
   //you may then select one and send feedback for it.
   return (
     <div className="text-dark">
-      <h5 className="text-md-center">Assignment Feedback</h5>
+      <h5 style={{marginTop:"10px"}} className="text-md-center">Assignment Feedback</h5>
       <form>
         <select
-          style={{ marginBottom: "10px" }}
+          style={{ marginBottom: "10px" ,marginLeft:"15px"}}
           value={selectedAssignment}
           onChange={(e) => setSelectedAssignment(e.currentTarget.value)}
         >
@@ -91,15 +92,15 @@ function GiveAssignmentFeedback(props) {
 
       <form onSubmit={sendFeedback}>
         <textarea
-          style={{ width: "660px" }}
+          style={{ width: "640px", marginLeft:"15px" }}
           value={formValue}
           onChange={(e) => setFormValue(e.target.value)}
         />
-        <div className="text-dark">{errorMessage}</div>
+        <div style={{marginLeft:"15px"}} className="text-dark">{errorMessage}</div>
 
-        <button type="submit" className="btn-success">
+        <Button style={{marginLeft:"15px"}} type="submit" className="btn-success">
           Send
-        </button>
+        </Button>
       </form>
     </div>
   );

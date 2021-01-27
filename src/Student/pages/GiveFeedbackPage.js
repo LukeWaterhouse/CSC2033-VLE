@@ -84,7 +84,7 @@ function FeedbackButtons(props) {
       >
         <GiveGeneralFeedback input={props.input} />
         <Button variant="danger"
-          style={{ marginTop: "20px", marginBottom:"10px",marginLeft:"10px"}}
+          style={{ marginTop: "20px", marginBottom:"10px",marginLeft:"15px"}}
           onClick={handleClose}
           color="primary"
         >
@@ -98,7 +98,7 @@ function FeedbackButtons(props) {
       >
         <GiveFeedbackPageComp input={props.input} />
         <Button variant="danger"
-                style={{ marginTop: "20px", marginBottom:"10px",marginLeft:"10px"}}
+                style={{ marginTop: "20px", marginBottom:"10px",marginLeft:"15px"}}
           onClick={handleClose}
           color="primary"
         >

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { db } from "../../firebase";
 import firebase from "firebase";
-import { Button } from "bootstrap";
+import Button from "react-bootstrap/Button";
 
 /**
  * Created by: Luke Waterhouse
@@ -44,11 +44,11 @@ export default function GiveGeneralFeedback(props) {
   //returns a form and button which sends the feedback using the sendFeedback function
   return (
     <div className="text-dark">
-      <h5 className="text-md-center"> General Feedback</h5>
+      <h5 style={{marginTop:"10px"}} className="text-md-center"> General Feedback</h5>
 
       <form onSubmit={sendFeedback}>
         <textarea
-          style={{ width: "660px" }}
+          style={{ width: "640px",marginLeft:"15px"}}
           value={formValue}
           onChange={(e) => setFormValue(e.target.value)}
         />
@@ -56,9 +56,9 @@ export default function GiveGeneralFeedback(props) {
         {errorMessage}
         <br />
 
-        <button type="submit" className="btn-success">
+        <Button style={{marginLeft:"15px"}} type="submit" className="btn-success">
           Send
-        </button>
+        </Button>
       </form>
     </div>
   );

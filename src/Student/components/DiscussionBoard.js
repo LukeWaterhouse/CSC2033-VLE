@@ -25,6 +25,7 @@ let isAdmin = false
 function ChatRoom(props) {
 
   const [formValue, setFormValue] = useState("");
+  const [showErrorMessage, setShowErrorMessage] = useState("hidden")
 
 
 
@@ -56,17 +57,23 @@ function ChatRoom(props) {
     e.preventDefault();
 
 
-    await messagesRef.add({
-      text: formValue,
-      createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-      userName: userName,
-      AdminMessage: isAdmin
-    });
-    setFormValue("");
+    //basic input validation, must input some text
+    setShowErrorMessage("hidden")
 
+    if (formValue===""){
+      setShowErrorMessage("visible")
 
+    }else {
 
+      await messagesRef.add({
+        text: formValue,
+        createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+        userName: userName,
+        AdminMessage: isAdmin
+      });
+      setFormValue("");
 
+    }
   };
 
 
@@ -92,6 +99,8 @@ function ChatRoom(props) {
               value={formValue}
               onChange={(e) => setFormValue(e.target.value)}
             />
+            <p style={{visibility:showErrorMessage,color:"orangered"}}>Please input some text first!</p>
+
             <button
               className="btn btn-success post-editor-button"
               type="submit"

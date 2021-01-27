@@ -16,7 +16,6 @@ import AdminThreads from "./Admin/pages/AdminThreads";
 import GiveFeedbackModuleList from "./Student/pages/GiveFeedbackModuleList";
 import ViewFeedbackPage from "./Admin/pages/ViewFeedbackPage";
 import GiveFeedbackPage from "./Student/pages/GiveFeedbackPage";
-import Test from "./Student/pages/Test";
 import AdminAssignments from "./Admin/pages/AdminAssignments";
 import ViewAssignments from "./Admin/pages/ViewAssignments";
 import AssignmentDetails from "./Admin/pages/AssignmentDetails";
@@ -90,7 +89,6 @@ class App extends React.Component {
               component={ViewFeedbackPage}
               path="/ViewFeedbackPage/:module"
             />
-            <Route component={Test} path="/Test" />
           </Switch>
         </Router>
       </div>
