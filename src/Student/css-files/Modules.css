@@ -1,0 +1,39 @@
+.moduleGroup_links{
+    box-shadow: 0px -4px 0px -3px white inset;
+}
+
+.moduleGroup_link , .moduleGroup_add{
+    float:left;
+    padding: 5px 0 5px 0;
+    justify-self: center;
+    align-self: center;
+
+}
+.moduleGroup_addNav, .moduleGroup_linkNav{
+    color: white;
+    padding: 5px 10px 5px 10px;
+    border-radius: 10px 10px 0 0;
+    border: 1px solid #ffffff;
+    white-space: nowrap;
+    background-color: #424242;
+
+
+}
+.moduleGroup_addNav:visited ,.moduleGroup_linkNav:visited {
+    color: white;
+}
+
+.moduleGroup_addNav:hover ,.moduleGroup_linkNav:hover {
+    background-color: #5a5959;
+    text-decoration: none;
+}
+.moduleGroup_activeRoute {
+    background-color: #212121;
+    border-bottom: solid 1px #212121;
+    cursor: not-allowed;
+}
+.modulePageS{
+    display: grid;
+    grid-auto-flow: row;
+}
+

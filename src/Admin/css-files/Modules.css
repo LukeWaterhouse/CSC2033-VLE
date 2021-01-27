@@ -15,7 +15,7 @@
     border-radius: 10px 10px 0 0;
     border: 1px solid #ffffff;
     white-space: nowrap;
-    background-color: #0e375a;
+    background-color: #424242;
 
 
 }
@@ -24,7 +24,7 @@
 }
 
 .moduleGroup_addNav:hover ,.moduleGroup_linkNav:hover {
-    background-color: #2464a8;
+    background-color: #5a5959;
     text-decoration: none;
 }
 .moduleGroup_activeRoute {
@@ -86,10 +86,10 @@
     border-radius: 10px 10px 10px 10px;
     border: 1px solid #ffffff;
     white-space: nowrap;
-    background-color: #0e375a;
+    background-color: #424242;
 }
 .descriptionShow_formButton:hover{
-    background-color: #2464a8;
+    background-color: #5a5959;
 }
 .descriptionShow_formButton:active{
     background-color: #212121;
@@ -134,10 +134,10 @@
     border-radius: 10px 10px 10px 10px;
     border: 1px solid #ffffff;
     white-space: nowrap;
-    background-color: #0e375a;
+    background-color: #424242;
 }
 .createModule_button:hover{
-    background-color: #2464a8;
+    background-color: #5a5959;
 }
 .createModule_button:active{
     background-color: #212121;
