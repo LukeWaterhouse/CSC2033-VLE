@@ -1,5 +1,6 @@
 .moduleGroup_links{
     box-shadow: 0px -4px 0px -3px white inset;
+    font-family: unset;
 }
 
 .moduleGroup_link , .moduleGroup_add{
@@ -11,7 +12,7 @@
 }
 .moduleGroup_addNav, .moduleGroup_linkNav{
     color: white;
-    padding: 5px 10px 5px 10px;
+    padding: 5px 10px 7px 10px;
     border-radius: 10px 10px 0 0;
     border: 1px solid #ffffff;
     white-space: nowrap;

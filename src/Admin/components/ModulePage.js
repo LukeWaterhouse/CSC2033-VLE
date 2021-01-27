@@ -1,23 +1,25 @@
-import React, {Component, useState} from "react";
+import React, {Component, useEffect, useState} from "react";
 import {db} from "../../firebase";
 import DeleteModule from "./deleteModule";
 import ReactMarkdown from "react-markdown";
 
 function DescriptionShow({moduleName}){
+
     const ModuleRef = db.collection("Courses")
         .doc("Computer Science")
         .collection("modules").doc(moduleName);
-
-
     const [description, setDescription] = useState("")
-    const [initDes, setInitDes] = useState("")
-    ModuleRef.get()
-        .then(snapshot => {
-            setInitDes(snapshot.data().description)
-        })
-        .catch(err => {
-            console.log('Error getting documents', err);
-        });
+    useEffect(() => {
+
+
+        ModuleRef.get()
+            .then(snapshot => {
+                setDescription(snapshot.data().description)
+            })
+            .catch(err => {
+                console.log('Error getting documents', err);
+            });
+    }, [])
 
 
     const textCreate = async (e) => {
@@ -42,7 +44,7 @@ function DescriptionShow({moduleName}){
                 </button>
                 <textarea
                     className="descriptionShow_formText"
-                    defaultValue={initDes}
+                    value={description}
                     onChange={(e) => setDescription(e.target.value)}
                 />
             </form>
