@@ -1,14 +1,18 @@
-import React from 'react'
-import { connect } from 'react-redux'
-import { compose } from 'redux'
-import { Redirect } from 'react-router-dom'
+import React, {useEffect} from 'react'
 import moment from 'moment'
 import firebase from "firebase";
 import {db} from "../../firebase";
 import {useCollectionData, useDocumentData} from "react-firebase-hooks/firestore";
+import {Link} from "@material-ui/core";
+import { Document } from 'react-pdf'
+import AdminSubmissionDisplay from "./AdminSubmissionDisplay";
+
 
 const AdminGetSubmissions = (props) =>{
     console.log(props);
+
+    const [users, setUsers] = React.useState([]);
+
     const AssignRef = db.collection("Courses")
         .doc("Computer Science")
         .collection("modules")
@@ -17,31 +21,40 @@ const AdminGetSubmissions = (props) =>{
         .doc(props.input)
     const [ ass ] = useDocumentData(AssignRef);
 
-    const SubRef = db.collection("Courses")
-        .doc("Computer Science")
-        .collection("modules")
-        .doc(props.module)
-        .collection("Assignments")
-        .doc(props.input)
-        .collection("Submissions")
-    const query = SubRef.orderBy("SubmittedAt");
-    const [submissions] = useCollectionData(query, {idField : "id"});
+    useEffect(() => { const fetchusers = async () => {
+        const SubRef = await db.collection("Courses")
+            .doc("Computer Science")
+            .collection("modules")
+            .doc(props.module)
+            .collection("Assignments")
+            .doc(props.input)
+            .collection("Submissions").get();
+        setUsers(
+            SubRef.docs.map((doc) => {
+                return doc.data();
+            })
+        );
+    }; fetchusers();
+    },[]);
 
-    return(
-        <div>
-            <ul>
-            { submissions && submissions.map(submission => {
-                return (
-                    <div className="card-header border-white border-top text-md-center" style={{borderBlockColor:"#424242"}}>
-                        <li>
-                            <img src={submission.FileUrl} alt={submission.id} />
-                        </li>
-                    </div>
-                );
-            },)}
-            </ul>
-        </div>
-    );
+
+        return(
+            <div>
+                <ul>
+                { users.map(submission => {
+                    return(
+                        <div>
+                            <li key={submission.id}>
+                                <AdminSubmissionDisplay key={submission.id} submission={submission} props={props}/>
+                            </li>
+                        </div>
+                    )
+                })}
+                </ul>
+            </div>
+        );
 
 }
+
+
 export default AdminGetSubmissions;

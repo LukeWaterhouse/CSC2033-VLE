@@ -4,6 +4,7 @@ import AdminNavBar from "../NavBar/AdminNavBar";
 import AssignmentDetailsPage from "../components/AssignmentDetailsPage";
 import Button from "react-bootstrap/Button";
 import AdminGetSubmissions from "../components/AdminGetSubmissions";
+import FinishedGrading from "../components/FinishedGrading";
 
 export default class AssignmentDetails extends React.Component {
     render() {
@@ -26,6 +27,8 @@ export default class AssignmentDetails extends React.Component {
                 <br/>
                 <h1>Submissions</h1>
                 <AdminGetSubmissions input={input} module={module}/>
+                <h3>Finished Grading?</h3>
+                <FinishedGrading input={input} module={module}/>
             </div>
         );
     }

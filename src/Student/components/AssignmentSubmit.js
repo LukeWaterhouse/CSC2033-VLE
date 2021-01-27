@@ -18,18 +18,17 @@ function AssignmentSubmit(props){
         .doc(props.input)
     const [ ass ] = useDocumentData(AssignRef);
 
-    const onSubmit = (e) => {
-        e.preventDefault();
-
-        console.log(fileUrl);
-
+    const onFileChange = async (e) => {
+        const file = e.target.files[0];
         const storageRef = firebase.storage().ref();
         const fileRef = storageRef.child('Modules/' + props.module
-            + '/' + ass.Title + '/' + firebase.auth().currentUser.uid + '/' + fileUrl.name);
-        fileRef.put(fileUrl).then((snapshot) => {
-            console.log('Uploaded a file!');
-            });
-        setFileUrl(fileRef.getDownloadURL());
+            + '/' + ass.Title + '/' + firebase.auth().currentUser.uid + '/' + file.name);
+        await fileRef.put(file);
+        setFileUrl(await fileRef.getDownloadURL());
+    };
+
+    const onSubmit = (e) => {
+        e.preventDefault();
 
         db.collection("Courses")
             .doc("Computer Science")
@@ -38,11 +37,10 @@ function AssignmentSubmit(props){
             .collection("Assignments")
             .doc(props.input)
             .collection("Submissions")
-            .add({
-                Id : firebase.auth().currentUser.uid,
-                FilePath : fileUrl.fullPath,
-                FileUrl : fileUrl,
-                SubmittedAt : new Date(),
+            .doc(firebase.auth().currentUser.uid)
+            .set({
+                id : firebase.auth().currentUser.uid,
+                Filename : fileUrl,
                 Grade : 0,
                 Graded : false,
 
@@ -77,15 +75,13 @@ function AssignmentSubmit(props){
                     aria-labelledby="Submit" fullWidth>
                 <DialogTitle id="Submit"><span style={{color: 'lightBlue'}}>Submit</span></DialogTitle>
                 <DialogContent>
-                        <br />
-                        <h3 style={{color: 'lightBlue'}}> Submit a File</h3>
-                        <TextField
+                    <form onSubmit={onSubmit}>
+                        <input
                             style={{color: 'black'}}
                             type="file"
-                            variant="outlined"
-                            files={fileUrl}
-                            onChange={(e) => setFileUrl(e.target.files[0])}
+                            onChange={onFileChange}
                         />
+                    </form>
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleClose} variant="info">
