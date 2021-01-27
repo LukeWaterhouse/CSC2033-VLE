@@ -15,6 +15,8 @@ export default function DisplayDeadlines() {
   const modules = [];
   const AssignmentsToSet = [];
 
+  //this useEffect pulls a list of all the different module titles so they can be used in a for loop to get the assignments
+  //for each module and sets them to the modules array.
   useEffect(() => {
     function returnAssignments() {
       db.collection("Courses")
@@ -31,6 +33,8 @@ export default function DisplayDeadlines() {
         .catch((error) => console.log(error));
     }
 
+    //this function uses the modules array created above to loop through the module titles and extracts the assignments
+    //from each one using the module title as the doc path. Then sets the assignments to a useState (Assignments)
     function getAssignments() {
       for (let i = 0; i < modules.length; i++) {
         db.collection("Courses")
@@ -45,6 +49,8 @@ export default function DisplayDeadlines() {
               if (snapshot.size > 0) {
                 const data = doc.data();
 
+                //checks if a deadline exists before adding it
+
                 if (data.Deadline) {
                   const toDate = data.Deadline && data.Deadline.toDate();
                   const month = toDate.getUTCMonth() + 1;
@@ -54,6 +60,8 @@ export default function DisplayDeadlines() {
                     toDate.getUTCHours() + ":" + toDate.getUTCMinutes();
                   output = year + "/" + month + "/" + day + " " + time;
                 }
+
+                //adds the assignment to a temporary array
 
                 AssignmentsToSet.push({
                   Title: data.Title,
@@ -66,6 +74,7 @@ export default function DisplayDeadlines() {
               }
             });
 
+            //on the last loop sets the Assignment useState using the temporary array
             if (i === modules.length - 1) {
               setAssignments(AssignmentsToSet);
             }
@@ -76,6 +85,8 @@ export default function DisplayDeadlines() {
     returnAssignments();
   }, []);
 
+
+  //takes in props from assignments and displays them in a bootstrap Card
   function DeadlinePost(props) {
     console.log(props.Title);
     return (

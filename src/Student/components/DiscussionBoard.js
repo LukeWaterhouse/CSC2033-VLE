@@ -22,22 +22,24 @@ let userName = "placeholder"
 let isAdmin = false
 
 
-
 function ChatRoom(props) {
 
+  const [formValue, setFormValue] = useState("");
+
+
+
+  //fetches the currently logged in users details in case they want to send a message so their name can be added to the message
+  //doc
   useEffect( () => {
-
     db.collection("UserDetails").doc(firebase.auth().currentUser.uid).get().then(doc => {
-
       userName = doc.data().username
       isAdmin = doc.data().isAdmin
-
     })
 
   })
 
 
-
+  //pulls the messages from the database using the threadName prop as a doc path and puts them in a [message] array to be used
   const messagesRef = db
     .collection("Courses")
     .doc("Computer Science")
@@ -46,11 +48,10 @@ function ChatRoom(props) {
     .collection("messages");
   const query = messagesRef.orderBy("createdAt").limit(25);
   const [messages] = useCollectionData(query, { idField: "id" });
-  console.log(messages);
-  console.log("userID: ",firebase.auth().currentUser.uid)
 
-  const [formValue, setFormValue] = useState("");
 
+  //this function adds a message to the Thread in the database with the relevant fields (isAdmin) is pulled from the current
+  //logged in user and is a boolean if they are admin or not. Needed to conditionally render messages.
   const sendMessage = async (e) => {
     e.preventDefault();
 
@@ -68,6 +69,8 @@ function ChatRoom(props) {
 
   };
 
+
+  //maps through the messages and returns each one in a ChatMessage component
   return (
     <>
       <div>
@@ -102,6 +105,8 @@ function ChatRoom(props) {
   );
 }
 
+//takes in a message object and returns a card (message) with the date formatted, text and the conditionally rendered
+//username depending on AdminMessage which checks if they are admin.
 function ChatMessage({ message }) {
   const { text, createdAt,userName,AdminMessage } = message;
   const date = createdAt && createdAt.toDate(); // checks if createdAt exists and if so turns it into JS date format

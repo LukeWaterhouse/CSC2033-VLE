@@ -9,7 +9,7 @@ import DeadlineFetch from "../components/DeadlinesFetch";
  * This page shows the deadlines of the students different modules.
  */
 
-
+//this class component returns the Deadlines using the DeadlineFetch component
 class StudentDeadlines extends React.Component {
   render() {
     return (

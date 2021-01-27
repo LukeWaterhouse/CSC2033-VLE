@@ -3,22 +3,29 @@ import { db } from "../../firebase";
 import firebase from "firebase";
 import { Button } from "bootstrap";
 
+/**
+ * Created by: Luke Waterhouse
+ * This file has functionality to take in the name of a module and push some feedback to it with a form and button
+ */
+
+
+
 export default function GiveGeneralFeedback(props) {
   const [formValue, setFormValue] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
+
+
+  //this async function takes the module name prop and uses it for the database path to add some feedback for it.
   const sendFeedback = async (e) => {
     e.preventDefault();
 
-    console.log(formValue);
     if (formValue === "") {
       setErrorMessage("Please input some text before submitting!");
     } else {
       setErrorMessage(
         "Success! Don't worry, your feedback will be kept anonymous"
       );
-      console.log("Send Feedback");
-      console.log(props.input);
       setFormValue("");
       const feedbackRef = db
         .collection("Courses")
@@ -33,6 +40,8 @@ export default function GiveGeneralFeedback(props) {
     }
   };
 
+
+  //returns a form and button which sends the feedback using the sendFeedback function
   return (
     <div className="text-dark">
       <h5 className="text-md-center"> General Feedback</h5>
