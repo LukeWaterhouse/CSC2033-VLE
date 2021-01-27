@@ -12,10 +12,10 @@ export default function ButtonList() {
     const [Output, SetOutput] = useState([]);
 
     const things = [];
-
     useEffect(() => {
 
         function returnAssignments() {
+
             db.collection("Courses")
                 .doc("Computer Science")
                 .collection("modules")
@@ -29,6 +29,7 @@ export default function ButtonList() {
                     getAssignments()
                 })
                 .catch((error) => console.log(error));
+            console.log(things)
         }
 
         function getAssignments() {
@@ -61,6 +62,8 @@ export default function ButtonList() {
         }
         returnAssignments();
     }, []);
+
+
     useEffect(() => {
         function CombineData(){
             let objectArray = [];

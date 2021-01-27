@@ -27,7 +27,7 @@ export default function DisplayDeadlines() {
             modules.push(data.Title);
           });
           console.log("things:", modules);
-          SetModules(modules);
+          SetModules(modules);    ``
           console.log(Modules, "Modules");
           getAssignments();
         })
