@@ -5,6 +5,13 @@ import AdminNavBar from "../NavBar/AdminNavBar";
 import AssignmentList from "../components/AssignmentList";
 import Button from "react-bootstrap/Button";
 
+/**
+ * Created by: Luke Waterhouse
+ * This page shows the general feedback for a module at the top using the ViewFeedbackPageComp component and then using the
+ * assignment list component shows a dropdown menu of the assignments for that particular module which you may select any of
+ * and view.
+ */
+
 export default class ViewFeedbackPage extends React.Component {
   render() {
     console.log(this.props);

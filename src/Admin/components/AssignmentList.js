@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { db } from "../../firebase";
-import { useCollectionData } from "react-firebase-hooks/firestore";
 import Button from "react-bootstrap/Button";
-import { ButtonGroup, ButtonToolbar } from "react-bootstrap";
+
+/**
+ * Created by: Luke Waterhouse
+ * This file contains a component which takes the module name passed into it as a prop, and then provides a dropdown
+ * menu to select the different assignments for that module and displays them in cards.
+ */
 
 export default function AssignmentList(props) {
   const [AssignmentList, setAssignmentList] = useState([]);
@@ -10,9 +14,10 @@ export default function AssignmentList(props) {
   const [AssignmentFeedbackList, setAssignmentFeedbackList] = useState([]);
   const [noFeedbackVisible, setNoFeedbackVisible] = useState("invisible");
 
+  // This useEffect pulls the assignments of a module and pushes it to a useState, it also sets the initially picked assignment
+  // as the first one in this array.
   useEffect(() => {
     const setAssignmentInfo = () => {
-      console.log("gosh: " + props.input);
       db.collection("Courses")
         .doc("Computer Science")
         .collection("modules")
@@ -27,17 +32,17 @@ export default function AssignmentList(props) {
           });
           setAssignmentList(assignments);
           setSelectedAssignment(assignments[0].Title);
-          console.log("Assignments: " + assignments);
-          console.log("Selected: " + assignments[0].Title);
         })
         .catch((error) => console.log(error));
     };
     setAssignmentInfo();
   }, []);
 
+
+
+  // This function gets the feedback for a particular assignment using the module prop as well as the selected Assignment useSate
+  // set in the useEffect above. It then sets these assignments to the AssignmentFeedbackList useState
   function getAssignmentFeedbackList() {
-    console.log("Selected in other function: " + selectedAssignment);
-    console.log("props in other function: " + props.input);
     setAssignmentFeedbackList([]);
 
     const setAssignmentFeedbackListInfo = () => {
@@ -57,10 +62,8 @@ export default function AssignmentList(props) {
             const data = doc.data();
             feedback.push(data);
           });
-          console.log(feedback.length);
           if (feedback.length === 0) {
             setNoFeedbackVisible("visible");
-            console.log("undefined!!!");
           }
 
           setAssignmentFeedbackList(feedback);
@@ -71,13 +74,13 @@ export default function AssignmentList(props) {
 
     setAssignmentFeedbackListInfo();
 
-    console.log("Help:" + AssignmentFeedbackList);
-    console.log("looping?");
   }
 
+
+  // This component takes in message object and uses the fields to create a card with the Date formatted and the text.
   function FeedbackMessage({ message }) {
     const { text, createdAt } = message;
-    const date = createdAt && createdAt.toDate(); // checks if createdAt exists and if so turns it into JS date format
+    const date = createdAt && createdAt.toDate();
     let output = "DataBase Error!";
     if (date != null) {
       const month = date.getUTCMonth() + 1;
@@ -105,7 +108,6 @@ export default function AssignmentList(props) {
       >
         <u>Assignment Feedback</u>
       </h2>
-
       <form>
         <select
           style={{
