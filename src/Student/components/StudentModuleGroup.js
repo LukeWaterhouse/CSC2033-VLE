@@ -4,6 +4,13 @@ import { db } from "../../firebase";
 import { Route, NavLink, HashRouter } from "react-router-dom";
 import StudentModulePage from "./StudentModulePage";
 
+/**
+ * Created by: Mantas Aleskevicius
+ * CSS: Mantas Aleskevicius
+ * This file dynamically displays all of the modules as tabs and their content below the tabs without switching pages
+ */
+
+
 function StudentModuleGroup() {
   const ModuleRef = db
     .collection("Courses")
@@ -12,6 +19,7 @@ function StudentModuleGroup() {
 
   const [Modules] = useCollectionData(ModuleRef, { idField: "id" });
 
+  //Returns navigation links of all the modules and displays their corresponding page content
   return (
     <HashRouter>
       <div className="moduleGroup">
