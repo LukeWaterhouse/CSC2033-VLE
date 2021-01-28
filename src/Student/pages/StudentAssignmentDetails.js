@@ -5,6 +5,12 @@ import Button from "react-bootstrap/Button";
 import StudentAssignmentDetailsComp from "../components/StudentAssignmentDetailsComp";
 import AssignmentSubmit from "../components/AssignmentSubmit";
 
+/**
+ * Created by: Giorgos Christodoulou
+ * Displays the data of the selected assignment, as a card.
+ * Displays a Button that allows the user to submit a file for that assignment.
+ */
+
 export default class StudentAssignmentDetails extends React.Component {
     render() {
         //Takes the props from the url after the /, to pass them on.

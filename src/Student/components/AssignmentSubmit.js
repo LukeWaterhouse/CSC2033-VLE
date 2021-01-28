@@ -6,21 +6,33 @@ import {DialogActions, DialogContent, DialogTitle, TextField} from "@material-ui
 import firebase from "firebase";
 import {useDocumentData} from "react-firebase-hooks/firestore";
 
+/**
+ * Created by: Giorgos Christodoulou
+ * This file contains a function that allows the user to uplaod a file into the cloud storage
+ * as a submission to the previously selected assignment.
+ */
+
+
 let userName = "placeholder"
 let isAdmin = false
 
 function AssignmentSubmit(props){
 
-    useEffect(() => {//Get the user id of the current logged in user to find their name and admin status.
-
-        db.collection("UserDetails").doc(firebase.auth().currentUser.uid).get().then(doc =>{
-
-                userName = doc.data().username
-                isAdmin = doc.data().isAdmin
-
-            }
-        )
-    })
+    firebase.auth().onAuthStateChanged(function (user) {
+        if (user) {
+            getUserID().then((r) => {
+                db.collection("UserDetails")
+                    .doc(userID)
+                    .get()
+                    .then((doc) => {
+                        const username = doc.data().username;
+                        setUsername(username);
+                    });
+            });
+        } else {
+            console.log("DATABASE ERROR");
+        }
+    });
 
     const [fileUrl, setFileUrl] = React.useState(null);
     const [open, setOpen] = React.useState(false);
@@ -83,7 +95,7 @@ function AssignmentSubmit(props){
         setOpen(false);
     };
 
-    return ( //Displays a dialog box with only one input, a file.
+    return ( //Displays a dialog box with a file input.
         <>
         <div>
             <div className="mb-2">

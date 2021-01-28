@@ -3,6 +3,12 @@ import {db} from "../../firebase";
 import {Button} from "react-bootstrap";
 import {useDocumentData} from "react-firebase-hooks/firestore";
 
+/**
+ * Created by: Giorgos Christodoulou
+ * This file contains a function which generates a button that when clicked
+ * changes the value of the previously selected assignment's Graded field from false
+ * to true.
+ */
 
 function FinishedGrading(props) {
 

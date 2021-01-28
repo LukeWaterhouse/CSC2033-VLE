@@ -7,6 +7,12 @@ import { db } from "../../firebase";
 import { useDocumentData } from "react-firebase-hooks/firestore";
 import Card from "react-bootstrap/Card";
 
+/**
+ * Created by: Giorgos Christodoulou
+ * This file contains a component which fetches the selected assignments fields from the firebase
+ * and displays them as details in a card.
+ */
+
 const StudentAssignmentDetailsComp = (props) => {
 
   //Checking the values in props are as desired.

@@ -7,6 +7,12 @@ import {DialogActions, DialogContent, DialogTitle, Link, TextField} from "@mater
 import {Button} from "react-bootstrap";
 import Dialog from "@material-ui/core/Dialog";
 
+/**
+ * Created by: Giorgos Christodoulou
+ * This file contains a function that fetches the submissions from the database and lists them as button.
+ * When clicked, a dialog screen is displayed, with the submitted document and an input for a grade.
+ * When the grade is submitted, it is updated in the database and it is added in the mark list for grads in the specific assignment.
+ */
 
 function AdminSubmissionDisplay(props){
 

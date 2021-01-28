@@ -6,6 +6,13 @@ import { useCollectionData } from "react-firebase-hooks/firestore";
 import Card from "react-bootstrap/Card";
 import { CardColumns } from "react-bootstrap";
 
+/**
+ * Created by: Giorgos Christodoulou
+ * This file contains a function which fetches all assignments into an array, and loops through all of them,
+ * while displpaying their Title, deadline, creator and date created in a card.
+ * When one of the cards is clicked, the user will be redirected to the selected assignments details page.
+ */
+
 function AssignmentsListed(props) {
   const AssRef = db
     .collection("Courses")

@@ -5,6 +5,11 @@ import StudentAssignmentList from "../components/StudentAssignmentList";
 import {Link} from "react-router-dom";
 import Button from "react-bootstrap/Button";
 
+/**
+ * Created by: Giorgos Christodoulou
+ * Displays the assignments of the previously selected module, as cards.
+ */
+
 class StudentAssignmentView extends React.Component{
     render() {
         //Takes the props from the url after the /, to pass them on.

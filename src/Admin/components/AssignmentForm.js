@@ -7,6 +7,13 @@ import Button from 'react-bootstrap/Button';
 import {Form} from "react-bootstrap";
 import firebase from "firebase";
 
+/**
+ * Created by: Giorgos Christodoulou
+ * This file contains a function that displays a dialog box with a form to create an assignment.
+ * The user will be prompted to input a title, instructions, the amount of marks, the deadline and the module, displayed as a dropdown box.
+ * Stores all those values, including the date created and the users name as fields in the assignments firebase doc.
+ */
+
 let userName = "placeholder"
 let isAdmin = false
 
@@ -58,7 +65,8 @@ function AssignmentForm() {
             .collection("modules")
             .doc(Module.toString())
             .collection("Assignments")
-            .add({
+            .doc(Title)
+            .set({
                 Title : Title,
                 Instructions : Instructions,
                 Marks : Marks,

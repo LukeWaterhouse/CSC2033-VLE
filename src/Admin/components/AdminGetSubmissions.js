@@ -3,6 +3,11 @@ import {db} from "../../firebase";
 import {useDocumentData} from "react-firebase-hooks/firestore";
 import AdminSubmissionDisplay from "./AdminSubmissionDisplay";
 
+/**
+ * Created by: Giorgos Christodoulou
+ * This file contains a component which fetches the user submissions from the firebase submissions collection,
+ * and loops through them to display each one in a list.
+ */
 
 const AdminGetSubmissions = (props) =>{
 

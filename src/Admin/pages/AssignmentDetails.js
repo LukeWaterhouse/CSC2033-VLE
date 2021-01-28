@@ -6,6 +6,13 @@ import Button from "react-bootstrap/Button";
 import AdminGetSubmissions from "../components/AdminGetSubmissions";
 import FinishedGrading from "../components/FinishedGrading";
 
+/**
+ * Created by: Giorgos Christodoulou
+ * Displays the selected assignments details in a card.
+ * Displays the submissions for the selected assignment.
+ * Displays a button that, when pressed changes the assignment from pending to finished.
+ */
+
 export default class AssignmentDetails extends React.Component {
     render() {
         //Takes the props from the url after the /, to pass them on.
