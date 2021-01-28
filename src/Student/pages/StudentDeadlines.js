@@ -2,7 +2,6 @@ import React from "react";
 import StudentNavBar from "../NavBar/StudentNavBar";
 import DeadlineFetch from "../components/DeadlinesFetch";
 
-
 /**
  * Created by: Luke Waterhouse
  * This page shows the deadlines of the students different modules.

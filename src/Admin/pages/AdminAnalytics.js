@@ -9,12 +9,12 @@ import Graph from "../../DataAnalysis/Graph";
 
 class AdminAnalytics extends React.Component {
   render() {
-      // Note that this file needs updating before final commit when specific user pulling is added
+    // Note that this file needs updating before final commit when specific user pulling is added
     return (
       <div>
         <AdminNavBar />
         <h2>Admin Analytics</h2>
-          <Graph/>
+        <Graph />
       </div>
     );
   }

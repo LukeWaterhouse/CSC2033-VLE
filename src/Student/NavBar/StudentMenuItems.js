@@ -1,4 +1,3 @@
-
 const MenuItems = [
   {
     title: "Home",

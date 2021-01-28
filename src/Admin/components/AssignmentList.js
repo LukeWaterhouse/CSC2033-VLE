@@ -38,8 +38,6 @@ export default function AssignmentList(props) {
     setAssignmentInfo();
   }, []);
 
-
-
   // This function gets the feedback for a particular assignment using the module prop as well as the selected Assignment useSate
   // set in the useEffect above. It then sets these assignments to the AssignmentFeedbackList useState
   function getAssignmentFeedbackList() {
@@ -73,9 +71,7 @@ export default function AssignmentList(props) {
     };
 
     setAssignmentFeedbackListInfo();
-
   }
-
 
   // This component takes in message object and uses the fields to create a card with the Date formatted and the text.
   function FeedbackMessage({ message }) {

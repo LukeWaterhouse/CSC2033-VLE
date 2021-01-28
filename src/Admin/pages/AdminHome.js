@@ -16,8 +16,7 @@ class AdminHome extends React.Component {
     return (
       <div>
         <AdminNavBar />
-        <Welcome/>
-
+        <Welcome />
 
         <h1
           className="text-md-center"

@@ -5,7 +5,6 @@ import Logo from "../../Images/WolfPack.png";
 import Logout from "../../Login-Register/Logout";
 import Button from "react-bootstrap/Button";
 
-
 /**
  * Created by: Luke Waterhouse
  * CSS: Harry Clifford

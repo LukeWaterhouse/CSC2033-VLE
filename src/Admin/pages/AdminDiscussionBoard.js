@@ -4,7 +4,6 @@ import DiscussionBoard from "../../Student/components/DiscussionBoard";
 import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 
-
 /**
  * Created by: Luke Waterhouse
  * This is the page for admin side discussion board which imports the Discussion board from the student components directory.
@@ -13,7 +12,7 @@ import Button from "react-bootstrap/Button";
 
 export default class StudentDiscussionBoard extends React.Component {
   render() {
-      //
+    //
     const input = this.props.match.params.thread;
     return (
       <div>

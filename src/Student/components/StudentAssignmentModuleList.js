@@ -4,9 +4,6 @@ import { useCollectionData } from "react-firebase-hooks/firestore";
 import { Link } from "react-router-dom";
 import { Button } from "react-bootstrap";
 
-
-
-
 function StudentAssignmentModuleList() {
   const ModuleRef = db
     .collection("Courses")

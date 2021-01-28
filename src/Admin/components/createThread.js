@@ -9,7 +9,6 @@ import { useCollectionData } from "react-firebase-hooks/firestore";
  * and it will appear dynamically in the list of threads.
  */
 
-
 function CreateThread() {
   const [formValue, setFormValue] = useState("");
   const [visibility, setVisibility] = useState("invisible");
@@ -21,7 +20,6 @@ function CreateThread() {
     .doc("Computer Science")
     .collection("Threads");
   const [Threads] = useCollectionData(ThreadsRef, { idField: "id" });
-
 
   //creates a thread with input validation using the pulled threads
   const createThread = async (e) => {
@@ -51,7 +49,6 @@ function CreateThread() {
       setVisibility("visible");
     }
   };
-
 
   //returns a form with a button to create a thread with the input name
   return (

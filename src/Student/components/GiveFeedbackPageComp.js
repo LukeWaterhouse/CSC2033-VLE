@@ -4,7 +4,6 @@ import "firebase/firestore";
 import firebase from "firebase";
 import Button from "react-bootstrap/Button";
 
-
 /**
  * Created by: Luke Waterhouse
  * this file contains functionality to select any assignment from the selected module using a dropdown menu and send feedback
@@ -15,7 +14,6 @@ function GiveAssignmentFeedback(props) {
   const [assignmentList, setAssignmentList] = useState([]);
   const [selectedAssignment, setSelectedAssignment] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
-
 
   //this useEffect pulls the assignments of a particular module depending on the prop passed in and pushes it to an array.
   //it then sets this as a useState and sets the initially selected assignment as the first one in the array.
@@ -67,15 +65,16 @@ function GiveAssignmentFeedback(props) {
     }
   };
 
-
   //returns a dropdown menu which dynamically changes with whatever assignments are in the module selected.
   //you may then select one and send feedback for it.
   return (
     <div className="text-dark">
-      <h5 style={{marginTop:"10px"}} className="text-md-center">Assignment Feedback</h5>
+      <h5 style={{ marginTop: "10px" }} className="text-md-center">
+        Assignment Feedback
+      </h5>
       <form>
         <select
-          style={{ marginBottom: "10px" ,marginLeft:"15px"}}
+          style={{ marginBottom: "10px", marginLeft: "15px" }}
           value={selectedAssignment}
           onChange={(e) => setSelectedAssignment(e.currentTarget.value)}
         >
@@ -92,13 +91,19 @@ function GiveAssignmentFeedback(props) {
 
       <form onSubmit={sendFeedback}>
         <textarea
-          style={{ width: "640px", marginLeft:"15px" }}
+          style={{ width: "640px", marginLeft: "15px" }}
           value={formValue}
           onChange={(e) => setFormValue(e.target.value)}
         />
-        <div style={{marginLeft:"15px"}} className="text-dark">{errorMessage}</div>
+        <div style={{ marginLeft: "15px" }} className="text-dark">
+          {errorMessage}
+        </div>
 
-        <Button style={{marginLeft:"15px"}} type="submit" className="btn-success">
+        <Button
+          style={{ marginLeft: "15px" }}
+          type="submit"
+          className="btn-success"
+        >
           Send
         </Button>
       </form>

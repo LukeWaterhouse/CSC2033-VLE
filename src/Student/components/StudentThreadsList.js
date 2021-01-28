@@ -4,7 +4,6 @@ import { useCollectionData } from "react-firebase-hooks/firestore";
 import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 
-
 /**
  * Created by: Luke Waterhouse
  * This file contains functionality to display the Threads from the database to take you to the different thread pages
@@ -17,7 +16,6 @@ function StudentThreadsList() {
     .doc("Computer Science")
     .collection("Threads");
   const [Threads] = useCollectionData(ThreadsRef, { idField: "id" });
-
 
   //maps through the Thread objects passing each one to a Thread component
   return (
@@ -34,8 +32,6 @@ function StudentThreadsList() {
     </div>
   );
 }
-
-
 
 //this function takes in a Thread object and displays it as a link to a router variable url
 function Thread({ ThreadTitle }) {

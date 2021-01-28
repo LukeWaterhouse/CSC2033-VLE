@@ -1,15 +1,11 @@
 import React, { useState } from "react";
 import { db } from "../../firebase";
 
-
-
 /**
  * Created by: Luke Waterhouse
  * This file contains a component which allows the user to input one of the existing Threads into a form and then delete
  * it from the database.
  */
-
-
 
 //pulls the threads so that one can be deleted
 function DeleteThread() {
@@ -18,7 +14,6 @@ function DeleteThread() {
     .collection("Courses")
     .doc("Computer Science")
     .collection("Threads");
-
 
   //deletes a thread if it exists
   async function deleteThread() {

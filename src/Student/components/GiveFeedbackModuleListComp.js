@@ -4,13 +4,11 @@ import { useCollectionData } from "react-firebase-hooks/firestore";
 import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 
-
 /**
  * Created by: Luke Waterhouse
  * this file contains functionality to list all the modules as links which you can then click on to take you to an
  * extension using a router variable which is used as the module name
  */
-
 
 //gets the modules from the database and passes them to a [modules] array to be mapped through passing each one to a
 //Module component

@@ -2,8 +2,6 @@ import React, { useEffect, useState } from "react";
 import { db } from "../../firebase";
 import Card from "react-bootstrap/Card";
 
-
-
 /**
  * Created by: Luke Waterhouse
  * This file contains a component which fetches the different assignments from all the modules using a for loop. These are
@@ -84,7 +82,6 @@ export default function DisplayDeadlines() {
 
     returnAssignments();
   }, []);
-
 
   //takes in props from assignments and displays them in a bootstrap Card
   function DeadlinePost(props) {

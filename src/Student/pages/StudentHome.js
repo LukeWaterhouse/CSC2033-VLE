@@ -5,23 +5,18 @@ import { CardDeck } from "react-bootstrap";
 import Card from "react-bootstrap/Card";
 import Welcome from "../components/welcomeUser";
 
-
 /**
  * Created by: Luke Waterhouse
  * This page makes use of React Bootstrap to show a deck of cards each with an image and a description of the feature they
  * represent.
  */
 
-
 class StudentHome extends React.Component {
-
-
-
   render() {
     return (
       <div>
         <StudentNavBar />
-        <Welcome/>
+        <Welcome />
 
         <h1
           className="text-md-center"
@@ -29,9 +24,6 @@ class StudentHome extends React.Component {
         >
           <u>Home</u>
         </h1>
-
-
-
 
         <CardDeck
           style={{

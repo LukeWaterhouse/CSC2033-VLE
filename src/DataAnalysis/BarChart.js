@@ -1,13 +1,24 @@
-import React, {Component} from 'react';
-import {Legend, ComposedChart, Bar, Line, CartesianGrid, XAxis, YAxis, Tooltip, Label, ResponsiveContainer } from 'recharts';
-import CSS from './GraphElement.css'
+import React, { Component } from "react";
+import {
+  Legend,
+  ComposedChart,
+  Bar,
+  Line,
+  CartesianGrid,
+  XAxis,
+  YAxis,
+  Tooltip,
+  Label,
+  ResponsiveContainer,
+} from "recharts";
+import CSS from "./GraphElement.css";
 
 /**
  * Created by: Harry Clifford
  * Code to create a bar chart in recharts with a custom toggleable legend
  */
 
-let data = []
+let data = [];
 
 // Creates a Rechart bar chart with interactive legend
 class BarChart extends Component {
@@ -48,10 +59,7 @@ class BarChart extends Component {
         <ResponsiveContainer className="MarkGraph" width="90%" height={600}>
           <ComposedChart data={data} margin={{ top: 10, bottom: 30 }}>
             <Bar dataKey="Mark" fill="#BB86FC" />
-            <CartesianGrid
-              stroke="#626262"
-              strokeDasharray="3 3"
-            />
+            <CartesianGrid stroke="#626262" strokeDasharray="3 3" />
             <XAxis
               dataKey="Title"
               axisLine={{ stroke: "#626262" }}
@@ -76,13 +84,13 @@ class BarChart extends Component {
             >
               <Label
                 value="Marks (%)"
-                angle= "-90"
+                angle="-90"
                 position="left"
                 offset={-17.5}
                 stroke="#F8F8FF"
               />
             </YAxis>
-            <Tooltip contentStyle={{background :"#626262"}}/>
+            <Tooltip contentStyle={{ background: "#626262" }} />
             <Legend
               onClick={this.selectBar}
               wrapperStyle={{ paddingLeft: "4%", paddingTop: "5px" }}
@@ -103,4 +111,4 @@ class BarChart extends Component {
     );
   }
 }
-export default BarChart
+export default BarChart;

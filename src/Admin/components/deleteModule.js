@@ -1,7 +1,6 @@
 import React from "react";
 import { db } from "../../firebase";
 
-
 function DeleteModule({ thisId }) {
   const ModuleRef = db
     .collection("Courses")

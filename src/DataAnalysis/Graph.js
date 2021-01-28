@@ -8,14 +8,14 @@ import EasySolution from "./TestingEasySolution";
  */
 
 // Renders the Graph to the Student Results Page
-class Graph extends Component{
-    render(){
-        return(
-            <div className="Panel">
-                <EasySolution/>
-            </div>
-        )
-    }
+class Graph extends Component {
+  render() {
+    return (
+      <div className="Panel">
+        <EasySolution />
+      </div>
+    );
+  }
 }
 
 export default Graph;

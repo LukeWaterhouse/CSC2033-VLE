@@ -3,7 +3,6 @@ import StudentNavBar from "../NavBar/StudentNavBar";
 import "firebase/firestore";
 import StudentAssignmentModuleList from "../components/StudentAssignmentModuleList";
 
-
 class StudentAssignment extends React.Component {
   render() {
     return (
