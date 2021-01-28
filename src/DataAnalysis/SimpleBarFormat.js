@@ -1,6 +1,5 @@
 import findMedian from "./Median";
 import findQuartiles from "./Quartiles";
-import { db } from "../firebase";
 
 /**
  * Created by: Harry Clifford
@@ -9,15 +8,15 @@ import { db } from "../firebase";
 
 // Returns the formatted data for a bar chart
 function BarFormat(data) {
-  console.log("aaa")
+  console.log("aaa");
   if (data[0] === undefined) {
     return [];
   }
   // Finds the averages for each individual assignment and adds them to an array
   let newData = [];
   for (let i = 0; i < data.length; i++) {
-    console.log(data[i])
-    console.log(data[i].Mark)
+    console.log(data[i]);
+    console.log(data[i].Mark);
     let MarkList = data[i].MarkList;
     MarkList = MarkList.sort(compareFunction);
     let Title = data[i].Title;
@@ -30,7 +29,7 @@ function BarFormat(data) {
     }
     mean = mean / MarkList.length;
     mean = Percentage(mean, MaxMark);
-    let Mark = data[i].Mark
+    let Mark = data[i].Mark;
     Mark = Percentage(Mark, MaxMark);
     newData.push({
       Title: Title,
@@ -57,4 +56,3 @@ function compareFunction(a, b) {
 }
 
 export default BarFormat;
-

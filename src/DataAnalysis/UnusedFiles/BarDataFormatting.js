@@ -1,6 +1,5 @@
 import findMedian from "../Median";
 import findQuartiles from "../Quartiles";
-import { db } from "../../firebase";
 
 /**
  * Created by: Harry Clifford

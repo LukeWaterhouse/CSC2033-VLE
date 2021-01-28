@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import AdminNavBar from "../NavBar/AdminNavBar";
+import React from "react";
 import { db } from "../../firebase";
 import { useCollectionData } from "react-firebase-hooks/firestore";
 import "../css-files/feedback.css";

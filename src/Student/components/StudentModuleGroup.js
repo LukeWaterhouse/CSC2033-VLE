@@ -10,7 +10,6 @@ import StudentModulePage from "./StudentModulePage";
  * This file dynamically displays all of the modules as tabs and their content below the tabs without switching pages
  */
 
-
 function StudentModuleGroup() {
   const ModuleRef = db
     .collection("Courses")

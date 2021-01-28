@@ -11,7 +11,7 @@ import Assignments from "../components/Assignments";
 
 function AdminAssignments() {
   return (
-      //Assignment creation form and module list are called.
+    //Assignment creation form and module list are called.
     <div>
       <AdminNavBar />
       <h2>Admin Assignments</h2>

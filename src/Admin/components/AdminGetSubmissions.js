@@ -1,6 +1,6 @@
-import React, {useEffect} from 'react'
-import {db} from "../../firebase";
-import {useDocumentData} from "react-firebase-hooks/firestore";
+import React, { useEffect } from "react";
+import { db } from "../../firebase";
+import { useDocumentData } from "react-firebase-hooks/firestore";
 import AdminSubmissionDisplay from "./AdminSubmissionDisplay";
 
 /**
@@ -9,59 +9,65 @@ import AdminSubmissionDisplay from "./AdminSubmissionDisplay";
  * and loops through them to display each one in a list.
  */
 
-const AdminGetSubmissions = (props) =>{
+const AdminGetSubmissions = (props) => {
+  //Checking the values in props are as desired.
+  console.log(props);
 
-    //Checking the values in props are as desired.
-    console.log(props);
+  const [subs, setSubs] = React.useState([]);
 
-    const [subs, setSubs] = React.useState([]);
+  //Creates an Object list from the current assignments document data in the firebase
+  const AssignRef = db
+    .collection("Courses")
+    .doc("Computer Science")
+    .collection("modules")
+    .doc(props.module)
+    .collection("Assignments")
+    .doc(props.input);
+  const [ass] = useDocumentData(AssignRef);
 
-    //Creates an Object list from the current assignments document data in the firebase
-    const AssignRef = db.collection("Courses")
+  //Creates a mapped list of all the submissions for an assignment.
+  useEffect(() => {
+    const fetchsubs = async () => {
+      //Gets a reference for the collection
+      const SubRef = await db
+        .collection("Courses")
         .doc("Computer Science")
         .collection("modules")
         .doc(props.module)
         .collection("Assignments")
         .doc(props.input)
-    const [ ass ] = useDocumentData(AssignRef);
+        .collection("Submissions")
+        .get();
+      //Adds all the submissions in a list.
+      setSubs(
+        SubRef.docs.map((doc) => {
+          return doc.data();
+        })
+      );
+    };
+    fetchsubs();
+  }, []);
 
-    //Creates a mapped list of all the submissions for an assignment.
-    useEffect(() => { const fetchsubs = async () => {
-        //Gets a reference for the collection
-        const SubRef = await db.collection("Courses")
-            .doc("Computer Science")
-            .collection("modules")
-            .doc(props.module)
-            .collection("Assignments")
-            .doc(props.input)
-            .collection("Submissions").get();
-        //Adds all the submissions in a list.
-        setSubs(
-            SubRef.docs.map((doc) => {
-                return doc.data();
-            })
-        );
-    }; fetchsubs();
-    },[]);
-
-
-        return(
+  return (
+    <div>
+      <ul>
+        {subs.map((submission) => {
+          //Displays the submissions.
+          return (
             <div>
-                <ul>
-                { subs.map(submission => { //Displays the submissions.
-                    return(
-                        <div>
-                            <li>
-                                <AdminSubmissionDisplay key={submission.id} submission={submission} props={props}/>
-                            </li>
-                        </div>
-                    )
-                })}
-                </ul>
+              <li>
+                <AdminSubmissionDisplay
+                  key={submission.id}
+                  submission={submission}
+                  props={props}
+                />
+              </li>
             </div>
-        );
-
-}
-
+          );
+        })}
+      </ul>
+    </div>
+  );
+};
 
 export default AdminGetSubmissions;

@@ -1,6 +1,5 @@
 import React from "react";
 import StudentNavBar from "../../Student/NavBar/StudentNavBar";
-import CSS from "../../Student/css-files/HomePage.css";
 import { CardDeck } from "react-bootstrap";
 import Card from "react-bootstrap/Card";
 import Welcome from "../components/welcomeUser";

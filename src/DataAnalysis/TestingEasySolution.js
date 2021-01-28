@@ -4,7 +4,6 @@ import BarChart from "./BarChart";
 import BarFormat from "./SimpleBarFormat";
 import "./GraphElement.css";
 import firebase from "firebase";
-import {useDocumentData} from "react-firebase-hooks/firestore"
 
 /**
  * Created by: Harry Clifford
@@ -37,13 +36,13 @@ export default function TestingEasySolution() {
     if (user) {
       getUserID().then((r) => {
         db.collection("UserDetails")
-            .doc(userid)
-            .get()
-            .then((doc) => {
-              const role = doc.data().isAdmin;
-              SetRole(role);
-              console.log(role)
-            });
+          .doc(userid)
+          .get()
+          .then((doc) => {
+            const role = doc.data().isAdmin;
+            SetRole(role);
+            console.log(role);
+          });
       });
     } else {
       console.log("DATABASE ERROR");
@@ -51,7 +50,7 @@ export default function TestingEasySolution() {
   });
 
   async function getUserID() {
-    userid = firebase.auth().currentUser.uid
+    userid = firebase.auth().currentUser.uid;
     console.log("ID:", userid);
   }
 
@@ -92,35 +91,35 @@ export default function TestingEasySolution() {
                   MaxMark: data.Marks,
                   Module: modules[i],
                   Mark: "0",
-                  Role: Role
+                  Role: Role,
                 });
               }
             });
-            console.log(assignments)
+            console.log(assignments);
             getMarks(assignments);
           });
       }
     }
     function getMarks(markAssignments) {
-      console.log(markAssignments, Assignments)
-      for (let i = 0; i < markAssignments.length; i++){
+      console.log(markAssignments, Assignments);
+      for (let i = 0; i < markAssignments.length; i++) {
         db.collection("Courses")
-            .doc("Computer Science")
-            .collection("modules")
-            .doc(markAssignments[i].Module)
-            .collection("Assignments")
-            .doc(markAssignments[i].Title)
-            .collection("Submissions")
-            .get()
-            .then((snapshot) => {
-              snapshot.forEach((doc) => {
-                const data = doc.data();
-                if (data.id === userid) {
-                  markAssignments[i].Mark = data.Grade;
-                }
-              });
-              SetAssignments(markAssignments);
+          .doc("Computer Science")
+          .collection("modules")
+          .doc(markAssignments[i].Module)
+          .collection("Assignments")
+          .doc(markAssignments[i].Title)
+          .collection("Submissions")
+          .get()
+          .then((snapshot) => {
+            snapshot.forEach((doc) => {
+              const data = doc.data();
+              if (data.id === userid) {
+                markAssignments[i].Mark = data.Grade;
+              }
             });
+            SetAssignments(markAssignments);
+          });
       }
     }
     returnAssignments();
@@ -128,20 +127,20 @@ export default function TestingEasySolution() {
   // Update the data to be used by the graph as the list of modules and assignments changes
   useEffect(() => {
     function updateData() {
-      console.log(Assignments)
+      console.log(Assignments);
       SetData(BarFormat(Assignments));
     }
-    updateData()
+    updateData();
   }, [Assignments, Modules]);
   // Updates the graph everytime the data to be displayed within changes
   useEffect(() => {
     function updateGraph() {
-      console.log(Assignments)
+      console.log(Assignments);
       if (Data !== []) {
         SetGraph(<BarChart key={Data.length} data={Data} labels={labels} />);
       }
     }
-    updateGraph()
+    updateGraph();
   }, [Data]);
   // Returns the graph along with a list of assignments
   return (

@@ -8,7 +8,7 @@ import { db } from "../../firebase";
  */
 
 function DeleteModule({ thisId }) {
-    //Creating a reference to the modules
+  //Creating a reference to the modules
   const ModuleRef = db
     .collection("Courses")
     .doc("Computer Science")
@@ -21,9 +21,9 @@ function DeleteModule({ thisId }) {
 
   //Returns a delete button
   return (
-    <div className="deleteModule" >
+    <div className="deleteModule">
       <button
-          className="deleteModule_button"
+        className="deleteModule_button"
         onClick={(e) => {
           if (
             window.confirm(

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import StudentNavBar from "../NavBar/StudentNavBar";
 import "firebase/firestore";
 import StudentAssignmentModuleList from "../components/StudentAssignmentModuleList";
@@ -11,7 +11,7 @@ import StudentAssignmentModuleList from "../components/StudentAssignmentModuleLi
 
 class StudentAssignment extends React.Component {
   render() {
-      //Shows all active assignment as a list of cards.
+    //Shows all active assignment as a list of cards.
     return (
       <div>
         <StudentNavBar />

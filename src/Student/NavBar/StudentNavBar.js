@@ -35,7 +35,7 @@ class StudentNavBar extends Component {
           </ul>
 
           <a onClick={Logout} href="/" style={{ marginBottom: "12px" }}>
-            <Button style={{marginRight: "12px"}}>Logout</Button>
+            <Button style={{ marginRight: "12px" }}>Logout</Button>
           </a>
         </nav>
       </div>

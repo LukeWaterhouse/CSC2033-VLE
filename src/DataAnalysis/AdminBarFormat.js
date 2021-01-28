@@ -8,46 +8,46 @@ import findQuartiles from "./Quartiles";
 
 // Returns the formatted data for a bar chart
 function BarFormat(data) {
-    if (data[0] === undefined) {
-        return [];
+  if (data[0] === undefined) {
+    return [];
+  }
+  // Finds the averages for each individual assignment and adds them to an array
+  let newData = [];
+  for (let i = 0; i < data.length; i++) {
+    let MarkList = data[i].MarkList;
+    MarkList = MarkList.sort(compareFunction);
+    let Title = data[i].Title;
+    let MaxMark = data[i].MaxMark;
+    let median = findMedian(MarkList);
+    let quartiles = findQuartiles(MarkList, median[1], MarkList.length);
+    let mean = 0;
+    for (let x = 0; x < MarkList.length; x++) {
+      mean += MarkList[x];
     }
-    // Finds the averages for each individual assignment and adds them to an array
-    let newData = [];
-    for (let i = 0; i < data.length; i++) {
-        let MarkList = data[i].MarkList;
-        MarkList = MarkList.sort(compareFunction);
-        let Title = data[i].Title;
-        let MaxMark = data[i].MaxMark;
-        let median = findMedian(MarkList);
-        let quartiles = findQuartiles(MarkList, median[1], MarkList.length);
-        let mean = 0;
-        for (let x = 0; x < MarkList.length; x++) {
-            mean += MarkList[x];
-        }
-        mean = mean / MarkList.length;
-        mean = Percentage(mean, MaxMark);
-        newData.push({
-            Title: Title,
-            Median: Percentage(median[0], MaxMark),
-            UQ: Percentage(quartiles[1][0], MaxMark),
-            LQ: Percentage(quartiles[0][0], MaxMark),
-            Mean: mean,
-        });
-    }
-    console.log(newData)
-    return newData;
+    mean = mean / MarkList.length;
+    mean = Percentage(mean, MaxMark);
+    newData.push({
+      Title: Title,
+      Median: Percentage(median[0], MaxMark),
+      UQ: Percentage(quartiles[1][0], MaxMark),
+      LQ: Percentage(quartiles[0][0], MaxMark),
+      Mean: mean,
+    });
+  }
+  console.log(newData);
+  return newData;
 }
 
 // Returns the percentage acheieved relative to the maximum available
 function Percentage(achieved, max) {
-    var percentage = (achieved / max) * 100;
-    percentage = +percentage.toFixed(2);
-    return percentage;
+  var percentage = (achieved / max) * 100;
+  percentage = +percentage.toFixed(2);
+  return percentage;
 }
 
 // When used with sort returns a numerically ordered list from lowest to highest
 function compareFunction(a, b) {
-    return a - b;
+  return a - b;
 }
 
 export default BarFormat;

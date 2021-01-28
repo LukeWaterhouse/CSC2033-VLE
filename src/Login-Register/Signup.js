@@ -5,9 +5,9 @@ import firebase, { db } from "../firebase";
 import AdminHome from "../Admin/pages/AdminHome";
 
 /**
-* Created by: Adam Marley
-* Handles all Signup, Sign In, and user details.
-* */
+ * Created by: Adam Marley
+ * Handles all Signup, Sign In, and user details.
+ * */
 
 export default function Signup() {
   const [user, setUser] = useState();

@@ -1,7 +1,4 @@
 import React from "react";
-import { connect } from "react-redux";
-import { compose } from "redux";
-import { Redirect } from "react-router-dom";
 import moment from "moment";
 import { db } from "../../firebase";
 import { useDocumentData } from "react-firebase-hooks/firestore";
@@ -14,7 +11,6 @@ import Card from "react-bootstrap/Card";
  */
 
 const StudentAssignmentDetailsComp = (props) => {
-
   //Checking the values in props are as desired.
   console.log(props);
 
@@ -29,7 +25,8 @@ const StudentAssignmentDetailsComp = (props) => {
   const [ass] = useDocumentData(AssignRef);
   console.log(ass);
 
-  if (ass) {//Checks if an assignment exists and proceeds to display a card with its information.
+  if (ass) {
+    //Checks if an assignment exists and proceeds to display a card with its information.
     return (
       <div>
         <div className="card-header border-white border-top">
@@ -58,7 +55,8 @@ const StudentAssignmentDetailsComp = (props) => {
       </div>
     );
   } else {
-    return ( //If assignment doesnt exist, displays this.
+    return (
+      //If assignment doesnt exist, displays this.
       <div className="container center">
         <p>Loading project...</p>
       </div>
