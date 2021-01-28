@@ -1,3 +1,8 @@
+/**
+ * Created by: Harry Clifford
+ *
+ */
+
 .Panel {
     padding-top: 10px;
 }
@@ -6,20 +11,7 @@
     margin-left: calc(4% - 10px);
 }
 
-.InfoSet {
-    border: 1px;
-    background-color: #616161;
-    margin-left: 5%;
-    margin-bottom: 1%;
-    margin-top: 10px;
-    width: 42.5%;
-    display: inline-block;
-    text-align: center;
-    border-radius: 16px;
-    list-style-type: none;
-}
-
-.Assignment {
+.AssignmentList {
     display: inline-block;
     width: 90%;
     margin-left: 5%;
@@ -29,15 +21,4 @@
     background-color: #616161;
     border-radius: 16px;
     list-style-type: none;
-}
-
-.InfoSet li {
-    float: left;
-    padding-left: 4%;
-    padding-bottom: 1%;
-}
-
-.InfoSet h3 {
-    margin-top: 5px;
-    margin-bottom: 0;
 }

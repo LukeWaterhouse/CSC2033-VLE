@@ -1,6 +1,6 @@
 // Assumes an input of a list of marks and outputs data usable by recharts
-import findMedian from "./Median";
-import findQuartiles from "./Quartiles";
+import findMedian from "../Median";
+import findQuartiles from "../Quartiles";
 
 function Format(data){
     var marks = data.MarkList.sort(compareFunction);

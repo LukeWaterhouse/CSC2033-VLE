@@ -1,24 +1,18 @@
 import React, { Component } from "react";
-import CSS from "./GraphElement.css";
+import "./GraphElement.css";
 import ButtonList from "./ButtonList";
-import GraphDisplaying from "./GraphDisplaying";
-import Data from "./Data";
+import EasySolution from "./TestingEasySolution";
 
-let data = new Data()
+/**
+ * Created by: Harry Clifford
+ *
+ */
+
 class Graph extends Component{
     render(){
         return(
             <div className="Panel">
-                <ButtonList/>
-                {GraphDisplaying}
-                <ul className="InfoSet">
-                    <h3>Progress Report</h3>
-                    <li>I must write this out for text size</li>
-                </ul>
-                <ul className="InfoSet">
-                    <h3> Detailed Summary </h3>
-                    <li>I must write this out for text size</li>
-                </ul>
+                <EasySolution/>
             </div>
         )
     }

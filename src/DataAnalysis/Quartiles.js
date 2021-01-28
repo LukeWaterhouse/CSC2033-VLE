@@ -1,3 +1,8 @@
+/**
+ * Created by: Harry Clifford
+ *
+ */
+
 import findMedian from "./Median";
 
 export default function findQuartiles (array, median, totalStudents){

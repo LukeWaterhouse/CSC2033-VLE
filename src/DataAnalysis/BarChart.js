@@ -1,12 +1,19 @@
 import React, {Component} from 'react';
-import data from './Data';
 import {Legend, ComposedChart, Bar, Line, CartesianGrid, XAxis, YAxis, Tooltip, Label, ResponsiveContainer } from 'recharts';
-import CSS from './GraphElement.css';
+import CSS from './GraphElement.css'
 
+/**
+ * Created by: Harry Clifford
+ *
+ */
+
+let data = []
 class BarChart extends Component {
   constructor(props) {
     super(props);
     this.selectBar = this.selectBar.bind(this);
+    data = props.data
+    console.log(props.data, data, props)
     this.state = {
       labels: this.props.labels,
     };
@@ -32,15 +39,18 @@ class BarChart extends Component {
       labels: updatedLabels,
     });
   }
+  updateData(newData){
+    data = newData
+  }
   render() {
+    console.log(data)
     return (
       <div>
         <ResponsiveContainer className="MarkGraph" width="90%" height={600}>
           <ComposedChart data={data} margin={{ top: 10, bottom: 30 }}>
             <Bar dataKey="Mark" fill="#BB86FC" />
             <CartesianGrid
-              vertical="false"
-              stroke="#121212"
+              stroke="#626262"
               strokeDasharray="3 3"
             />
             <XAxis
@@ -54,7 +64,7 @@ class BarChart extends Component {
               <Label
                 value="Assignments"
                 position="insideBottom"
-                offset={-20}
+                offset={-40}
                 stroke="#F8F8FF"
               />
             </XAxis>
@@ -67,7 +77,7 @@ class BarChart extends Component {
             >
               <Label
                 value="Marks (%)"
-                angle="-90"
+                angle= "-90"
                 position="left"
                 offset={-17.5}
                 stroke="#F8F8FF"
@@ -94,5 +104,4 @@ class BarChart extends Component {
     );
   }
 }
-
 export default BarChart

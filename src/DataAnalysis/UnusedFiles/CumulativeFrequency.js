@@ -1,18 +1,25 @@
 import React, {Component} from 'react';
 import { ComposedChart, Area, CartesianGrid, XAxis, YAxis, Tooltip, Label, ResponsiveContainer, Line, Legend } from 'recharts';
-import CSS from './GraphElement.css';
-import cumulativeData from './CurrentData';
+import CSS from '../GraphElement.css';
 
-var data = cumulativeData.getData()[0]
-var totalStudents = cumulativeData.getData()[1]
-var totalMarks = cumulativeData.getData()[2]
+/**
+ * Created by: Harry Clifford
+ *
+ */
+
+let data = [];
+let totalStudents = 0;
+let totalMarks = 0;
 
 class CumulativeFrequency extends Component{
     constructor(props) {
         super(props);
         this.selectBar = this.selectBar.bind(this);
+        data = props.data[0]
+        totalStudents = props.data[1]
+        totalMarks = props.data[2]
         this.state = {
-            labels: this.props.labels
+            labels: this.props.labels,
         };
     }
 
@@ -33,13 +40,34 @@ class CumulativeFrequency extends Component{
             }
         }
         this.setState({
-            labels: updatedLabels
+            labels: this.props.labels,
+            data: this.props.data[0],
+            totalStudents: this.props.data[1],
+            totalMarks: this.props.data[2]
         });
+    }
+    CustomTooltip ({payload, label, active}) {
+        if (active && payload !== null) {
+            return(
+                <div className="CustomTooltip">
+                    <p className="InfoLabel">Mark: {label}
+                        &nbsp;
+                        ({Percentage(label, totalMarks)}%)</p>
+                    <p className ="Results">Students Achieved: {`${payload[0].value}`}
+                        &nbsp;
+                        ({Percentage(payload[0].value, totalStudents )}%)</p>
+                    <p>Median: {`${payload[1].value}`} </p>
+                    <p>UQ: {`${payload[3].value}`}</p>
+                    <p>LQ: {`${payload[2].value}`}</p>
+                </div>
+            );
+        }
+        return null;
     }
     render(){
         return(
             <ResponsiveContainer className="MarkGraph" width ="90%" height={600}>
-                <ComposedChart data={cumulativeData.getData()[0]} margin={{ top: 10, bottom: 30}}>
+                <ComposedChart data={data} margin={{ top: 10, bottom: 30}}>
                     <CartesianGrid stroke="#121212"/>
                     <XAxis dataKey="Mark" axisLine={{ stroke: "#121212"}} tick={{dy: 7}} stroke="#F8F8FF"
                            domain={['auto', 'auto']} type="number">
@@ -61,31 +89,13 @@ class CumulativeFrequency extends Component{
                             dot={false}
                         />
                     ))}
-                    <Tooltip content={<CustomTooltip/>}/>
+                    <Tooltip content={<this.CustomTooltip/>}/>
                 </ComposedChart>
             </ResponsiveContainer>
         )
     }
 }
 
-function CustomTooltip ({payload, label, active}) {
-    if (active) {
-        return(
-            <div className="CustomTooltip">
-                <p className="InfoLabel">Mark: {label}
-                    &nbsp;
-                    ({Percentage(label, totalMarks)}%)</p>
-                <p className ="Results">Students Achieved: {`${payload[0].value}`}
-                    &nbsp;
-                    ({Percentage(payload[0].value, totalStudents )}%)</p>
-                <p>Median: {`${payload[1].value}`} </p>
-                <p>UQ: {`${payload[3].value}`}</p>
-                <p>LQ: {`${payload[2].value}`}</p>
-            </div>
-        );
-    }
-    return null;
-}
 
 function Percentage(achieved, max) {
   var percentage = (achieved / max) * 100;
