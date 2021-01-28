@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { db, auth } from "../../firebase";
 import Button from "react-bootstrap/Button";
 import Dialog from "@material-ui/core/Dialog";
-import {DialogActions, DialogContent, DialogTitle, TextField} from "@material-ui/core";
+import {DialogActions, DialogContent, DialogTitle} from "@material-ui/core";
 import firebase from "firebase";
 import {useDocumentData} from "react-firebase-hooks/firestore";
 
@@ -12,28 +12,7 @@ import {useDocumentData} from "react-firebase-hooks/firestore";
  * as a submission to the previously selected assignment.
  */
 
-
-let userName = "placeholder"
-let isAdmin = false
-
 function AssignmentSubmit(props){
-
-    firebase.auth().onAuthStateChanged(function (user) {
-        if (user) {
-            getUserID().then((r) => {
-                db.collection("UserDetails")
-                    .doc(userID)
-                    .get()
-                    .then((doc) => {
-                        const username = doc.data().username;
-                        setUsername(username);
-                    });
-            });
-        } else {
-            console.log("DATABASE ERROR");
-        }
-    });
-
     const [fileUrl, setFileUrl] = React.useState(null);
     const [open, setOpen] = React.useState(false);
 
@@ -45,6 +24,11 @@ function AssignmentSubmit(props){
         .collection("Assignments")
         .doc(props.input)
     const [ ass ] = useDocumentData(AssignRef);
+
+    const UserRef = db
+        .collection("UserDetails")
+        .doc(firebase.auth().currentUser.uid)
+    const [user] = useDocumentData(UserRef);
 
     const onFileChange = async (e) => { //Gets File from event state and stores it in the firebase storage.
         const file = e.target.files[0];
@@ -69,7 +53,7 @@ function AssignmentSubmit(props){
             //Current user id is the unique id for their submission in the Submission collection.
             .set({
                 id : firebase.auth().currentUser.uid,
-                Name : userName,
+                Name : user.username,
                 Filename : fileUrl, //Stores file download url for future download.
                 Grade : 0,
                 Graded : false,

@@ -6,6 +6,7 @@ import { db,auth } from "../../firebase";
 import Button from 'react-bootstrap/Button';
 import {Form} from "react-bootstrap";
 import firebase from "firebase";
+import {useDocumentData} from "react-firebase-hooks/firestore";
 
 /**
  * Created by: Giorgos Christodoulou
@@ -14,22 +15,12 @@ import firebase from "firebase";
  * Stores all those values, including the date created and the users name as fields in the assignments firebase doc.
  */
 
-let userName = "placeholder"
-let isAdmin = false
-
 function AssignmentForm() {
 
-
-    useEffect(() => {//Get the user id of the current logged in user to find their name and admin status.
-
-        db.collection("UserDetails").doc(firebase.auth().currentUser.uid).get().then(doc =>{
-
-                userName = doc.data().username
-                isAdmin = doc.data().isAdmin
-
-            }
-        )
-    })
+    const UserRef = db
+        .collection("UserDetails")
+        .doc(firebase.auth().currentUser.uid)
+    const [user] = useDocumentData(UserRef);
 
     const [Title, setTitle] = useState("");
     const [Instructions, setInst] = useState("");
@@ -71,7 +62,7 @@ function AssignmentForm() {
                 Instructions : Instructions,
                 Marks : Marks,
                 Module : Module,
-                createdBy : userName,
+                createdBy : user.username,
                 Deadline :  new Date(Deadline), //Creates a timestamp of the deadline.
                 createdAt : new Date(), //Creates a timestamp of the current date.
                 Marked : false,
