@@ -3,6 +3,7 @@ import AdminNavBar from "../NavBar/AdminNavBar";
 import "../css-files/AdminHome.css";
 import Card from "react-bootstrap/Card";
 import { CardDeck, CardGroup } from "react-bootstrap";
+import Welcome from "../../Student/components/welcomeUser";
 
 /**
  * Created by: Luke Waterhouse
@@ -15,6 +16,8 @@ class AdminHome extends React.Component {
     return (
       <div>
         <AdminNavBar />
+        <Welcome/>
+
 
         <h1
           className="text-md-center"

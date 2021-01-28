@@ -3,6 +3,7 @@ import StudentNavBar from "../../Student/NavBar/StudentNavBar";
 import CSS from "../../Student/css-files/HomePage.css";
 import { CardDeck } from "react-bootstrap";
 import Card from "react-bootstrap/Card";
+import Welcome from "../components/welcomeUser";
 
 
 /**
@@ -13,16 +14,24 @@ import Card from "react-bootstrap/Card";
 
 
 class StudentHome extends React.Component {
+
+
+
   render() {
     return (
       <div>
         <StudentNavBar />
+        <Welcome/>
+
         <h1
           className="text-md-center"
           style={{ marginTop: "40px", marginBottom: "40px" }}
         >
           <u>Home</u>
         </h1>
+
+
+
 
         <CardDeck
           style={{
