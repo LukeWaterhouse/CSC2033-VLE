@@ -8,7 +8,8 @@ function CreateModule() {
     .doc("Computer Science")
     .collection("modules");
   const [Modules] = useCollectionData(ModuleRef, { idField: "id" });
-  const [formValue, setFormValue] = useState("");
+  const [titleValue, setTitleValue] = useState("");
+  const [descriptionValue, setDescriptionValue] = useState("");
   const [visibility, setVisibility] = useState("invisible");
   const [errorMessage, setError] = useState("");
 
@@ -18,22 +19,23 @@ function CreateModule() {
     let isValid = true;
 
     Modules.forEach((arrayItem) => {
-      if (arrayItem === formValue) {
+      if (arrayItem === titleValue) {
         isValid = false;
         setError("There is already a thread with that name!");
       }
     });
 
-    if (formValue === "") {
+    if (titleValue === "") {
       isValid = false;
       setError("You must enter a thread name!");
     }
 
     if (isValid) {
       setVisibility("invisible");
-      setFormValue("");
-      await ModuleRef.doc(formValue).set({
-        Title: formValue,
+      setTitleValue("");
+      await ModuleRef.doc(titleValue).set({
+        Title: titleValue,
+        description: descriptionValue,
       });
     } else {
       console.log("Error!");
@@ -43,12 +45,32 @@ function CreateModule() {
 
   return (
     <div>
-      <form onSubmit={createModule}>
+      <form className="createModule" onSubmit={createModule}>
+        <label className="createModule_titleLabel" htmlFor="title">
+          Title
+        </label>
+        <br />
         <input
-          value={formValue}
-          onChange={(e) => setFormValue(e.target.value)}
+          className="createModule_titleText"
+          id="title"
+          value={titleValue}
+          onChange={(e) => setTitleValue(e.target.value)}
         />
-        <button type="submit">Create</button>
+        <br />
+        <label className="createModule_descriptionLabel" htmlFor="description">
+          Description
+        </label>
+        <br />
+        <textarea
+          className="createModule_descriptionText"
+          id="description"
+          value={descriptionValue}
+          onChange={(e) => setDescriptionValue(e.target.value)}
+        />
+        <br />
+        <button className="createModule_button" type="submit">
+          Create
+        </button>
         <div className={visibility}>{errorMessage}</div>
       </form>
     </div>

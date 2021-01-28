@@ -18,7 +18,11 @@
     "react-bootstrap": "^1.4.3",
     "react-datetime": "^3.0.4",
     "react-dom": "^17.0.1",
+<<<<<<< HEAD
     "react-pdf": "^5.1.0",
+=======
+    "react-markdown": "^5.0.3",
+>>>>>>> 6d29fb4117e20bea45b3beb4828eb46303f2ae1a
     "react-redux": "^7.2.2",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.1",

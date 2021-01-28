@@ -2,10 +2,9 @@ import React from "react";
 import { useCollectionData } from "react-firebase-hooks/firestore";
 import { db } from "../../firebase";
 import { Route, NavLink, HashRouter } from "react-router-dom";
-import ModulePage from "./ModulePage";
-import CreateModule from "./createModule";
+import StudentModulePage from "./StudentModulePage";
 
-function ModuleGroup() {
+function StudentModuleGroup() {
   const ModuleRef = db
     .collection("Courses")
     .doc("Computer Science")
@@ -29,28 +28,16 @@ function ModuleGroup() {
               </NavLink>
             </li>
           ))}
-          <li className="moduleGroup_add">
-            <NavLink
-              className="moduleGroup_addNav"
-              activeClassName="moduleGroup_activeRoute"
-              to="/add_module"
-            >
-              +
-            </NavLink>
-          </li>
         </ul>
         <div className="moduleGroup_content">
           {Modules?.map((module) => (
             <Route path={"/" + module.id}>
-              <ModulePage moduleName={module.id} />
+              <StudentModulePage moduleName={module.id} />
             </Route>
           ))}
-          <Route path="/add_module">
-            <CreateModule />
-          </Route>
         </div>
       </div>
     </HashRouter>
   );
 }
-export default ModuleGroup;
+export default StudentModuleGroup;

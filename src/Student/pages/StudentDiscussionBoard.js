@@ -4,10 +4,15 @@ import DiscussionBoard from "../components/DiscussionBoard";
 import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 
+/**
+ * Created by: Luke Waterhouse
+ * This page shows the student discussion board with all of the messages from the thread input from the router variable
+ */
+
+//this class component gets the router variable and passes it to the DiscussionBoard component so that different threads
+//can be entered and read
 export default class StudentDiscussionBoard extends React.Component {
   render() {
-    console.log(this.props);
-    console.log(this.props.match.params);
     const input = this.props.match.params.thread;
     return (
       <div>

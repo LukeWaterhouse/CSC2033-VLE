@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import data from "./Data";
 import {
   Legend,
   ComposedChart,
@@ -14,15 +13,25 @@ import {
 } from "recharts";
 import CSS from "./GraphElement.css";
 
+/**
+ * Created by: Harry Clifford
+ * Code to create a bar chart in recharts with a custom toggleable legend
+ */
+
+let data = [];
+
+// Creates a Rechart bar chart with interactive legend
 class BarChart extends Component {
+  // Set up class properties
   constructor(props) {
     super(props);
     this.selectBar = this.selectBar.bind(this);
+    data = props.data;
     this.state = {
       labels: this.props.labels,
     };
   }
-
+  // Update legend on click to hide/show lines
   selectBar(event) {
     let updatedLabels = [];
     for (let i = 0; i < this.state.labels.length; i++) {
@@ -43,29 +52,26 @@ class BarChart extends Component {
       labels: updatedLabels,
     });
   }
+  // Renders bar chart
   render() {
     return (
       <div>
         <ResponsiveContainer className="MarkGraph" width="90%" height={600}>
           <ComposedChart data={data} margin={{ top: 10, bottom: 30 }}>
             <Bar dataKey="Mark" fill="#BB86FC" />
-            <CartesianGrid
-              vertical="false"
-              stroke="#121212"
-              strokeDasharray="3 3"
-            />
+            <CartesianGrid stroke="#626262" strokeDasharray="3 3" />
             <XAxis
               dataKey="Title"
-              axisLine={{ stroke: "#121212" }}
+              axisLine={{ stroke: "#626262" }}
               tick={{ dy: 7 }}
-              stroke="#F8F8FF"
+              stroke="#626262"
               tickInterval="150"
               tickCount-="{data.length}"
             >
               <Label
                 value="Assignments"
                 position="insideBottom"
-                offset={-20}
+                offset={-40}
                 stroke="#F8F8FF"
               />
             </XAxis>
@@ -73,8 +79,8 @@ class BarChart extends Component {
               domain={[0, 100]}
               tickInterval="10"
               tickCount="11"
-              axisLine={{ stroke: "#121212" }}
-              stroke="#F8F8FF"
+              axisLine={{ stroke: "#626262" }}
+              stroke="#626262"
             >
               <Label
                 value="Marks (%)"
@@ -84,7 +90,7 @@ class BarChart extends Component {
                 stroke="#F8F8FF"
               />
             </YAxis>
-            <Tooltip />
+            <Tooltip contentStyle={{ background: "#626262" }} />
             <Legend
               onClick={this.selectBar}
               wrapperStyle={{ paddingLeft: "4%", paddingTop: "5px" }}
@@ -105,5 +111,4 @@ class BarChart extends Component {
     );
   }
 }
-
 export default BarChart;

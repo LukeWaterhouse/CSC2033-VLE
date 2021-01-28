@@ -5,6 +5,13 @@ import Logo from "../../Images/WolfPack.png";
 import Logout from "../../Login-Register/Logout";
 import Button from "react-bootstrap/Button";
 
+/**
+ * Created by: Luke Waterhouse
+ * CSS: Harry Clifford
+ * This file contains the navigation bar component for the student side which can be imported into any of the student pages
+ * it maps through the object in Student Menu items and displays them as links going to the corresponding url found in each
+ * object
+ */
 class StudentNavBar extends Component {
   state = { clicked: false };
 
@@ -18,7 +25,7 @@ class StudentNavBar extends Component {
           <ul>
             {MenuItems.map((item, index) => {
               return (
-                <li key={index}>
+                <li className="navBarList" key={index}>
                   <a className={item.cName} href={item.url}>
                     {item.title}
                   </a>

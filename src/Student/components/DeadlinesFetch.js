@@ -1,15 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { db } from "../../firebase";
 import Card from "react-bootstrap/Card";
-import { useCollectionData } from "react-firebase-hooks/firestore";
+
+/**
+ * Created by: Luke Waterhouse
+ * This file contains a component which fetches the different assignments from all the modules using a for loop. These are
+ * then displayed as cards showing the Title, due date and the module they belong to.
+ */
 
 export default function DisplayDeadlines() {
   const [Assignments, setAssignments] = useState([]);
-  const [Modules, SetModules] = useState([]);
-
-  const things = [];
+  const modules = [];
   const AssignmentsToSet = [];
 
+  //this useEffect pulls a list of all the different module titles so they can be used in a for loop to get the assignments
+  //for each module and sets them to the modules array.
   useEffect(() => {
     function returnAssignments() {
       db.collection("Courses")
@@ -19,43 +24,56 @@ export default function DisplayDeadlines() {
         .then((snapshot) => {
           snapshot.forEach((doc) => {
             const data = doc.data();
-            things.push(data.Title);
+            modules.push(data.Title);
           });
-          console.log("things:", things);
-          SetModules(things);
-          console.log(Modules, "Modules");
           getAssignments();
         })
         .catch((error) => console.log(error));
     }
 
+    //this function uses the modules array created above to loop through the module titles and extracts the assignments
+    //from each one using the module title as the doc path. Then sets the assignments to a useState (Assignments)
     function getAssignments() {
-      for (let i = 0; i < things.length; i++) {
+      for (let i = 0; i < modules.length; i++) {
         db.collection("Courses")
           .doc("Computer Science")
           .collection("modules")
-          .doc(things[i])
+          .doc(modules[i])
           .collection("Assignments")
           .get()
           .then((snapshot) => {
             snapshot.forEach((doc) => {
-              const data = doc.data();
-              console.log("current Assignment", data.Title);
-              const toDate = data.Deadline.toDate();
-              const month = toDate.getUTCMonth() + 1;
-              const day = toDate.getUTCDate();
-              const year = toDate.getUTCFullYear();
-              const time = toDate.getUTCHours() + ":" + toDate.getUTCMinutes();
-              const output = year + "/" + month + "/" + day + " " + time;
-              AssignmentsToSet.push({
-                Title: data.Title,
-                Marks: data.Marks,
-                Module: data.Module,
-                DueDate: output,
-              });
+              let output = "error";
+              if (snapshot.size > 0) {
+                const data = doc.data();
+
+                //checks if a deadline exists before adding it
+
+                if (data.Deadline) {
+                  const toDate = data.Deadline && data.Deadline.toDate();
+                  const month = toDate.getUTCMonth() + 1;
+                  const day = toDate.getUTCDate();
+                  const year = toDate.getUTCFullYear();
+                  const time =
+                    toDate.getUTCHours() + ":" + toDate.getUTCMinutes();
+                  output = year + "/" + month + "/" + day + " " + time;
+                }
+
+                //adds the assignment to a temporary array
+
+                AssignmentsToSet.push({
+                  Title: data.Title,
+                  Marks: data.Marks,
+                  Module: data.Module,
+                  DueDate: output,
+                });
+                console.log(AssignmentsToSet);
+              } else {
+              }
             });
 
-            if (i === things.length - 1) {
+            //on the last loop sets the Assignment useState using the temporary array
+            if (i === modules.length - 1) {
               setAssignments(AssignmentsToSet);
             }
           });
@@ -65,6 +83,7 @@ export default function DisplayDeadlines() {
     returnAssignments();
   }, []);
 
+  //takes in props from assignments and displays them in a bootstrap Card
   function DeadlinePost(props) {
     console.log(props.Title);
     return (
@@ -88,11 +107,11 @@ export default function DisplayDeadlines() {
 
   return (
     <div>
-      {Assignments.map((thing) => (
+      {Assignments.map((assignmentRef) => (
         <DeadlinePost
-          Title={thing.Title}
-          Module={thing.Module}
-          Date={thing.DueDate.toString()}
+          Title={assignmentRef.Title}
+          Module={assignmentRef.Module}
+          Date={assignmentRef.DueDate.toString()}
         />
       ))}
     </div>

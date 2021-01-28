@@ -11,23 +11,33 @@ import {
   Line,
   Legend,
 } from "recharts";
-import CSS from "./GraphElement.css";
-import Format from "./CumulativeDataFormatting";
-import cumulativeData from "./TemporaryData";
+import CSS from "../GraphElement.css";
 
-var data = Format(cumulativeData);
-var totalStudents = cumulativeData.AllMarks.length;
-var totalMarks = cumulativeData.AvailableMarks;
+/**
+ * Created by: Harry Clifford
+ *
+ */
 
+// Create default data
+let data = [];
+let totalStudents = 0;
+let totalMarks = 0;
+
+// Returns a recharts area graph with supporting lines
+// showing the cumulative frequency of marks achieved in an assignment and averages
 class CumulativeFrequency extends Component {
+  // Sets defaults for the classes variables including the label list
   constructor(props) {
     super(props);
     this.selectBar = this.selectBar.bind(this);
+    data = props.data[0];
+    totalStudents = props.data[1];
+    totalMarks = props.data[2];
     this.state = {
       labels: this.props.labels,
     };
   }
-
+  // Allows for the lines on the graph to be toggled on and off via clicking them in the legend
   selectBar(event) {
     let updatedLabels = [];
     for (let i = 0; i < this.state.labels.length; i++) {
@@ -45,9 +55,34 @@ class CumulativeFrequency extends Component {
       }
     }
     this.setState({
-      labels: updatedLabels,
+      labels: this.props.labels,
+      data: this.props.data[0],
+      totalStudents: this.props.data[1],
+      totalMarks: this.props.data[2],
     });
   }
+  // Produces a custom tooltip displaying appropriate information about the point highlighted on the graph
+  CustomTooltip({ payload, label, active }) {
+    if (active && payload !== null) {
+      return (
+        <div className="CustomTooltip">
+          <p className="InfoLabel">
+            Mark: {label}
+            &nbsp; ({Percentage(label, totalMarks)}%)
+          </p>
+          <p className="Results">
+            Students Achieved: {`${payload[0].value}`}
+            &nbsp; ({Percentage(payload[0].value, totalStudents)}%)
+          </p>
+          <p>Median: {`${payload[1].value}`} </p>
+          <p>UQ: {`${payload[3].value}`}</p>
+          <p>LQ: {`${payload[2].value}`}</p>
+        </div>
+      );
+    }
+    return null;
+  }
+  // Returns the cumulative frequency graph
   render() {
     return (
       <ResponsiveContainer className="MarkGraph" width="90%" height={600}>
@@ -98,35 +133,14 @@ class CumulativeFrequency extends Component {
               dot={false}
             />
           ))}
-          <Tooltip content={<CustomTooltip />} />
+          <Tooltip content={<this.CustomTooltip />} />
         </ComposedChart>
       </ResponsiveContainer>
     );
   }
 }
 
-function CustomTooltip({ payload, label, active }) {
-  console.log(payload);
-  if (active) {
-    return (
-      <div className="CustomTooltip">
-        <p className="InfoLabel">
-          Mark: {label}
-          &nbsp; ({Percentage(label, totalMarks)}%)
-        </p>
-        <p className="Results">
-          Students Achieved: {`${payload[0].value}`}
-          &nbsp; ({Percentage(payload[0].value, totalStudents)}%)
-        </p>
-        <p>Median: {`${payload[1].value}`} </p>
-        <p>UQ: {`${payload[3].value}`}</p>
-        <p>LQ: {`${payload[2].value}`}</p>
-      </div>
-    );
-  }
-  return null;
-}
-
+// Returns Percentage achieved relative to max
 function Percentage(achieved, max) {
   var percentage = (achieved / max) * 100;
   percentage = +percentage.toFixed(2);

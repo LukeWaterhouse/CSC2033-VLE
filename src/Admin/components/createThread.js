@@ -2,17 +2,26 @@ import React, { useState } from "react";
 import { db } from "../../firebase";
 import { useCollectionData } from "react-firebase-hooks/firestore";
 
+/**
+ * Created by: Luke Waterhouse
+ * This file contains a component for creating a new thread in the database and is used on the Admin side on the Threads
+ * page. The user can input the name of a new thread into a form and then press create which will then add it to firebase
+ * and it will appear dynamically in the list of threads.
+ */
+
 function CreateThread() {
   const [formValue, setFormValue] = useState("");
   const [visibility, setVisibility] = useState("invisible");
   const [errorMessage, setError] = useState("");
 
+  // pulls the threads from the database so they can be checked
   const ThreadsRef = db
     .collection("Courses")
     .doc("Computer Science")
     .collection("Threads");
   const [Threads] = useCollectionData(ThreadsRef, { idField: "id" });
 
+  //creates a thread with input validation using the pulled threads
   const createThread = async (e) => {
     e.preventDefault();
 
@@ -37,13 +46,13 @@ function CreateThread() {
         Title: formValue,
       });
     } else {
-      console.log("Error!");
       setVisibility("visible");
     }
   };
 
+  //returns a form with a button to create a thread with the input name
   return (
-    <div>
+    <div style={{ marginLeft: "20px", marginTop: "20px" }}>
       Create Thread
       <form onSubmit={createThread}>
         <input
