@@ -4,6 +4,11 @@ import { db } from "../../firebase";
 import { useCollectionData } from "react-firebase-hooks/firestore";
 import "../css-files/feedback.css";
 
+/**
+ * Created by: Luke Waterhouse
+ * This file contains component that take in a module as a prop and display the feedback for it from the database.
+ */
+
 function GetFeedback(props) {
   const feedbackRef = db
     .collection("Courses")
@@ -41,9 +46,11 @@ function GetFeedback(props) {
   );
 }
 
+//takes in a piece of feedback object and destructures it to display it in a card.
+
 function FeedbackMessage({ message }) {
   const { text, createdAt } = message;
-  const date = createdAt && createdAt.toDate(); // checks if createdAt exists and if so turns it into JS date format
+  const date = createdAt && createdAt.toDate();
   let output = "DataBase Error!";
   if (date != null) {
     const month = date.getUTCMonth() + 1;

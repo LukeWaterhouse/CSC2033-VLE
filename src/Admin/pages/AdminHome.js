@@ -3,6 +3,13 @@ import AdminNavBar from "../NavBar/AdminNavBar";
 import "../css-files/AdminHome.css";
 import Card from "react-bootstrap/Card";
 import { CardDeck, CardGroup } from "react-bootstrap";
+
+/**
+ * Created by: Luke Waterhouse
+ * The Admin Home page makes use of React bootstrap to display a deck of cards each with a picture imported from public and
+ * a description of one of the features
+ */
+
 class AdminHome extends React.Component {
   render() {
     return (

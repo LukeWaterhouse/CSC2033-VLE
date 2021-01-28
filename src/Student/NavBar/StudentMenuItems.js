@@ -1,4 +1,3 @@
-import Logout from "../../Login-Register/Logout";
 
 const MenuItems = [
   {

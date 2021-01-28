@@ -2,6 +2,12 @@ import firebase from "firebase/app";
 import "firebase/firestore";
 require("firebase/auth");
 
+/**
+ * Created by: Luke Waterhouse
+ * This file contains the firebase configuration specific to our database and creates database variables to be exported
+ * to other parts of the code
+ */
+
 const firebaseConfig = {
   apiKey: "AIzaSyA3wyT8oUJ0efVq_lwj6T4zOVq3ZyNkQiA",
   authDomain: "epiclearning-e3e5d.firebaseapp.com",

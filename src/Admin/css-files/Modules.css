@@ -1,0 +1,146 @@
+.moduleGroup_links{
+    box-shadow: 0px -4px 0px -3px white inset;
+    font-family: unset;
+}
+
+.moduleGroup_link , .moduleGroup_add{
+    float:left;
+    padding: 5px 0 5px 0;
+    justify-self: center;
+    align-self: center;
+
+}
+.moduleGroup_addNav, .moduleGroup_linkNav{
+    color: white;
+    padding: 5px 10px 7px 10px;
+    border-radius: 10px 10px 0 0;
+    border: 1px solid #ffffff;
+    white-space: nowrap;
+    background-color: #424242;
+
+
+}
+.moduleGroup_addNav:visited ,.moduleGroup_linkNav:visited {
+    color: white;
+}
+
+.moduleGroup_addNav:hover ,.moduleGroup_linkNav:hover {
+    background-color: #5a5959;
+    text-decoration: none;
+}
+.moduleGroup_activeRoute {
+    background-color: #212121;
+    border-bottom: solid 1px #212121;
+    cursor: not-allowed;
+
+}
+
+.modulePage{
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+.deleteModule{
+    justify-self: end;
+    margin-right: 10px;
+}
+.deleteModule_button{
+    background-color: #212121;
+    border-radius: 10px;
+    color: white;
+    padding: 5px 10px;
+    text-align: center;
+    cursor: pointer;
+    outline: none;
+    border: white solid 1px;
+    box-shadow: 0 9px #999;
+}
+.deleteModule_button:hover{
+    background-color: #414040;
+}
+.deleteModule_button:active{
+    background-color: #960000;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+}
+.descriptionShow{
+    grid-column: span 2;
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+.descriptionShow_preview{
+    display: grid;
+    grid-auto-flow: row;
+}
+.descriptionShow_previewTitle{
+    justify-self: center;
+}
+.descriptionShow_form{
+    display: grid;
+    grid-auto-flow: row;
+    grid-template-rows: min-content;
+}
+.descriptionShow_formButton{
+    height: min-content;
+    justify-self: center;
+    color: white;
+    padding: 5px 10px 5px 10px;
+    border-radius: 10px 10px 10px 10px;
+    border: 1px solid #ffffff;
+    white-space: nowrap;
+    background-color: #424242;
+}
+.descriptionShow_formButton:hover{
+    background-color: #5a5959;
+}
+.descriptionShow_formButton:active{
+    background-color: #212121;
+    outline:none;
+}
+.descriptionShow_formText{
+    margin: 5px 10px;
+    min-height: 200px;
+    height: max-content;
+}
+.createModule{
+    display: grid;
+    grid-auto-flow: row;
+    grid-template-rows: min-content;
+
+}
+.createModule_titleLabel{
+    font-size: 2rem;
+    font-weight: bold;
+    justify-self: center;
+}
+.createModule_titleText{
+    font-weight: bold;
+    justify-self: center;
+}
+.createModule_descriptionLabel{
+    font-size: 1.7rem;
+    font-weight: bold;
+    justify-self: center;
+}
+.createModule_descriptionText{
+    width: 80%;
+    justify-self: center;
+    min-height: 200px;
+    align-content: start;
+}
+.createModule_button{
+    height: min-content;
+    justify-self: center;
+    color: white;
+    padding: 5px 10px 5px 10px;
+    border-radius: 10px 10px 10px 10px;
+    border: 1px solid #ffffff;
+    white-space: nowrap;
+    background-color: #424242;
+}
+.createModule_button:hover{
+    background-color: #5a5959;
+}
+.createModule_button:active{
+    background-color: #212121;
+    outline:none;
+}
