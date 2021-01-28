@@ -3,6 +3,12 @@ import { db } from "../../firebase";
 import DeleteModule from "./deleteModule";
 import ReactMarkdown from "react-markdown";
 
+/**
+ * Created by: Mantas Aleskevicius
+ * CSS: Mantas Aleskevicius
+ * This file displays module description and allows user to change it with markDown
+ */
+
 function DescriptionShow({ moduleName }) {
   const ModuleRef = db
     .collection("Courses")
@@ -10,6 +16,8 @@ function DescriptionShow({ moduleName }) {
     .collection("modules")
     .doc(moduleName);
   const [description, setDescription] = useState("");
+
+  //Pulling the description of the module from the database
   useEffect(() => {
     ModuleRef.get()
       .then((snapshot) => {
@@ -20,6 +28,7 @@ function DescriptionShow({ moduleName }) {
       });
   }, []);
 
+  //Updates the description in the database
   const textCreate = async (e) => {
     e.preventDefault();
 
@@ -28,8 +37,7 @@ function DescriptionShow({ moduleName }) {
     });
   };
 
-  console.log(description);
-
+  //Return a preview of the description and a form to change it
   return (
     <div className="descriptionShow">
       <div className="descriptionShow_preview">
@@ -50,6 +58,7 @@ function DescriptionShow({ moduleName }) {
   );
 }
 
+//Displays module's information
 class ModulePage extends Component {
   render() {
     return (

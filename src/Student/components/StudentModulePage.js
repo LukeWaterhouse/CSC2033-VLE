@@ -2,6 +2,12 @@ import React, { Component, useState } from "react";
 import { db } from "../../firebase";
 import ReactMarkdown from "react-markdown";
 
+/**
+ * Created by: Mantas Aleskevicius
+ * CSS: Mantas Aleskevicius
+ * This file displays module description
+ */
+
 function DescriptionShow({ moduleName }) {
   const ModuleRef = db
     .collection("Courses")

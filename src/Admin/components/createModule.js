@@ -2,7 +2,14 @@ import React, { useState } from "react";
 import { db } from "../../firebase";
 import { useCollectionData } from "react-firebase-hooks/firestore";
 
+/**
+ * Created by: Mantas Aleskevicius
+ * CSS: Mantas Aleskevicius
+ * This file allows the user to create a module and it's description
+ */
+
 function CreateModule() {
+  //Pulls all of the modules so they can be checked for duplicates
   const ModuleRef = db
     .collection("Courses")
     .doc("Computer Science")
@@ -13,6 +20,7 @@ function CreateModule() {
   const [visibility, setVisibility] = useState("invisible");
   const [errorMessage, setError] = useState("");
 
+  //Input validation to prevent duplicate modules and modules without a name
   const createModule = async (e) => {
     e.preventDefault();
 
@@ -43,6 +51,7 @@ function CreateModule() {
     }
   };
 
+  //Returns a form that allows user to create a module
   return (
     <div>
       <form className="createModule" onSubmit={createModule}>

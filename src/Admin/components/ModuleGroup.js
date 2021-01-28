@@ -5,14 +5,21 @@ import { Route, NavLink, HashRouter } from "react-router-dom";
 import ModulePage from "./ModulePage";
 import CreateModule from "./createModule";
 
+/**
+ * Created by: Mantas Aleskevicius
+ * CSS: Mantas Aleskevicius
+ * This file dynamically displays all of the modules as tabs and their content below the tabs without switching pages
+ */
+
 function ModuleGroup() {
+  //Pulls all of the module IDs so it can display them
   const ModuleRef = db
     .collection("Courses")
     .doc("Computer Science")
     .collection("modules");
-
   const [Modules] = useCollectionData(ModuleRef, { idField: "id" });
 
+  //Returns navigation links of all the modules and displays their corresponding page content
   return (
     <HashRouter>
       <div className="moduleGroup">
