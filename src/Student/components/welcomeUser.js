@@ -12,15 +12,29 @@ import Card from "react-bootstrap/Card";
 export default function Welcome() {
   const [userName, setUsername] = useState("");
 
-  useEffect(() => {
-    db.collection("UserDetails")
-      .doc(firebase.auth().currentUser.uid)
-      .get()
-      .then((doc) => {
-        const username = doc.data().username;
-        setUsername(username);
+  let userID = "";
+
+  //first checks if there is an authState change before retrieving the current users details
+  firebase.auth().onAuthStateChanged(function (user) {
+    if (user) {
+      getUserID().then((r) => {
+        db.collection("UserDetails")
+          .doc(userID)
+          .get()
+          .then((doc) => {
+            const username = doc.data().username;
+            setUsername(username);
+          });
       });
+    } else {
+      console.log("DATABASE ERROR");
+    }
   });
+
+  async function getUserID() {
+    userID = firebase.auth().currentUser.uid;
+    console.log("ID:", userID);
+  }
 
   return (
     <div>
