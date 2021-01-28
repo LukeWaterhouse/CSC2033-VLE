@@ -1,6 +1,6 @@
 import React from "react";
 import AdminNavBar from "../NavBar/AdminNavBar";
-import Graph from "../../DataAnalysis/Graph";
+import Graph from "../../DataAnalysis/AdminGraph";
 
 /**
  * Created by: Harry Clifford
