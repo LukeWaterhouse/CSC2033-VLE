@@ -1,6 +1,5 @@
 import React from "react";
 import StudentNavBar from "../NavBar/StudentNavBar";
-import data from "../../DataAnalysis/Data";
 import DeadlineFetch from "../components/DeadlinesFetch";
 
 
