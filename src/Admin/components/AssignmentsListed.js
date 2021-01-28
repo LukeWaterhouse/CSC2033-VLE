@@ -31,7 +31,7 @@ function AssignmentsListed(props) {
     <div className="Assignments">
       {assignment &&
         assignment.map((assignment) => {
-          if (assignment.Deadline < new Date().getDate() || !assignment.Graded) { //Splits up assignments into finished ones and pending ones.
+          if (assignment.Deadline < new Date().getDate() || !assignment.Marked) { //Splits up assignments into finished ones and pending ones.
             return (
                 <div>
                   <h4>Pending Assignment</h4>

@@ -1,6 +1,4 @@
 import React, {useState} from 'react'
-import moment from 'moment'
-import firebase from "firebase";
 import {db} from "../../firebase";
 import {useDocumentData} from "react-firebase-hooks/firestore";
 import {DialogActions, DialogContent, DialogTitle, Link, TextField} from "@material-ui/core";

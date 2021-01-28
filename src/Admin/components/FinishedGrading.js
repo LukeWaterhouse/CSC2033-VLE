@@ -37,7 +37,7 @@ function FinishedGrading(props) {
             .collection("Assignments")
             .doc(props.input)
             .update({ //Updates the field Graded in the current assignment.
-                Graded: true,
+                Marked: true,
             })
             .then(() => {
                 alert("This Assignment has been graded!");

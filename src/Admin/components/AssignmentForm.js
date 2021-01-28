@@ -16,11 +16,31 @@ import {useDocumentData} from "react-firebase-hooks/firestore";
  */
 
 function AssignmentForm() {
+    const [userName, setUsername] = useState("");
 
-    const UserRef = db
-        .collection("UserDetails")
-        .doc(firebase.auth().currentUser.uid)
-    const [user] = useDocumentData(UserRef);
+    let userID = "";
+
+    //first checks if there is an authState change before retrieving the current users details
+    firebase.auth().onAuthStateChanged(function (user) {
+        if (user) {
+            getUserID().then((r) => {
+                db.collection("UserDetails")
+                    .doc(userID)
+                    .get()
+                    .then((doc) => {
+                        const username = doc.data().username;
+                        setUsername(username);
+                    });
+            });
+        } else {
+            console.log("DATABASE ERROR");
+        }
+    });
+
+    async function getUserID() {
+        userID = firebase.auth().currentUser.uid;
+        console.log("ID:", userID);
+    }
 
     const [Title, setTitle] = useState("");
     const [Instructions, setInst] = useState("");
@@ -62,7 +82,7 @@ function AssignmentForm() {
                 Instructions : Instructions,
                 Marks : Marks,
                 Module : Module,
-                createdBy : user.username,
+                createdBy : userName,
                 Deadline :  new Date(Deadline), //Creates a timestamp of the deadline.
                 createdAt : new Date(), //Creates a timestamp of the current date.
                 Marked : false,
