@@ -61,6 +61,7 @@ export default function TestingEasySolution() {
                   MarkList: data.MarkList,
                   Title: data.Title,
                   MaxMark: data.Marks,
+                  Module: data.Module,
                 });
               }
             });
