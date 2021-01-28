@@ -6,10 +6,26 @@ import {DialogActions, DialogContent, DialogTitle, TextField} from "@material-ui
 import firebase from "firebase";
 import {useDocumentData} from "react-firebase-hooks/firestore";
 
+let userName = "placeholder"
+let isAdmin = false
+
 function AssignmentSubmit(props){
+
+    useEffect(() => {//Get the user id of the current logged in user to find their name and admin status.
+
+        db.collection("UserDetails").doc(firebase.auth().currentUser.uid).get().then(doc =>{
+
+                userName = doc.data().username
+                isAdmin = doc.data().isAdmin
+
+            }
+        )
+    })
+
     const [fileUrl, setFileUrl] = React.useState(null);
     const [open, setOpen] = React.useState(false);
 
+    //Creates an Object list using the document data of the current assignment.
     const AssignRef = db.collection("Courses")
         .doc("Computer Science")
         .collection("modules")
@@ -18,13 +34,13 @@ function AssignmentSubmit(props){
         .doc(props.input)
     const [ ass ] = useDocumentData(AssignRef);
 
-    const onFileChange = async (e) => {
+    const onFileChange = async (e) => { //Gets File from event state and stores it in the firebase storage.
         const file = e.target.files[0];
         const storageRef = firebase.storage().ref();
         const fileRef = storageRef.child('Modules/' + props.module
             + '/' + ass.Title + '/' + firebase.auth().currentUser.uid + '/' + file.name);
         await fileRef.put(file);
-        setFileUrl(await fileRef.getDownloadURL());
+        setFileUrl(await fileRef.getDownloadURL()); //Creates a download Url for the file.
     };
 
     const onSubmit = (e) => {
@@ -38,9 +54,11 @@ function AssignmentSubmit(props){
             .doc(props.input)
             .collection("Submissions")
             .doc(firebase.auth().currentUser.uid)
+            //Current user id is the unique id for their submission in the Submission collection.
             .set({
                 id : firebase.auth().currentUser.uid,
-                Filename : fileUrl,
+                Name : userName,
+                Filename : fileUrl, //Stores file download url for future download.
                 Grade : 0,
                 Graded : false,
 
@@ -51,6 +69,8 @@ function AssignmentSubmit(props){
             .catch((error) => {
                 alert(error.message);
             });
+
+        //Reset values.
 
         setFileUrl(null)
         setOpen(false);
@@ -63,7 +83,7 @@ function AssignmentSubmit(props){
         setOpen(false);
     };
 
-    return (
+    return ( //Displays a dialog box with only one input, a file.
         <>
         <div>
             <div className="mb-2">

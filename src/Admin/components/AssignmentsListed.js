@@ -7,6 +7,8 @@ import Card from "react-bootstrap/Card";
 import { CardColumns } from "react-bootstrap";
 
 function AssignmentsListed(props) {
+
+  //Get an Array of Object lists with each assignments fields.
   const AssRef = db
     .collection("Courses")
     .doc("Computer Science")
@@ -17,11 +19,11 @@ function AssignmentsListed(props) {
   const [assignment] = useCollectionData(query, { idField: "id" });
   console.log(assignment);
 
-  return (
+  return ( //Displays the assignments one after the other, as cards in a list.
     <div className="Assignments">
       {assignment &&
         assignment.map((assignment) => {
-          if (assignment.Deadline > new Date().getDate() && !assignment.Graded) {
+          if (assignment.Deadline < new Date().getDate() || !assignment.Graded) { //Splits up assignments into finished ones and pending ones.
             return (
                 <div>
                   <h4>Pending Assignment</h4>
@@ -42,7 +44,7 @@ function AssignmentsListed(props) {
                         <Card.Body>
                           <Card.Title>{assignment.Title}</Card.Title>
                           <Card.Text>
-                            <p>Posted by Someone</p>
+                            <p>Posted by {assignment.createdBy}</p>
                           </Card.Text>
                           <Card.Text>
                             <small className="text-muted text-black-50">
@@ -57,7 +59,7 @@ function AssignmentsListed(props) {
                 </div>
             );
           }else{
-            return(
+            return(//If assignment is past deadline or graded, displays this.
                 <div>
                   <h4>Finished Assignment</h4>
                   <CardColumns>
@@ -77,7 +79,7 @@ function AssignmentsListed(props) {
                         <Card.Body>
                           <Card.Title>{assignment.Title}</Card.Title>
                           <Card.Text>
-                            <p>Posted by Someone</p>
+                            <p>Posted by {assignment.createdBy}</p>
                           </Card.Text>
                           <Card.Text>
                             <small className="text-muted text-black-50">

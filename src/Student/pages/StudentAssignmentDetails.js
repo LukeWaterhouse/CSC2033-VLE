@@ -7,11 +7,12 @@ import AssignmentSubmit from "../components/AssignmentSubmit";
 
 export default class StudentAssignmentDetails extends React.Component {
     render() {
+        //Takes the props from the url after the /, to pass them on.
         console.log(this.props);
         console.log(this.props.match.params);
         const input = this.props.match.params.details;
         const module = this.props.match.params.module;
-        return (
+        return (//Displays the assignment details with the ability to submit for it.
             <div>
                 <AdminNavBar />
                 <div style={{paddingLeft:"20px",paddingTop:"30px"}}>
@@ -26,7 +27,6 @@ export default class StudentAssignmentDetails extends React.Component {
                 <br/>
                 <h1>Submit</h1>
                 <AssignmentSubmit input={input} module={module}/>
-
             </div>
         );
     }

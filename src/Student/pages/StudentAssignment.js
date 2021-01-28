@@ -5,6 +5,7 @@ import StudentAssignmentModuleList from "../components/StudentAssignmentModuleLi
 
 class StudentAssignment extends React.Component {
   render() {
+      //Shows all active assignment as a list of cards.
     return (
       <div>
         <StudentNavBar />

@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { Button } from "react-bootstrap";
 
 function StudentAssignmentModuleList() {
+  //Create a list of all modules
   const ModuleRef = db
     .collection("Courses")
     .doc("Computer Science")
@@ -12,6 +13,7 @@ function StudentAssignmentModuleList() {
   const [Module] = useCollectionData(ModuleRef, { idField: "Title" });
   console.log(Module);
 
+  //Display the Modules as links.
   return (
     <div>
       <h1>View Your Assignments</h1>
@@ -22,6 +24,7 @@ function StudentAssignmentModuleList() {
   );
 }
 
+//Creates the reference and link for the module to redirect to another page.
 function Modules({ ModuleTitle }) {
   const { Title } = ModuleTitle;
   const pathTitle = "/StudentAssignmentView/" + Title;

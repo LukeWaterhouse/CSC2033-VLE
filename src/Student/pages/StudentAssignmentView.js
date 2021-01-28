@@ -7,10 +7,11 @@ import Button from "react-bootstrap/Button";
 
 class StudentAssignmentView extends React.Component{
     render() {
+        //Takes the props from the url after the /, to pass them on.
         console.log(this.props);
         console.log(this.props.match.params);
         const module = this.props.match.params.module;
-        return (
+        return (//Displays the assignments in a module as cards.
             <div>
                 <StudentNavBar/>
                 <h2>Assignments</h2>

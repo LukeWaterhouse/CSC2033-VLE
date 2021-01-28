@@ -8,11 +8,14 @@ import FinishedGrading from "../components/FinishedGrading";
 
 export default class AssignmentDetails extends React.Component {
     render() {
+        //Takes the props from the url after the /, to pass them on.
         console.log(this.props);
         console.log(this.props.match.params);
         const input = this.props.match.params.details;
         const module = this.props.match.params.module;
         return (
+            //Creates a button to return to original page.
+            //Shows the assignment details as a card, followed by a list of the submissions.
             <div>
                 <AdminNavBar />
                 <div style={{paddingLeft:"20px",paddingTop:"30px"}}>
@@ -27,7 +30,7 @@ export default class AssignmentDetails extends React.Component {
                 <br/>
                 <h1>Submissions</h1>
                 <AdminGetSubmissions input={input} module={module}/>
-                <h3>Finished Grading?</h3>
+                <br/>
                 <FinishedGrading input={input} module={module}/>
             </div>
         );

@@ -10,11 +10,13 @@ import Dialog from "@material-ui/core/Dialog";
 
 function AdminSubmissionDisplay(props){
 
+    //Checking the values in props are as desired.
     console.log(props);
 
     const [open, setOpen] = useState(false);
     const [Grade, setGrade] = useState(0);
 
+    //Creates an Object list from the current assignments document data in the firebase.
     const AssRef =
         db.collection("Courses")
             .doc("Computer Science")
@@ -25,6 +27,7 @@ function AdminSubmissionDisplay(props){
     const [ ass ] = useDocumentData(AssRef)
     console.log([ass])
 
+    //
     const onDone = (e) => {
         e.preventDefault();
 
@@ -36,7 +39,7 @@ function AdminSubmissionDisplay(props){
             .doc(props.props.input)
             .collection("Submissions")
             .doc(props.submission.id)
-            .update({
+            .update({ //Updates the users grade and marks them as graded
                 Grade : Grade,
                 Graded : true,
             })
@@ -47,7 +50,9 @@ function AdminSubmissionDisplay(props){
                 alert(error.message);
             });
 
-        const MarkList = ass.MarkList.add(Grade)
+        //Adds their mark to the Marklist.
+        const MarkList = ass.MarkList
+        MarkList.push(Grade);
 
         db.collection("Courses")
             .doc("Computer Science")
@@ -55,7 +60,7 @@ function AdminSubmissionDisplay(props){
             .doc(props.props.module)
             .collection("Assignments")
             .doc(props.props.input)
-            .update({
+            .update({ //Replaces the old Mark list with the new one.
                 MarkList : MarkList,
             }).then(() => {
             alert("Student Grade has been added ot the List");
@@ -75,7 +80,7 @@ function AdminSubmissionDisplay(props){
         setOpen(false);
     };
 
-    return(
+    return( //Lists the submitters names as buttons.
         <div>
             <div
                 className="card-header border-white border-top text-md-center"
@@ -83,12 +88,12 @@ function AdminSubmissionDisplay(props){
             >
                 <a className="text-warning">
                     <Button variant="secondary" onClick={handleClickOpen} style={{ background: "#424242" }}>
-                        {props.key}
+                         {props.submission.Name}
                     </Button>
                 </a>
             </div>
 
-            <Dialog open={open} onClose={handleClose}
+            <Dialog open={open} onClose={handleClose} // When a button is clicked it opens a dialog box with a displayed submission.
                     aria-labelledby="Grade" fullWidth>
                 <DialogTitle id="Grade"><span style={{color: 'lightBlue'}}>Submit</span></DialogTitle>
                 <DialogContent>
@@ -101,6 +106,7 @@ function AdminSubmissionDisplay(props){
                         variant="outlined"
                         value={Grade}
                         onChange={(e) => setGrade(e.target.value)}
+                        /* The admins inputted grade is stored in the event*/
                     />
                 </DialogContent>
                 <DialogActions>

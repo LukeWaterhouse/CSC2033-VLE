@@ -16,7 +16,7 @@ function Assignments() {
     <div>
       <h1>View Assignments</h1>
       {Module?.map((module) => (
-        <Modules key={module.Title} ModuleTitle={module} />
+        <Modules key={module.Title} ModuleTitle={module} /> //Creates a link to the assignment list page of a module.
       ))}
     </div>
   );

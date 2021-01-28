@@ -8,7 +8,11 @@ import { useDocumentData } from "react-firebase-hooks/firestore";
 import Card from "react-bootstrap/Card";
 
 const StudentAssignmentDetailsComp = (props) => {
+
+  //Checking the values in props are as desired.
   console.log(props);
+
+  //Creates an Object list from the current assignments document data in the firebase
   const AssignRef = db
     .collection("Courses")
     .doc("Computer Science")
@@ -19,7 +23,7 @@ const StudentAssignmentDetailsComp = (props) => {
   const [ass] = useDocumentData(AssignRef);
   console.log(ass);
 
-  if (ass) {
+  if (ass) {//Checks if an assignment exists and proceeds to display a card with its information.
     return (
       <div>
         <div className="card-header border-white border-top">
@@ -48,7 +52,7 @@ const StudentAssignmentDetailsComp = (props) => {
       </div>
     );
   } else {
-    return (
+    return ( //If assignment doesnt exist, displays this.
       <div className="container center">
         <p>Loading project...</p>
       </div>
