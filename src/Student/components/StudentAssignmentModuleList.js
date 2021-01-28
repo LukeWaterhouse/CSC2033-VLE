@@ -4,7 +4,15 @@ import { useCollectionData } from "react-firebase-hooks/firestore";
 import { Link } from "react-router-dom";
 import { Button } from "react-bootstrap";
 
+/**
+ * Created by: Giorgos Christodoulou
+ * This file contains a function in which all modules are taken from the firebase and put in an array,
+ * which is then looped to display the module titles as a list of buttons.
+ * When one is clicked, the user will be redirected to the modules assignment list page.
+ */
+
 function StudentAssignmentModuleList() {
+  //Create a list of all modules
   const ModuleRef = db
     .collection("Courses")
     .doc("Computer Science")
@@ -12,6 +20,7 @@ function StudentAssignmentModuleList() {
   const [Module] = useCollectionData(ModuleRef, { idField: "Title" });
   console.log(Module);
 
+  //Display the Modules as links.
   return (
     <div>
       <h1>View Your Assignments</h1>
@@ -22,6 +31,7 @@ function StudentAssignmentModuleList() {
   );
 }
 
+//Creates the reference and link for the module to redirect to another page.
 function Modules({ ModuleTitle }) {
   const { Title } = ModuleTitle;
   const pathTitle = "/StudentAssignmentView/" + Title;

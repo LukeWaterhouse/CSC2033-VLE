@@ -7,8 +7,18 @@ import { db } from "../../firebase";
 import { useDocumentData } from "react-firebase-hooks/firestore";
 import Card from "react-bootstrap/Card";
 
+/**
+ * Created by: Giorgos Christodoulou
+ * This file contains a component which fetches the selected assignments fields from the firebase
+ * and displays them as details in a card.
+ */
+
 const AssignmentDetailsPage = (props) => {
+
+  //Checking the values in props are as desired.
   console.log(props);
+
+  //Creates an Object list from the current assignments document data in the firebase
   const AssignRef = db
     .collection("Courses")
     .doc("Computer Science")
@@ -20,7 +30,7 @@ const AssignmentDetailsPage = (props) => {
   console.log(ass);
 
   if (ass) {
-    return (
+    return (//Checks if an assignment exists and proceeds to display a card with its information.
       <div>
         <div className="card-header border-white border-top">
           <div>
@@ -36,7 +46,7 @@ const AssignmentDetailsPage = (props) => {
                   <p>Module: {ass.Module}</p>
                   <p>Marks: {ass.Marks}</p>
                   <p>Deadline: {moment(ass.Deadline.toDate()).calendar()}</p>
-                  <div className="text-black-50">Posted by Someone</div>
+                  <div className="text-black-50">Posted by {ass.createdBy}</div>
                   <div className="text-black-50">
                     {moment(ass.createdAt.toDate()).calendar()}
                   </div>
@@ -48,7 +58,7 @@ const AssignmentDetailsPage = (props) => {
       </div>
     );
   } else {
-    return (
+    return (//If assignment doesnt exist, displays this.
       <div className="container center">
         <p>Loading project...</p>
       </div>

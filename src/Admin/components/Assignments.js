@@ -4,6 +4,13 @@ import { useCollectionData } from "react-firebase-hooks/firestore";
 import { Link } from "react-router-dom";
 import { Button } from "react-bootstrap";
 
+/**
+ * Created by: Giorgos Christodoulou
+ * This file contains a function in which all modules are taken from the firebase and put in an array,
+ * which is then looped to display the module titles as a list of buttons.
+ * When one is clicked, the user will be redirected to the modules assignment list page.
+ */
+
 function Assignments() {
   const ModuleRef = db
     .collection("Courses")
@@ -16,7 +23,7 @@ function Assignments() {
     <div>
       <h1>View Assignments</h1>
       {Module?.map((module) => (
-        <Modules key={module.Title} ModuleTitle={module} />
+        <Modules key={module.Title} ModuleTitle={module} /> //Creates a link to the assignment list page of a module.
       ))}
     </div>
   );

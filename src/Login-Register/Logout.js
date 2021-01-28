@@ -3,6 +3,7 @@ import Signup from "./Signup";
 
 export default function Logout() {
   const handleLogout = () => {
+    //simply logs out the user when Logout is called
     fire
       .auth()
       .signOut()
@@ -15,6 +16,6 @@ export default function Logout() {
       });
   };
   handleLogout();
-
+  //and returns them to the signup screen.
   return <Signup />;
 }
