@@ -1,8 +1,9 @@
 /**
  * Created by: Harry Clifford
- *
+ * Returns an array with the median's value and locatiom
  */
 
+// Returns an array with the median's value and location
 export default function findMedian (array){
     var trueMedian = 0;
     var middleLocation = 0;

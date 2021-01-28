@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import "./GraphElement.css";
-import ButtonList from "./ButtonList";
 import EasySolution from "./TestingEasySolution";
 
 /**
  * Created by: Harry Clifford
- *
+ * Returns the data for the Student Results page
  */
 
+// Renders the Graph to the Student Results Page
 class Graph extends Component{
     render(){
         return(
@@ -17,17 +17,5 @@ class Graph extends Component{
         )
     }
 }
-// <ul className="AssignmentList">
-//                     {data.map((item, index) => {
-//                         return(
-//                             <li key={index} className="Assignment">
-//                                 <h5> {item.Title} </h5>
-//                                 <p>
-//                                     Mark: {item.Mark} Median: {item.Median} Mean: {item.Mean}
-//                                 </p>
-//                             </li>
-//                         )
-//                     })}
-//                 </ul>
 
 export default Graph;

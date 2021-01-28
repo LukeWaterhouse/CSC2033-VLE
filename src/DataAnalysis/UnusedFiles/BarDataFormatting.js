@@ -4,11 +4,12 @@ import { db } from "../../firebase";
 
 /**
  * Created by: Harry Clifford
- *
+ * This file formats the assignment data passed from ButtonList to create data suitable for a bar graph
  */
 
+// Returns data formatted to be displayed on a bar graph with appropriate lines for averages uses a default mark
+// as this code was made before user login
 function BarFormat(Assignments) {
-    console.log(Assignments)
     if (Assignments.length === 0){
         return null
     }
@@ -19,7 +20,6 @@ function BarFormat(Assignments) {
         let Title = MarkLists[i].Title;
         let MaxMark = MarkLists[i].MaxMark;
         let median = findMedian(MarkList)
-        console.log(median)
         let quartiles = findQuartiles(MarkList, median[1], MarkList.length);
         let mean = 0;
         for (let x = 0; x < MarkList.length; x++) {
@@ -37,6 +37,7 @@ function BarFormat(Assignments) {
     return (newData)
 }
 
+// Returns the percentage acheieved relative to the maximum available
 function Percentage(achieved, max) {
     var percentage = (achieved / max) * 100;
     percentage = +percentage.toFixed(2);

@@ -4,21 +4,23 @@ import CSS from './GraphElement.css'
 
 /**
  * Created by: Harry Clifford
- *
+ * Code to create a bar chart in recharts with a custom toggleable legend
  */
 
 let data = []
+
+// Creates a Rechart bar chart with interactive legend
 class BarChart extends Component {
+  // Set up class properties
   constructor(props) {
     super(props);
     this.selectBar = this.selectBar.bind(this);
-    data = props.data
-    console.log(props.data, data, props)
+    data = props.data;
     this.state = {
       labels: this.props.labels,
     };
   }
-
+  // Update legend on click to hide/show lines
   selectBar(event) {
     let updatedLabels = [];
     for (let i = 0; i < this.state.labels.length; i++) {
@@ -39,11 +41,8 @@ class BarChart extends Component {
       labels: updatedLabels,
     });
   }
-  updateData(newData){
-    data = newData
-  }
+  // Renders bar chart
   render() {
-    console.log(data)
     return (
       <div>
         <ResponsiveContainer className="MarkGraph" width="90%" height={600}>
@@ -55,9 +54,9 @@ class BarChart extends Component {
             />
             <XAxis
               dataKey="Title"
-              axisLine={{ stroke: "#121212" }}
+              axisLine={{ stroke: "#626262" }}
               tick={{ dy: 7 }}
-              stroke="#F8F8FF"
+              stroke="#626262"
               tickInterval="150"
               tickCount-="{data.length}"
             >
@@ -72,8 +71,8 @@ class BarChart extends Component {
               domain={[0, 100]}
               tickInterval="10"
               tickCount="11"
-              axisLine={{ stroke: "#121212" }}
-              stroke="#F8F8FF"
+              axisLine={{ stroke: "#626262" }}
+              stroke="#626262"
             >
               <Label
                 value="Marks (%)"
@@ -83,7 +82,7 @@ class BarChart extends Component {
                 stroke="#F8F8FF"
               />
             </YAxis>
-            <Tooltip />
+            <Tooltip contentStyle={{background :"#626262"}}/>
             <Legend
               onClick={this.selectBar}
               wrapperStyle={{ paddingLeft: "4%", paddingTop: "5px" }}

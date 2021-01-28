@@ -7,11 +7,15 @@ import CSS from '../GraphElement.css';
  *
  */
 
+// Create default data
 let data = [];
 let totalStudents = 0;
 let totalMarks = 0;
 
+// Returns a recharts area graph with supporting lines
+// showing the cumulative frequency of marks achieved in an assignment and averages
 class CumulativeFrequency extends Component{
+    // Sets defaults for the classes variables including the label list
     constructor(props) {
         super(props);
         this.selectBar = this.selectBar.bind(this);
@@ -22,7 +26,7 @@ class CumulativeFrequency extends Component{
             labels: this.props.labels,
         };
     }
-
+    // Allows for the lines on the graph to be toggled on and off via clicking them in the legend
     selectBar(event) {
         let updatedLabels = [];
         for (let i = 0; i < this.state.labels.length; i++) {
@@ -46,6 +50,7 @@ class CumulativeFrequency extends Component{
             totalMarks: this.props.data[2]
         });
     }
+    // Produces a custom tooltip displaying appropriate information about the point highlighted on the graph
     CustomTooltip ({payload, label, active}) {
         if (active && payload !== null) {
             return(
@@ -64,6 +69,7 @@ class CumulativeFrequency extends Component{
         }
         return null;
     }
+    // Returns the cumulative frequency graph
     render(){
         return(
             <ResponsiveContainer className="MarkGraph" width ="90%" height={600}>
@@ -96,7 +102,7 @@ class CumulativeFrequency extends Component{
     }
 }
 
-
+// Returns Percentage achieved relative to max
 function Percentage(achieved, max) {
   var percentage = (achieved / max) * 100;
   percentage = +percentage.toFixed(2);

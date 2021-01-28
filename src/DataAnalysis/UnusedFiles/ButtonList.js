@@ -11,9 +11,11 @@ import BarChart from "../BarChart";
 
 /**
  * Created by: Harry Clifford
- *
+ * This file creates a list of buttons with module names for titles and a drop down with the options of clicking
+ * overall or the name of a specific module to produce a graph based on that data (data parsed in dataformatting files)
  */
 
+// Set labels for interactive legend on graphs
 let labels = [
     { key: "Median", color: "#3700B3"},
     { key: "Mean", color: "#03DAC6"},
@@ -27,8 +29,10 @@ let cumulativeLabels = [
     { key: "LQ", color: "#00E600"}
 ];
 
+// Set a default for graph when it isn't yet loaded
 let Graph = <h3>Graph not Loaded</h3>
 
+// Creates a button list with interactivity to change a graph produced along side it based on marked assignments
 export default function ButtonList() {
     const [Assignments, SetAssignments] = useState([]);
     const [Modules, SetModules] = useState([]);
@@ -37,7 +41,7 @@ export default function ButtonList() {
     const modules = [];
 
     useEffect(() => {
-
+        // Creates list of modules
         function returnAssignments() {
             db.collection("Courses")
                 .doc("Computer Science")
@@ -53,7 +57,8 @@ export default function ButtonList() {
                 })
                 .catch((error) => console.log(error));
         }
-
+        // Creates data for each Graded assignment and overall's for each module
+        // to be used in the onClick functions of the buttons
         function getAssignments() {
             SetAssignments([]);
             for (let i = 0; i < modules.length; i++) {
@@ -90,6 +95,7 @@ export default function ButtonList() {
         returnAssignments();
     }, []);
     useEffect(() => {
+        // Creates data to display buttons using data provided from getAssignments to the useState variable Assignments
         function CombineData() {
             let objectArray = [];
             for (let i = 0; i < Modules.length; i++) {
@@ -109,9 +115,8 @@ export default function ButtonList() {
 
         CombineData();
     }, [Assignments, Modules]);
-
+    // Updates the graph based on the button clicked with the new data and if applicable new graph type
     function updateGraph(data) {
-        console.log(data)
         if (data === undefined) {
             return
         }
@@ -122,7 +127,6 @@ export default function ButtonList() {
                 labels={cumulativeLabels}/>
         } else if (data.Graph === "Bar") {
             let tempGraph = BarFormat(data)
-            console.log(tempGraph)
             Graph = <BarChart key ={tempGraph.length}
                 data={tempGraph}
                 labels={labels}/>
@@ -130,7 +134,7 @@ export default function ButtonList() {
             Graph = <h3>No Graph Available</h3>
         }
     }
-
+    // Produces the data for all done assignments combined for use in a barchart
     function overall(data) {
         if (data === undefined) {
             return
@@ -150,13 +154,12 @@ export default function ButtonList() {
             return
         }
         outputData.MarkLists = MarkLists
-        console.log(outputData)
         updateGraph(outputData)
         return
     }
 
     overall(Assignments)
-    console.log(Graph)
+    // Returns the button list to be rendered along with the graph
     return (
         <div>
             <Button variant="secondary" onClick={overall(Assignments)}> Overall </Button>

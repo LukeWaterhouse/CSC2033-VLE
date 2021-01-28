@@ -2,6 +2,13 @@
 import findMedian from "../Median";
 import findQuartiles from "../Quartiles";
 
+/**
+ * Created by: Harry Clifford
+ * Format's data to be usable by recharts to make a cumulative frequency graph
+ */
+
+// Returns cumulative data for use in recharts and totalStudents who have marks for the module and the maxMarks which
+// are the maximum available marks to be used in a custom tooltip in the cumulative frequency graph
 function Format(data){
     var marks = data.MarkList.sort(compareFunction);
     var maxMarks = data.Marks
@@ -34,6 +41,7 @@ function Format(data){
     return [cumulativeData, totalStudents, maxMarks]
 }
 
+// When used with sort returns a numerically ordered list from lowest to highest
 function compareFunction(a, b) {
     return a - b;
 }

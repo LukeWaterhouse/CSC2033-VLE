@@ -4,14 +4,15 @@ import { db } from "../firebase";
 
 /**
  * Created by: Harry Clifford
- *
+ * Format's data to be displayed by Rechart's bar chart
  */
 
+// Returns the formatted data for a bar chart
 function BarFormat(data) {
     if (data[0] === undefined){
         return []
     }
-    console.log(data, data[0])
+    // Finds the averages for each individual assignment and adds them to an array
     let newData = []
     for (let i = 0; i < data.length; i++) {
         let MarkList = data[i].MarkList;
@@ -33,7 +34,6 @@ function BarFormat(data) {
             UQ: Percentage(quartiles[1][0], MaxMark), LQ: Percentage(quartiles[0][0], MaxMark), Mean: mean
         })
     }
-    console.log(newData)
     return (newData)
 }
 
@@ -43,12 +43,14 @@ function userMark(){
     return Mark
 }
 
+// Returns the percentage acheieved relative to the maximum available
 function Percentage(achieved, max) {
     var percentage = (achieved / max) * 100;
     percentage = +percentage.toFixed(2);
     return percentage;
 }
 
+// When used with sort returns a numerically ordered list from lowest to highest
 function compareFunction(a, b) {
     return a - b;
 }
