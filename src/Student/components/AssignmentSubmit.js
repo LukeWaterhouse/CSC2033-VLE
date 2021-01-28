@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import { db, auth } from "../../firebase";
 import Button from "react-bootstrap/Button";
 import Dialog from "@material-ui/core/Dialog";
@@ -15,6 +15,31 @@ import {useDocumentData} from "react-firebase-hooks/firestore";
 function AssignmentSubmit(props){
     const [fileUrl, setFileUrl] = React.useState(null);
     const [open, setOpen] = React.useState(false);
+    const [userName, setUsername] = useState("");
+
+    let userID = "";
+
+    //first checks if there is an authState change before retrieving the current users details
+    firebase.auth().onAuthStateChanged(function (user) {
+        if (user) {
+            getUserID().then((r) => {
+                db.collection("UserDetails")
+                    .doc(userID)
+                    .get()
+                    .then((doc) => {
+                        const username = doc.data().username;
+                        setUsername(username);
+                    });
+            });
+        } else {
+            console.log("DATABASE ERROR");
+        }
+    });
+
+    async function getUserID() {
+        userID = firebase.auth().currentUser.uid;
+        console.log("ID:", userID);
+    }
 
     //Creates an Object list using the document data of the current assignment.
     const AssignRef = db.collection("Courses")
@@ -24,11 +49,6 @@ function AssignmentSubmit(props){
         .collection("Assignments")
         .doc(props.input)
     const [ ass ] = useDocumentData(AssignRef);
-
-    const UserRef = db
-        .collection("UserDetails")
-        .doc(firebase.auth().currentUser.uid)
-    const [user] = useDocumentData(UserRef);
 
     const onFileChange = async (e) => { //Gets File from event state and stores it in the firebase storage.
         const file = e.target.files[0];
@@ -53,7 +73,7 @@ function AssignmentSubmit(props){
             //Current user id is the unique id for their submission in the Submission collection.
             .set({
                 id : firebase.auth().currentUser.uid,
-                Name : user.username,
+                Name : userName,
                 Filename : fileUrl, //Stores file download url for future download.
                 Grade : 0,
                 Graded : false,
