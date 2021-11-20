@@ -57,12 +57,25 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 
 ![image](https://user-images.githubusercontent.com/51091532/142720495-029c0653-7af0-43a7-bad0-cd74be563feb.png)
 
+
 ![image](https://user-images.githubusercontent.com/51091532/142720500-4d1b723a-dfd6-43cb-8ea4-49336565a8b2.png)
+
+
 ![image](https://user-images.githubusercontent.com/51091532/142720507-a829f90e-c957-41b9-9dd0-27143cfe3d80.png)
+
+
 ![image](https://user-images.githubusercontent.com/51091532/142720512-7d96c056-4b6a-41f7-a2a1-fc59b536a32b.png)
+
+
 ![image](https://user-images.githubusercontent.com/51091532/142720522-d72f0b5e-2726-4301-8440-16d17b667b7f.png)
+
+
 ![image](https://user-images.githubusercontent.com/51091532/142720526-0130317b-f4a9-405c-9667-6279b38b470b.png)
+
+
 ![image](https://user-images.githubusercontent.com/51091532/142720530-8a9aca3a-ee63-4ac4-91ef-0feabc42121e.png)
+
+
 ![image](https://user-images.githubusercontent.com/51091532/142720535-bc862c38-9aca-42b3-920e-0d1a5a358cc4.png)
 
 
