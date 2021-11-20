@@ -1,6 +1,6 @@
 # EPiC Learning and Enagagement tool
 
-The EPiC Learning and engagement tool allows the user to create a dynamically changing platform for students to to come together online, discuss their progress with eachother and feel more 'engaged with their teaching!'
+The EPiC Learning and engagement tool is a 'Virtual Learning Environment' that allows the user to create a dynamically changing platform for students to to come together online, discuss their progress with eachother and feel more 'engaged with their teaching!'
 ## Features
 
 Our Features include:
